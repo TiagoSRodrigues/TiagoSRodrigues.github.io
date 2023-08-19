@@ -11,8 +11,6 @@
     <!-- Include a theme. You can set a default one here, but scripts.js will override it based on the config.json settings -->
     <link id="theme-style" rel="stylesheet" href="configs/styles/light_theme/light.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
     <!-- Load service worker for offline functionality (if you have added it) -->
     <script>
         if ('serviceWorker' in navigator) {
@@ -49,6 +47,7 @@
         <!-- The content of the selected article will be displayed here by scripts.js -->
         <p>Select an article from the sidebar to read.</p>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <!-- Include the JavaScript to handle dynamic loading of content -->
     <script src="configs/scripts.js"></script>

@@ -1,0 +1,29 @@
+name: GitHub Pages Deployment
+
+on:
+  push:
+    branches:
+      - main  # or replace 'main' with the name of your default branch
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Set deploy time
+        run: echo "DEPLOY_TIME=$(date +'%H:%M %d-%m-%Y')" >> $GITHUB_ENV
+      
+      # If you're using Jekyll or another static site generator, insert build steps here.
+      # For example:
+      # - name: Build with Jekyll
+      #   run: |
+      #     bundle install
+      #     bundle exec jekyll build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site  # Or the directory of your built website.
