@@ -49,6 +49,7 @@ function loadContent(fileName) {
     fetch(`content/${fileName}`)
         .then(response => response.text())
         .then(markdown => {
+            console.log("debug fileName", fileName)
             const htmlContent = convertMarkdownToHTML(markdown);
             document.getElementById("main-content").innerHTML = htmlContent;
         })
