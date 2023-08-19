@@ -78,8 +78,9 @@ function generateSidebar() {
     });
 }
 function convertMarkdownToHTML(markdown) {
-    return marked(markdown);
+    return window.marked(markdown);
 }
+
 
 function toggleTheme() {
     const currentTheme = processConfig.getConfig("site.theme");
