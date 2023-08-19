@@ -28,25 +28,31 @@
 <body>
 
     <header>
-        <!-- Site Title; Will be populated by scripts.js -->
-        <h1 id="site-title">Loading...</h1>
-        <!-- Theme Toggle Button -->
-        <button id="theme-toggle">Toggle Theme</button>
+        <h1 id="site-title">Your Site Title</h1>
     </header>
 
-    <!-- Navigation Sidebar -->
-    <nav id="sidebar">
-        <!-- List of articles; Will be populated by scripts.js -->
-        <ul id="articles-list">
-            <li>Loading articles...</li>
-        </ul>
-    </nav>
+    <div class="container">
+        <nav id="sidebar">
+            <ul id="articles-list">
+                <li>Loading articles...</li>
+            </ul>
+        </nav>
+
+        <main id="main-content">
+            <p>Select an article from the sidebar to read.</p>
+        </main>
+    </div>
 
     <!-- Main Content Area -->
     <main id="main-content">
         <!-- The content of the selected article will be displayed here by scripts.js -->
         <p>Select an article from the sidebar to read.</p>
     </main>
+
+
+    <footer>
+        Tiago Silva Rodrigues (c) Last deploy at: [deployment time]
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <!-- Include the JavaScript to handle dynamic loading of content -->

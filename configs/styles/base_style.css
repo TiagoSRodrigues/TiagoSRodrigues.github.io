@@ -1,13 +1,44 @@
-/* Reset some default styles for better cross-browser consistency */
-body, h1, h2, h3, p, ul, li {
-    margin: 0;
-    padding: 0;
-}
-
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
-    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* ensures footer sticks to bottom if content is short */
 }
 
-/* Other foundational styles... */
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    /* makes the sidebar and main content sit side by side */
+}
+
+#sidebar {
+    flex: 1;
+    /* takes up 1 portion of the container's width */
+    padding: 15px;
+    background-color: #f7f7f7;
+    border-right: 1px solid #eaeaea;
+    min-height: calc(100vh - 60px);
+    /* subtracting height of header and footer */
+}
+
+#main-content {
+    flex: 3;
+    /* takes up 3 portions of the container's width */
+    padding: 15px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
