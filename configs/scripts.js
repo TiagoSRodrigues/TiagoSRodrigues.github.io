@@ -1,7 +1,7 @@
 // Define the main function to handle configuration parsing
 function parseConfig() {
     // Fetch the config.json file
-    fetch('configs\config.json')
+    fetch('configs/config.json')
         .then(response => response.json())
         .then(config => {
             // Call your function to process the configurations
