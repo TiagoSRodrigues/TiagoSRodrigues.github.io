@@ -1,0 +1,35 @@
+{
+    "site": {
+        "title": "My Notion-like Site",
+        "description": "A personal site structured like Notion.",
+        "baseURL": "https://www.mysite.com/",
+        "language": "en-US",
+        "favicon": "assets/path_to_favicon.ico",
+        "theme": "light"
+    },
+    "author": {
+        "name": "Your Name",
+        "email": "youremail@example.com",
+        "bio": "Brief description about the author.",
+        "avatar": "assets/path_to_avatar.jpg"
+    },
+    "social": {
+        "twitter": "yourTwitterHandle",
+        "github": "yourGithubUsername",
+        "linkedin": "yourLinkedinProfile"
+    },
+    "analytics": {
+        "googleAnalyticsID": "UA-XXXXXXXXX"
+    },
+    "features": {
+        "comments": false,
+        "search": true,
+        "offlineSupport": true,
+        "rssFeed": true
+    },
+    "styles": {
+        "defaultFont": "Arial, sans-serif",
+        "headerFont": "Verdana, sans-serif",
+        "baseFontSize": "16px"
+    }
+}

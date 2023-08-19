@@ -1,106 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Under Development Page</title>
-    <style>
-        /* Add some basic styles */
-        body {
-            background-color: #2c3e50;
-            color: #fff;
-            font-family: sans-serif;
-            font-size: 18px;
-            text-align: center;
-            margin-top: 50px;
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Site Title</title> <!-- This will be dynamically changed by scripts.js -->
 
-        h1 {
-            font-size: 36px;
-            margin-bottom: 30px;
-        }
+    <!-- Include the base styles -->
+    <link rel="stylesheet" href="configs/styles/base_style.css">
+    <!-- Include a theme. You can set a default one here, but scripts.js will override it based on the config.json settings -->
+    <link id="theme-style" rel="stylesheet" href="configs/styles/light_theme/light.css">
 
-        #img-container {
-            margin-top: 50px;
+    <!-- Load service worker for offline functionality (if you have added it) -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/sw.js').then(function (registration) {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function (err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
         }
-
-        .btn {
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 20px;
-            cursor: pointer;
-            margin-top: 30px;
-        }
-
-        .btn:hover {
-            background-color: #2980b9;
-        }
-    </style>
+    </script>
 </head>
 
 <body>
-    <h1>Sorry, this page is still under development.</h1>
-    <p>We're working hard to make it awesome!</p>
-    <div id="img-container">
-        <img id="current-img" src="" alt="" title="">
-    </div>
-    <button class="btn">Refresh Image</button>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Define variables
-            const imgContainer = document.getElementById('img-container');
-            let currentImg;
 
-            // Fetch and display the latest image
-            function displayLatestImage() {
-                const url = 'https://www.nasa.gov/rss/dyn/lg_image_of_the_day.rss';
-                fetch(url)
-                    .then(response => response.text())
-                    .then(data => {
-                        const parser = new DOMParser();
-                        const xml = parser.parseFromString(data, 'text/xml');
-                        const item = xml.getElementsByTagName('item')[0];
-                        const imgSrc = item.getElementsByTagName('enclosure')[0].getAttribute('url');
-                        const title = item.getElementsByTagName('title')[0].textContent;
-                        const description = item.getElementsByTagName('description')[0].textContent;
+    <header>
+        <!-- Site Title; Will be populated by scripts.js -->
+        <h1 id="site-title">Loading...</h1>
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle">Toggle Theme</button>
+    </header>
 
-                        // Create a new image element and add it to the container
-                        const newImg = document.createElement('img');
-                        newImg.setAttribute('src', imgSrc);
-                        newImg.setAttribute('alt', title);
-                        newImg.setAttribute('title', description);
-                        imgContainer.appendChild(newImg);
+    <!-- Navigation Sidebar -->
+    <nav id="sidebar">
+        <!-- List of articles; Will be populated by scripts.js -->
+        <ul id="articles-list">
+            <li>Loading articles...</li>
+        </ul>
+    </nav>
 
-                        // Remove the previous image after a short delay
-                        setTimeout(() => {
-                            imgContainer.removeChild(currentImg);
-                        }, 500);
+    <!-- Main Content Area -->
+    <main id="main-content">
+        <!-- The content of the selected article will be displayed here by scripts.js -->
+        <p>Select an article from the sidebar to read.</p>
+    </main>
 
-                        // Set the current image to the new image
-                        currentImg = newImg;
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
-            }
-
-            // Call the function to display the latest image initially
-            displayLatestImage();
-
-            // Set an interval to refresh the image every 10 seconds
-            setInterval(() => {
-                displayLatestImage();
-            }, 10000);
-
-            // Refresh the image when the refresh button is clicked
-            const refreshBtn = document.querySelector('.btn');
-            refreshBtn.addEventListener('click', () => {
-                displayLatestImage();
-            });
-        });
-    </script>
+    <!-- Include the JavaScript to handle dynamic loading of content -->
+    <script src="configs/scripts.js"></script>
 </body>
 
 </html>
