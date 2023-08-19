@@ -79,8 +79,9 @@ function generateSidebar() {
     });
 }
 function convertMarkdownToHTML(markdown) {
-    return window.marked(markdown);
+    return window.marked.marked(markdown);
 }
+
 
 
 function toggleTheme() {
