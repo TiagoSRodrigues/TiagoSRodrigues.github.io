@@ -1,4 +1,4 @@
-:root {
+⁸:root {
     --bg-color-primary: white;            /*Editor Background */
     --bg-color-secondary: rgb(237, 237, 237) ;         /* This is kept from your original value, it's close to VS Code panel color */
     --bg-color-tertiary: #b8b8b8;          /* A slightly lighter shade from Editor Background for differentiation */
@@ -78,9 +78,9 @@ body {
 }
 
 #sidebar {
-    /* display: block; */
-    /* list-style-type: none; */
-    /* flex: 1; */
+    display: block;
+    list-style-type: none;
+    flex: 1;
     padding: 15px;
     background-color: var(--background-color);
     /* Updated this to primary background color */
