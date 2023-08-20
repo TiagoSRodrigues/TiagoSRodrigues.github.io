@@ -1,25 +1,21 @@
-// Define the main function to handle configuration parsing
-function parseConfig() {
-    // Fetch the config.json file
-    fetch('configs/config.json')
-        .then(response => response.json())
-        .then(config => {
-            // Call your function to process the configurations
-            processConfig(config);
-        })
-        .catch(error => {
-            console.error('Error fetching config.json:', error);
-        });
+let currentTheme = "light";  // Default theme to set the initial value
 
-    generateSidebar();
-    loadContent("1-Understanding_DevOps.md");  // or whatever the default content should be
+async function parseConfig() {
+    try {
+        const response = await fetch('configs/config.json');
+        const config = await response.json();
+        processConfig(config);
+        await generateSidebar();
+        loadContent("1-Understanding_DevOps.md");
+    } catch (error) {
+        console.error('Error fetching config.json:', error);
     }
+}
 
-// Function to process the fetched configurations
 function processConfig(config) {
     const siteTitle = config.site.title;
     const siteDescription = config.site.description;
-    const siteTheme = config.site.theme;
+    currentTheme = config.site.theme;
 
     document.getElementById("site-title").innerText = siteTitle;
 
@@ -27,40 +23,13 @@ function processConfig(config) {
     const themeStyle = document.createElement("link");
     themeStyle.rel = "stylesheet";
     themeStyle.id = "theme-style";
-    themeStyle.href = `configs/styles/${siteTheme}_theme/${siteTheme}.css`;
+    themeStyle.href = `configs/styles/${currentTheme}_theme/${currentTheme}.css`;
     document.head.appendChild(themeStyle);
 }
 
-
-// Helper function to retrieve configuration values
-function getConfig(key) {
-    return this[key];
-}
-
-// Attach getConfig to the processConfig function for easy access
-processConfig.getConfig = getConfig;
-
-
-
-// Call the main function to start parsing the config
-parseConfig();
-
-function loadContent(fileName) {
-    fetch(`content/${fileName}`)
-        .then(response => response.text())
-        .then(markdown => {
-            const htmlContent = convertMarkdownToHTML(markdown);
-            document.getElementById("main-content").innerHTML = htmlContent;
-        })
-        .catch(error => {
-            console.error("Error loading content:", error);
-        });
-}
-
-function generateSidebar() {
+async function generateSidebar() {
     const sidebar = document.getElementById("sidebar");
-    const contentFiles = ["1-Understanding_DevOps.md", "2-Understangin_Cloud_Computing.md", "3-Devops_for_Managers.md"];  // In reality, you might want to fetch this list dynamically.
-
+    const contentFiles = await loadContentFiles();
     contentFiles.forEach(file => {
         const listItem = document.createElement("li");
         const link = document.createElement("a");
@@ -77,25 +46,41 @@ function generateSidebar() {
         sidebar.appendChild(listItem);
     });
 }
+
+function loadContent(fileName) {
+    fetch(`content/${fileName}`)
+        .then(response => response.text())
+        .then(markdown => {
+            const htmlContent = convertMarkdownToHTML(markdown);
+            document.getElementById("main-content").innerHTML = htmlContent;
+        })
+        .catch(error => {
+            console.error("Error loading content:", error);
+        });
+}
+
 function convertMarkdownToHTML(markdown) {
     return window.marked.marked(markdown);
 }
 
-
-
 function toggleTheme() {
-    const currentTheme = processConfig.getConfig("site.theme");
-    const newTheme = currentTheme === "dark" ? "light" : "dark";
-
-    // Update the config (for this session, if you want it persistent, consider using localStorage)
-    processConfig["site.theme"] = newTheme;
-
-    // Update the stylesheet link
+    currentTheme = currentTheme === "dark" ? "light" : "dark";
     const themeStyle = document.getElementById("theme-style");
-    themeStyle.href = `configs/styles/${newTheme}_theme/${newTheme}.css`;
+    themeStyle.href = `configs/styles/${currentTheme}_theme/${currentTheme}.css`;
 }
 
-document.getElementById("theme-toggle").addEventListener("click", toggleTheme);
+async function loadContentFiles() {
+    try {
+        const response = await fetch('configs/manifest.json');
+        const files = await response.json();
+        return files;
+    } catch (error) {
+        console.error("Error fetching the manifest:", error);
+        return [];
+    }
+}
+
+// Initialize service worker for offline functionality
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
         navigator.serviceWorker.register('/sw.js').then(function (registration) {
@@ -105,3 +90,33 @@ if ('serviceWorker' in navigator) {
         });
     });
 }
+
+// Comment out the below code if the theme toggle button is not available in your HTML
+// document.getElementById("theme-toggle").addEventListener("click", toggleTheme);
+
+// Call the main function to start parsing the config
+parseConfig();
+
+let lastScrollTop = 0;
+
+window.addEventListener("scroll", function () {
+    let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScrollTop == 0) {
+        // At top of the page, show big header and hide small header
+        document.getElementById("big-header").style.top = "0";
+        document.getElementById("small-header").style.top = "0";
+    } else if (currentScrollTop <= lastScrollTop) {
+        // Scrolling up
+        document.getElementById("small-header").style.top = "0";
+        document.getElementById("big-header").style.top = "-90px";  // or whatever the height of the big header is
+    } else {
+        // Scrolling down
+        document.getElementById("small-header").style.top = "-60px";
+    }
+
+    lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+});
+document.getElementById("theme-toggle").addEventListener("change", function () {
+    toggleTheme();
+});

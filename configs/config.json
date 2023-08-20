@@ -1,8 +1,8 @@
 {
     "site": {
-        "title": "My Notion-like Site",
+        "title": "My notes",
         "description": "A personal site structured like Notion.",
-        "baseURL": "https://www.mysite.com/",
+        "baseURL": "tiagosrodrigues.github.io",
         "language": "en-US",
         "favicon": "assets/path_to_favicon.ico",
         "theme": "light"

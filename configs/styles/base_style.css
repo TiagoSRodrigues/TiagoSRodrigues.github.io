@@ -1,3 +1,22 @@
+:root {
+    --primary-dark: #032554;
+    /* darkest color */
+    --primary-medium-dark: #00000065;
+    --primary-medium-light: #0310a76b;
+    --primary-light: #f1faee;
+    /* brightest color */
+    --accent: #e82636;
+    /* for special emphasis */
+
+    --font-size-small: 12px;
+}
+[data-theme='dark'] {
+    --primary-bg: #1d3557;
+    --secondary-bg: #457b9d;
+    --primary-txt: #f1faee;
+    --secondary-txt: #e63946;
+    --border-color: #e63946;
+}
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -5,40 +24,189 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    /* ensures footer sticks to bottom if content is short */
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
 }
 
-header {
-    background-color: #333;
-    color: white;
-    padding: 15px;
+#big-header {
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
+    padding: 25px;
     text-align: center;
+    transition: top 0.3s;
+}
+
+#small-header {
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
+
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    font-size: var(--font-size-small);
+    /* top: -60px; */
+    /* hide initially */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: top 0.4s;
+}
+
+#small-header #name {
+    flex-grow: 2;
+    text-align: center;
+    font-weight: bolder;
+    font-size: calc(var(--font-size-small)*1.2);
+}
+
+#theme-toggle {
+    margin-right: 15px;
 }
 
 .container {
     display: flex;
-    /* makes the sidebar and main content sit side by side */
 }
 
 #sidebar {
+    list-style-type: none;
     flex: 1;
-    /* takes up 1 portion of the container's width */
     padding: 15px;
-    background-color: #f7f7f7;
-    border-right: 1px solid #eaeaea;
+    background-color: var(--primary-medium-light);
+    border-right: 1px solid var(--primary-medium-dark);
     min-height: calc(100vh - 60px);
-    /* subtracting height of header and footer */
+    max-width: 300px;
+    fon
+}
+#sidebar a {
+    text-decoration: none;
+    /* Removes underline */
+    color: inherit;
+    /* Inherits the color of the parent element */
+}
+
+#sidebar a:hover {
+    text-decoration: underline;
+    font-weight: bolder;
+    /* Optional: Adds underline on hover */
+}
+#sidebar li {
+    margin-bottom: 8px;
+    /* Adjust this value to increase or decrease spacing */
 }
 
 #main-content {
     flex: 3;
-    /* takes up 3 portions of the container's width */
     padding: 15px;
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
 }
 
-footer {
-    background-color: #333;
-    color: white;
-    padding: 10px;
+
+/*  ----  FOOTER   ---     */
+#sticky-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px 0;
+    background-color: var(--primary-medium-dark);
+    color: var(--primary-light);
     text-align: center;
+    z-index: 1000;
+    font-size: var(--font-size-small);
+    font-weight: bold;
+}
+
+#sticky-footer a {
+    color: var(--accent);
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+#sticky-footer a:hover {
+    text-decoration: underline;
+    color: var(--primary-dark);
+}
+
+
+/* dark mode switch  */
+
+/* ... existing CSS ... */
+
+/* The switch - the box around the slider */
+.dark-mode-switch {
+    --switch-width: 40px;
+    --slider-height: calc(var(--switch-width) * .60);
+    --slider-radius: calc(var(--slider-height) / 2);
+    --knob-size: calc(var(--slider-height) * 0.8);
+    --knob-transition-distance: calc(var(--switch-width) - var(--knob-size) - 8px);
+    
+
+    position: relative;
+    display: inline-block;
+    width: var(--switch-width);
+    height: var(--slider-height);
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    margin-left: 10px;
+    justify-content: flex-start;
+    /* Aligns content to the start */
+    align-items: center;
+    /* Vertically center the text and the switch */
+    }
+
+/* Hide default HTML checkbox */
+.dark-mode-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: var(--slider-radius);
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: var(--knob-size);
+    width: var(--knob-size);
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    border-radius: 50%;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #0000009d;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #0000009d;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(var(--knob-transition-distance)) translateY(-50%);
+    -ms-transform: translateX(var(--knob-transition-distance)) translateY(-50%);
+    transform: translateX(var(--knob-transition-distance)) translateY(-50%);
+}
+
+.dark-mode-switch span:first-child {
+    margin-right: 10px;
 }

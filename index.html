@@ -27,30 +27,46 @@
 
 <body>
 
-    <header>
+    <header id="big-header">
         <h1 id="site-title">Your Site Title</h1>
+
     </header>
+
+    <header id="small-header">
+        <div id="name">Your Name</div>
+
+
+        <div>Dark Mode</div>
+
+        <!-- dark mode switch -->
+        <label class="dark-mode-switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
+
+
+
+
+    </header>
+
 
     <div class="container">
         <nav id="sidebar">
-            <ul id="articles-list">
-                <li>Loading articles...</li>
-            </ul>
+            <h3 id="articles-list">
+                <p>Choose an article:</p>
+            </h3>
         </nav>
+        <!-- Main Content Area -->
 
         <main id="main-content">
             <p>Select an article from the sidebar to read.</p>
         </main>
     </div>
 
-    <!-- Main Content Area -->
-    <main id="main-content">
-        <!-- The content of the selected article will be displayed here by scripts.js -->
-        <p>Select an article from the sidebar to read.</p>
-    </main>
 
 
-    <footer>
+
+    <footer id="sticky-footer">
         Tiago Silva Rodrigues (c) Last deploy at: [deployment time]
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
