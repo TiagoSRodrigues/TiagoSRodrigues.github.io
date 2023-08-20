@@ -193,3 +193,127 @@ document.addEventListener('DOMContentLoaded', function () {
 // Initialize everything
 parseConfig();
 console.log("scripts.js is running");
+
+
+async function fetchLocalConfig() {
+    try {
+        const response = await fetch('configs/config.json');
+        if (!response.ok) {
+            throw new Error("Failed to fetch local config");
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching local config:", error);
+        return null;
+    }
+}
+
+async function fetchLocalConfig() {
+    try {
+        const response = await fetch('configs/config.json');
+        if (!response.ok) {
+            throw new Error("Failed to fetch local config");
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching local config:", error);
+        return null;
+    }
+}
+
+async function fetchLocalConfig() {
+    try {
+        const response = await fetch('configs/config.json');
+        if (!response.ok) {
+            throw new Error("Failed to fetch local config");
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching local config:", error);
+        return null;
+    }
+}
+
+let lastScrollTop = 0;
+
+window.addEventListener("scroll", function () {
+    let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScrollTop == 0) {
+        // At top of the page, show small header
+        document.getElementById("small-header").style.top = "0";
+        document.getElementById("big-header").style.top = "-90px";  // or whatever the height of the big header is
+    } else if (currentScrollTop < lastScrollTop) {
+        // Scrolling up, show small header
+        document.getElementById("small-header").style.top = "0";
+        document.getElementById("big-header").style.top = "-90px";  // or whatever the height of the big header is
+    } else {
+        // Scrolling down, hide small header
+        document.getElementById("small-header").style.top = "-60px";  // assuming height of small header is 60px
+    }
+
+    lastScrollTop = currentScrollTop;
+});
+
+// Ensure small header is visible on page load or refresh
+document.getElementById("small-header").style.top = "0";
+
+
+
+async function checkVersionAndUpdate() {
+    try {
+        // Fetch remote config
+        const response = await fetch('https://raw.githubusercontent.com/TiagoSRodrigues/TiagoSRodrigues.github.io/main/configs/config.json');
+        if (!response.ok) {
+            throw new Error("Failed to fetch remote config");
+        }
+        const remoteConfig = await response.json();
+
+        // Fetch local config
+        const localConfig = await fetchLocalConfig();
+        if (!localConfig) {
+            throw new Error("Failed to get local config");
+        }
+
+        if (localConfig.site.version !== remoteConfig.site.version) {
+            if (localStorage.getItem('triedFetchingNewVersion')) {
+                // If we've already tried fetching the new version once, do not attempt again.
+                console.log("Tried fetching new version previously. Not trying again to avoid infinite loop.");
+                return;
+            }
+
+            console.log("Version mismatch detected. Clearing cookies and reloading the page.");
+
+            // Clear all cookies
+            const cookies = document.cookie.split(";");
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i];
+                const eqPos = cookie.indexOf("=");
+                const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+                document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+            }
+
+            // Set a flag in localStorage indicating that we've tried refreshing due to version mismatch
+            localStorage.setItem('triedFetchingNewVersion', 'true');
+
+            // Reload the page
+            location.reload();
+            await sleep(60000);  // Sleeps for 2 minutes (120000 milliseconds)
+
+        } else {
+            // If versions match, clear the localStorage flag
+            localStorage.removeItem('triedFetchingNewVersion');
+        }
+
+    } catch (error) {
+        // Only log the error
+        console.error("Error checking the version:", error);
+    }
+}
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+// Call the function
+checkVersionAndUpdate();

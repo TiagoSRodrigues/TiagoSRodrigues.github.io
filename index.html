@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- VERSION 2.5 -->
 <html lang="en">
 
 <head>
@@ -21,7 +20,15 @@
 
     <!-- Placeholder for the theme. The JavaScript below will determine and load the appropriate theme -->
     <link id="theme-style" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LC0SWLRYYN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
+        gtag('config', 'G-LC0SWLRYYN');
+    </script>
     <!-- Load service worker for offline functionality (if you have added it) -->
     <script>
         if ('serviceWorker' in navigator) {
@@ -61,9 +68,9 @@
 
         <aside id="sidebar">
 
-    
 
-       
+
+
 
         </aside>
 

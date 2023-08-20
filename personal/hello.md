@@ -12,7 +12,7 @@ Dive into this section if you're curious about:
 - 🍝 Food that I would never say 'no' to.
 - 🌍 Places I've been and my travel escapades.
 
-🔗 [Explore Personal Articles](#)
+<!-- 🔗 [Explore Personal Articles](#) -->
 
 ---
 
@@ -24,7 +24,7 @@ Over the years, I've worn many hats - from a newbie coder wrestling with bugs �
 - 💡 Insights from my personal projects.
 - 🛠 How-tos, tips, and tricks from my coding ventures.
 
-🔗 [Dive into My Notes](#)
+<!-- 🔗 [Dive into My Notes](#) -->
 
 ---
 
@@ -36,4 +36,4 @@ Over the years, I've worn many hats - from a newbie coder wrestling with bugs �
 
 ---
 
-**Stay Curious! 🌈**
+**Stay Curious! **

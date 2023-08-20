@@ -1,26 +1,28 @@
 {
     "site": {
-        "title": "This is my notebook",
-        "description": "A personal site structured like Notion.",
+        "title": "This is my notebook, it's still under construction, but suggestions are welcome :)",
+        "description": "This is my landing page",
         "baseURL": "tiagosrodrigues.github.io",
         "language": "en-US",
-        "favicon": "assets/path_to_favicon.ico",
-        "theme": "light"
+        "favicon": "assets/site_assets/Pino-Peanuts-Snoopy-5.32.png",
+        "theme": "light",
+        "version": "2.5.0",
+        "lastDeploy": "Sun Aug 20 23:54:38 WEST 2023"
     },
     "author": {
         "name": "Tiago Rodrigues",
-        "email": "youremail@example.com",
-        "bio": "Brief description about the author.",
+        "email": "Tiago_SRodrigues@outlook.com",
+        "bio": "Systems Analyst & DevOps Specialist",
         "avatar": "https://avatars.githubusercontent.com/u/36556000?v=4"
     },
     "social": {
         "github": {
             "url": "https://github.com/TiagoSRodrigues",
-            "label": " @TiagoSRodrigues"
+            "label": "Github -TiagoSRodrigues"
         },
         "linkedin": {
             "url": "https://www.linkedin.com/in/tiagosilvarodrigues/",
-            "label": " @tiagosilvarodrigues"
+            "label": "Linkedin - TiagoSilvaRodrigues"
         }
     },
     "analytics": {
