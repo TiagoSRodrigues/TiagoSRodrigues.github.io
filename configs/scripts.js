@@ -65,8 +65,14 @@ function convertMarkdownToHTML(markdown) {
 
 function toggleTheme() {
     currentTheme = currentTheme === "dark" ? "light" : "dark";
+
+    // Update the theme CSS link
     const themeStyle = document.getElementById("theme-style");
     themeStyle.href = `configs/styles/${currentTheme}_theme/${currentTheme}.css`;
+
+    // Update the data-theme attribute and localStorage
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    localStorage.setItem('theme', currentTheme);
 }
 
 async function loadContentFiles() {
@@ -92,7 +98,6 @@ if ('serviceWorker' in navigator) {
 }
 
 // Comment out the below code if the theme toggle button is not available in your HTML
-// document.getElementById("theme-toggle").addEventListener("click", toggleTheme);
 
 // Call the main function to start parsing the config
 parseConfig();
@@ -119,4 +124,24 @@ window.addEventListener("scroll", function () {
 });
 document.getElementById("theme-toggle").addEventListener("change", function () {
     toggleTheme();
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const themeSwitch = document.querySelector('.dark-mode-switch input[type="checkbox"]');
+    const currentTheme = localStorage.getItem('theme') || "light"; // Default to light if no theme is stored
+
+    // Set the initial theme
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+    // Update the theme CSS link to match the initial theme
+    const themeStyle = document.getElementById("theme-style");
+    themeStyle.href = `configs/styles/${currentTheme}_theme/${currentTheme}.css`;
+
+    if (currentTheme === 'dark') {
+        themeSwitch.checked = true;
+    }
+
+    themeSwitch.addEventListener('change', function (event) {
+        toggleTheme(); // Use the toggleTheme function
+    });
 });

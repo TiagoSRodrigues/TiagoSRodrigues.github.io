@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Site Title</title> <!-- This will be dynamically changed by scripts.js -->
+    <title>Tiago Rodrigues</title>
 
     <!-- Include the base styles -->
     <link rel="stylesheet" href="configs/styles/base_style.css">
-    <!-- Include a theme. You can set a default one here, but scripts.js will override it based on the config.json settings -->
-    <link id="theme-style" rel="stylesheet" href="configs/styles/light_theme/light.css">
+
+    <!-- Placeholder for the theme. The JavaScript below will determine and load the appropriate theme -->
+    <link id="theme-style" rel="stylesheet">
 
     <!-- Load service worker for offline functionality (if you have added it) -->
     <script>
@@ -26,29 +27,20 @@
 </head>
 
 <body>
-
     <header id="big-header">
-        <h1 id="site-title">Your Site Title</h1>
-
+        <h1 id="site-title"></h1>
     </header>
 
     <header id="small-header">
-        <div id="name">Your Name</div>
-
-
+        <div id="name">Tiago's notes</div>
         <div>Dark Mode</div>
 
         <!-- dark mode switch -->
-        <label class="dark-mode-switch">
-            <input type="checkbox">
+        <label class="dark-mode-switch" for="theme-toggle">
+            <input type="checkbox" id="theme-toggle" />
             <span class="slider round"></span>
         </label>
-
-
-
-
     </header>
-
 
     <div class="container">
         <nav id="sidebar">
@@ -57,19 +49,46 @@
             </h3>
         </nav>
         <!-- Main Content Area -->
-
         <main id="main-content">
             <p>Select an article from the sidebar to read.</p>
         </main>
     </div>
 
-
-
-
     <footer id="sticky-footer">
         Tiago Silva Rodrigues (c) Last deploy at: [deployment time]
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Theme Toggle Script -->
+    <script>
+        function toggleTheme() {
+            const currentTheme = document.body.getAttribute("data-theme");
+            if (currentTheme === "dark") {
+                document.body.setAttribute("data-theme", "light");
+                localStorage.setItem("theme", "light");
+            } else {
+                document.body.setAttribute("data-theme", "dark");
+                localStorage.setItem("theme", "dark");
+            }
+        }
+
+        // Add the event listener for the toggle
+        document.getElementById("theme-toggle").addEventListener("change", function () {
+            toggleTheme();
+        });
+
+        // On load, check if a theme preference exists in localStorage
+        window.onload = function () {
+            if (localStorage.getItem("theme") === "dark") {
+                document.body.setAttribute("data-theme", "dark");
+                document.getElementById("theme-toggle").checked = true;
+            } else {
+                document.body.setAttribute("data-theme", "light");
+                document.getElementById("theme-toggle").checked = false;
+            }
+        }
+    </script>
 
     <!-- Include the JavaScript to handle dynamic loading of content -->
     <script src="configs/scripts.js"></script>
