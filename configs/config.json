@@ -11,11 +11,17 @@
         "name": "Tiago Rodrigues",
         "email": "youremail@example.com",
         "bio": "Brief description about the author.",
-        "avatar": "assets/path_to_avatar.jpg"
+        "avatar": "https://avatars.githubusercontent.com/u/36556000?v=4"
     },
     "social": {
-        "github": "https://github.com/TiagoSRodrigues",
-        "linkedin": "https://www.linkedin.com/in/tiagosilvarodrigues/"
+        "github": {
+            "url": "https://github.com/TiagoSRodrigues",
+            "label": "github.com/TiagoSRodrigues"
+        },
+        "linkedin": {
+            "url": "https://www.linkedin.com/in/tiagosilvarodrigues/",
+            "label": "linkedin.com/in/tiagosilvarodrigues"
+        }
     },
     "analytics": {
         "googleAnalyticsID": "UA-XXXXXXXXX"
@@ -25,5 +31,9 @@
         "search": true,
         "offlineSupport": true,
         "rssFeed": true
+    },
+"site_assets": {
+        "github_icon": "assets/site_assets/github_git_icon_145985.svg",
+        "linkedin_icon": "assets/site_assets/linkedin-4102586_113786.svg"
     }
 }

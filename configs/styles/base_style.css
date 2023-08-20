@@ -110,7 +110,12 @@ body {
 #sidebar li {
     margin-bottom: 8px;
 }
-
+.social-icon {
+    width: 20px;
+    /* or whatever size you prefer */
+    height: auto;
+    /* keeps the aspect ratio of the image intact */
+}
 
 /* Profile picture styling */
 .profile-picture {
