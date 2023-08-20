@@ -5,7 +5,7 @@ async function parseConfig() {
         const config = await fetchConfig();
         processConfig(config);
         await generateSidebar(config);
-        loadContent("1-Understanding_DevOps.md");
+        loadContent("personal/whoami.md");
     } catch (error) {
         console.error('Error fetching config.json:', error);
     }
@@ -19,10 +19,7 @@ async function fetchConfig() {
 function processConfig(config) {
     const siteTitle = config.site.title;
     currentTheme = config.site.theme;
-
     document.getElementById("site-title").innerText = siteTitle;
-
-    // Set initial theme
     updateTheme(currentTheme);
 }
 
@@ -35,7 +32,95 @@ function updateTheme(theme) {
 
 async function generateSidebar(config) {
     const sidebar = document.getElementById("sidebar");
-    // ... The rest of the code for generating sidebar remains unchanged
+
+    // 1. Personal Presentation Section
+    const presentationSection = document.createElement("section");
+    presentationSection.classList.add("presentation-section");
+    const profileImg = document.createElement("img");
+    profileImg.src = config.author.avatar;
+    profileImg.alt = config.author.name;
+    profileImg.classList.add("profile-picture");
+    const nameHeader = document.createElement("h2");
+    nameHeader.innerText = config.author.name;
+    const shortBio = document.createElement("p");
+    shortBio.innerText = config.author.bio;
+    presentationSection.appendChild(profileImg);
+    presentationSection.appendChild(nameHeader);
+    presentationSection.appendChild(shortBio);
+
+    const socialDiv = document.createElement("div");
+    socialDiv.classList.add("social-icons");
+    const githubLink = document.createElement("a");
+    githubLink.href = config.social.github.url;
+    githubLink.target = "_blank";
+    githubLink.rel = "noopener noreferrer";
+    const githubIcon = document.createElement("img");
+    githubIcon.src = config.site_assets.github_icon;
+    githubIcon.alt = "Github";
+    githubIcon.classList.add("social-icon");
+    githubLink.appendChild(githubIcon);
+    githubLink.innerHTML += " " + config.social.github.label;
+    socialDiv.appendChild(githubLink);
+    const linkedinLink = document.createElement("a");
+    linkedinLink.href = config.social.linkedin.url;
+    linkedinLink.target = "_blank";
+    linkedinLink.rel = "noopener noreferrer";
+    const linkedinIcon = document.createElement("img");
+    linkedinIcon.src = config.site_assets.linkedin_icon;
+    linkedinIcon.alt = "LinkedIn";
+    linkedinIcon.classList.add("social-icon");
+    linkedinLink.appendChild(linkedinIcon);
+    linkedinLink.innerHTML += " " + config.social.linkedin.label;
+    socialDiv.appendChild(linkedinLink);
+    presentationSection.appendChild(socialDiv);
+
+    sidebar.appendChild(presentationSection);
+
+    // 2. Personal Articles Section
+    const personalArticlesSection = document.createElement("section");
+    personalArticlesSection.classList.add("personal-articles-section");
+    const personalHeader = document.createElement("h3");
+    personalHeader.innerText = "Personal Articles";
+    const personalList = document.createElement("ul");
+    const personalFiles = await loadContentFiles("personal");
+    for (const file of personalFiles) {
+        const listItem = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = `#/personal/${file}`;
+        link.innerText = file.replace(/\.md$/, '').replace(/^[0-9]-/, '').replace(/_/g, ' ');
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            loadContent(`personal/${file}`);
+        });
+        listItem.appendChild(link);
+        personalList.appendChild(listItem);
+    }
+    personalArticlesSection.appendChild(personalHeader);
+    personalArticlesSection.appendChild(personalList);
+    sidebar.appendChild(personalArticlesSection);
+
+    // 3. Content Articles Section
+    const contentArticlesSection = document.createElement("section");
+    contentArticlesSection.classList.add("content-articles-section");
+    const contentHeader = document.createElement("h3");
+    contentHeader.innerText = "Content Articles";
+    const contentList = document.createElement("ul");
+    const contentFiles = await loadContentFiles("content");
+    for (const file of contentFiles) {
+        const listItem = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = `#/content/${file}`;
+        link.innerText = file.replace(/\.md$/, '').replace(/^[0-9]-/, '').replace(/_/g, ' ');
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            loadContent(`content/${file}`);
+        });
+        listItem.appendChild(link);
+        contentList.appendChild(listItem);
+    }
+    contentArticlesSection.appendChild(contentHeader);
+    contentArticlesSection.appendChild(contentList);
+    sidebar.appendChild(contentArticlesSection);
 }
 
 async function loadContentFiles(category) {
@@ -50,9 +135,11 @@ async function loadContentFiles(category) {
 }
 
 function loadContent(fileName) {
-    let contentPath = `content/${fileName}`;
+    let contentPath;
     if (fileName.includes("personal/")) {
         contentPath = `personal/${fileName.split("personal/")[1]}`;
+    } else {
+        contentPath = `/${fileName}`;
     }
 
     fetch(contentPath)
@@ -87,54 +174,20 @@ if ('serviceWorker' in navigator) {
 
 document.addEventListener('DOMContentLoaded', function () {
     const themeSwitch = document.querySelector('.dark-mode-switch input[type="checkbox"]');
-    const storedTheme = localStorage.getItem('theme') || "light"; // Default to light if no theme is stored
-
-    if (storedTheme === 'dark') {
+    const storedTheme = localStorage.getItem('theme') || "light";
+    if (storedTheme === "dark") {
         themeSwitch.checked = true;
     }
+    updateTheme(storedTheme);
 
-    themeSwitch.addEventListener('change', toggleTheme);
-});
-
-window.addEventListener('error', async function (event) {
-    console.log('Uncaught error detected:', event.error);
-
-    // Clear all caches (assuming you're using Service Worker caches)
-    if ('caches' in window) {
-        const cacheNames = await caches.keys();
-        for (const cacheName of cacheNames) {
-            await caches.delete(cacheName);
+    themeSwitch.addEventListener('change', function (event) {
+        if (event.target.checked) {
+            currentTheme = "dark";
+        } else {
+            currentTheme = "light";
         }
-    }
-
-    // Clear localStorage
-    localStorage.clear();
-
-    // TODO: Clear other storage mechanisms here if used (like IndexedDB, sessionStorage)
-
-    // Reload the page
-    location.reload();
-});
-
-let lastScrollTop = 0;
-
-window.addEventListener("scroll", function () {
-    let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (currentScrollTop == 0) {
-        // At top of the page, show big header and hide small header
-        document.getElementById("big-header").style.top = "100px";
-        document.getElementById("small-header").style.top = "0";
-    } else if (currentScrollTop <= lastScrollTop) {
-        // Scrolling up
-        document.getElementById("small-header").style.top = "0";
-        document.getElementById("big-header").style.top = "-90px";  // or whatever the height of the big header is
-    } else {
-        // Scrolling down
-        document.getElementById("small-header").style.top = "-60px";
-    }
-
-    lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+        updateTheme(currentTheme);
+    });
 });
 
 // Initialize everything

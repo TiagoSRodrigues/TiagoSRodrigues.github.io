@@ -78,9 +78,9 @@ body {
 }
 
 #sidebar {
-    display: block;
-    list-style-type: none;
-    flex: 1;
+    /* display: block; */
+    /* list-style-type: none; */
+    /* flex: 1; */
     padding: 15px;
     background-color: var(--background-color);
     /* Updated this to primary background color */
