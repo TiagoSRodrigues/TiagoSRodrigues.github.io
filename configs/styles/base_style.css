@@ -78,10 +78,10 @@ body {
 }
 
 #sidebar {
-    display: block;
+    /*display: block;/*
     list-style-type: none;
-    flex: 1;
-    padding: 15px;
+    /*flex: 1;
+    padding: 15px;*/
     background-color: var(--background-color);
     /* Updated this to primary background color */
     border-right: 1px solid var(--bg-color-secondary);
