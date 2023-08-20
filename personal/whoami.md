@@ -1,10 +1,10 @@
-# [Your Name] | [Your Profession]
+# Tiago Silva Rodrigues | Airflow & Cloud engineer
 > 🌐 [Personal Website](http://yourwebsite.com) | 📧 [Email](mailto:youremail@example.com) | 📞 123-456-7890 | 🌍 [City, Country]
 
 ---
 
 ## 👋 About Me
-Hello! I'm a passionate [Your Profession] with X years of experience in [specific field]. I thrive in fast-paced environments and love turning challenges into opportunities. Here's why I might be the perfect fit for your team:
+Hello! I'm a passionate Airflow & Cloud engineer with X years of experience in [specific field]. I thrive in fast-paced environments and love turning challenges into opportunities. Here's why I might be the perfect fit for your team:
 
 - 🚀 Delivered [specific project/result] resulting in [specific benefit or KPI].
 - 🤖 Experienced in [specific skill/tool].
@@ -14,16 +14,16 @@ Hello! I'm a passionate [Your Profession] with X years of experience in [specifi
 
 ## 🛠 Skills & Expertise
 
-- **Web Development**: JavaScript, React, Node.js
-- **Design**: Adobe Suite, Sketch, Figma
-- **Data Analysis**: Python, R, SQL
-- **[Any other categories]**: [Specific skills]
+- **Data Analysis**: PLSQL, SQL, Oracle, microstretagy (dashboard design), data warehouse
+- **Observability**: Checkmk
+- **DevOPS**: Openshift, helm charms
+- **Orchestration**: Apache Airflow
 
 ---
 
 ## 💼 Professional Experience
 
-### **[Job Title]** at **[Company Name]** _(Month Year – Month Year)_
+### **Systems Analyst** at **novobanco** 
 - **Project/Role 1**: Brief description.
   - Achieved [specific result].
   - Led a team of [number] to [specific outcome].
@@ -31,10 +31,15 @@ Hello! I'm a passionate [Your Profession] with X years of experience in [specifi
   - Reduced costs by [specific percentage].
   - Implemented [specific tool/technique].
 
-### **[Another Job Title]** at **[Another Company Name]** _(Month Year – Month Year)_
+### **Application analyst** at **novobanco** 
 - **Project/Role 1**: Brief description.
 - **Project/Role 2**: Brief description.
 
+### **Operations thecnotian** at **novobanco** 
+- **Project/Role 1**: Brief description.
+
+### **Application analyst** at **novobanco** 
+- **Project/Role 1**: Brief description.
 ---
 
 ## 🎓 Education
@@ -62,9 +67,9 @@ Hello! I'm a passionate [Your Profession] with X years of experience in [specifi
 
 ## 🤝 Recommendations
 
-> "_[Your Name] is a powerhouse when it comes to [specific skill or trait]. They contributed immensely to [specific project] and were an absolute pleasure to work with._"  
+> "_Tiago Silva Rodrigues is a powerhouse when it comes to [specific skill or trait]. They contributed immensely to [specific project] and were an absolute pleasure to work with._"  
 > **- [Recommender Name], [Recommender's Position]**
 
-> "_I've witnessed [Your Name]'s growth in [specific area] and can confidently vouch for their proficiency and dedication._"  
+> "_I've witnessed Tiago Silva Rodrigues's growth in [specific area] and can confidently vouch for their proficiency and dedication._"  
 > **- [Another Recommender Name], [Another Recommender's Position]**
 
