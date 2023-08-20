@@ -5,7 +5,7 @@ async function parseConfig() {
         const config = await fetchConfig();
         processConfig(config);
         await generateSidebar(config);
-        loadContent("personal/whoami.md");
+        loadContent("personal/hello.md");
     } catch (error) {
         console.error('Error fetching config.json:', error);
     }

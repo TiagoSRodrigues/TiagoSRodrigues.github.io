@@ -1,6 +1,6 @@
 {
     "site": {
-        "title": "My notes",
+        "title": "This is my notebook",
         "description": "A personal site structured like Notion.",
         "baseURL": "tiagosrodrigues.github.io",
         "language": "en-US",

@@ -1,6 +1,7 @@
 {
     "personal": [
-        "whoami.md"
+        "hello.md",
+        "who-am-I.md"
     ],
     "content": [
         "1-Understanding_DevOps.md",

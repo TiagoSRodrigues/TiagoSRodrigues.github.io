@@ -34,7 +34,7 @@ fs.readdir(contentDir, (err, files) => {
 
         const manifestData = {
             personal: filteredPersonalFiles,
-            other: otherFiles
+            content: otherFiles
         };
 
         fs.writeFile(manifestFile, JSON.stringify(manifestData, null, 4), (err) => {
