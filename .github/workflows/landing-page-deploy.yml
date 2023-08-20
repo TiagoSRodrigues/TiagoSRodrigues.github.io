@@ -1,0 +1,72 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+
+    steps:
+    # Checkout the repository
+    - uses: actions/checkout@v2
+
+    # Step 1: Create the manifest using generate-manifest.js
+    - name: Create manifest
+      run: node generate-manifest.js
+
+    # Setup Node.js environment
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    # Install dependencies
+    - run: npm ci
+
+    # Run the build
+    - run: npm run build --if-present
+
+    # Run tests
+    # - run: npm test
+
+    # Report build status
+    - name: Report build status
+      run: |
+        gh api -X POST "repos/$GITHUB_REPOSITORY/pages/telemetry" \
+          -F github_run_id="$GITHUB_RUN_ID" \
+          -F conclusion="$CONCLUSION"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CONCLUSION: success
+      shell: /usr/bin/bash -e {0}
+
+    # Deploy to GitHub Pages
+
+  deploy:
+    # Add a dependency to the build job
+    needs: build
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2 # or the latest "vX.X.X" version tag for this action
