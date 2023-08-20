@@ -1,75 +1,56 @@
-# Tiago Silva Rodrigues | Airflow & Cloud engineer
-> 🌐 [Personal Website](http://yourwebsite.com) | 📧 [Email](mailto:youremail@example.com) | 📞 123-456-7890 | 🌍 [City, Country]
+# Tiago Silva Rodrigues | Systems Analyst & DevOps Specialist
+> 🌐 [Personal Website](http://yourwebsite.com) | 📧 [Email](mailto:Tiago_SRodrigues@outlook.com) | 📞 123-456-7890 | 🌍 Oeiras, Lisboa, Portugal
 
 ---
 
 ## 👋 About Me
-Hello! I'm a passionate Airflow & Cloud engineer with X years of experience in [specific field]. I thrive in fast-paced environments and love turning challenges into opportunities. Here's why I might be the perfect fit for your team:
+Hello! I'm a diligent Systems Analyst with a deep passion for Cloud Engineering and Apache Airflow. With a rich background in Chemical Engineering and Software Engineering, I've transitioned seamlessly across diverse roles, turning challenges into growth opportunities. Here's a snapshot:
 
-- 🚀 Delivered [specific project/result] resulting in [specific benefit or KPI].
-- 🤖 Experienced in [specific skill/tool].
-- 🌟 Received [any award or recognition].
+- 🚀 Steered critical projects at **novobanco**, improving infrastructure and efficiency.
+- 🤖 Spearheaded a team at the Cloud Computing Department, optimizing APIs and monitoring infrastructure.
+- 🌟 Gained substantial experience in data analysis, DevOps, orchestration, and more.
 
 ---
 
 ## 🛠 Skills & Expertise
 
-- **Data Analysis**: PLSQL, SQL, Oracle, microstretagy (dashboard design), data warehouse
+- **Data Analysis**: PL/SQL, Oracle DB, MicroStrategy (Dashboard Design), Data Warehouse
 - **Observability**: Checkmk
-- **DevOPS**: Openshift, helm charms
+- **DevOPS**: Openshift, Helm Charms, Docker & Kubernetes
 - **Orchestration**: Apache Airflow
 
 ---
 
 ## 💼 Professional Experience
 
-### **Systems Analyst** at **novobanco** 
-- **Project/Role 1**: Brief description.
-  - Achieved [specific result].
-  - Led a team of [number] to [specific outcome].
-- **Project/Role 2**: Brief description.
-  - Reduced costs by [specific percentage].
-  - Implemented [specific tool/technique].
+### **Systems Analyst** at **novobanco**
+- **DevOps & Infrastructure**: Spearheaded the DevOps team, focusing on process efficiency and implementing industry best practices.
+- **Cloud Computing**: Played a pivotal role in the Cloud Computing Department, enhancing APIs and infrastructural monitoring.
 
-### **Application analyst** at **novobanco** 
-- **Project/Role 1**: Brief description.
-- **Project/Role 2**: Brief description.
+### **Application Analyst** at **novobanco**
+- **Information Management**: Collaborated closely on business rule formulation and the launch of new projects.
+- **Data Analysis**: Proficiently handled functional analysis and application tests, particularly in PL/SQL.
 
-### **Operations thecnotian** at **novobanco** 
-- **Project/Role 1**: Brief description.
+### **Operations Technician** at **INDORAMA PORTUGAL** former **ARTLANT PTA**
+- **Process Control**: Managed the industrial process, specializing in the purification of terephthalic acid.
+- **Maintenance Supervision**: Oversaw operations and maintained strict adherence to work authorization verifications.
 
-### **Application analyst** at **novobanco** 
-- **Project/Role 1**: Brief description.
 ---
 
 ## 🎓 Education
 
-- **[Degree]** from **[University Name]** _(Graduation Year)_
-  - Major: [Your Major]
-  - Relevant Coursework: [Course1], [Course2]
+- **Post-Graduation in Software Engineering** from **Instituto Superior Técnico** _(2019 - 2020)_
+  - Major: Software and Business Information Systems
+  - Relevant Coursework: Java, Android Programming
 
----
+- **Master's in Engineering and Industrial Management** from **ISEL - Instituto Superior De Engenharia De Lisboa** _(2018 - 2020)_
 
-## 🌱 Personal Projects
-
-- **[Project Name]**: [Brief description]. Check it out [here](link to project).
-- **[Another Project Name]**: [Brief description]. See the demo [here](link to demo).
+- **Bachelor's in Chemical Engineering** from **ISEL - Instituto Superior De Engenharia De Lisboa** _(2014 - 2018)_
 
 ---
 
 ## ✉️ Contact & Social Links
 
-- [LinkedIn](http://linkedin.com/in/yourusername)
+- [LinkedIn](http://linkedin.com/in/tiagosilvarodrigues)
 - [GitHub](http://github.com/yourusername)
 - [Twitter](http://twitter.com/yourusername)
-
----
-
-## 🤝 Recommendations
-
-> "_Tiago Silva Rodrigues is a powerhouse when it comes to [specific skill or trait]. They contributed immensely to [specific project] and were an absolute pleasure to work with._"  
-> **- [Recommender Name], [Recommender's Position]**
-
-> "_I've witnessed Tiago Silva Rodrigues's growth in [specific area] and can confidently vouch for their proficiency and dedication._"  
-> **- [Another Recommender Name], [Another Recommender's Position]**
-

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tiagos-page-cache-v1';
+const CACHE_NAME = 'tiago-rodrigues-page-cache-v1';
 const urlsToCache = [
     '/',
     '/index.html',
