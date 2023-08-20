@@ -8,15 +8,14 @@
         "theme": "light"
     },
     "author": {
-        "name": "Your Name",
+        "name": "Tiago Rodrigues",
         "email": "youremail@example.com",
         "bio": "Brief description about the author.",
         "avatar": "assets/path_to_avatar.jpg"
     },
     "social": {
-        "twitter": "yourTwitterHandle",
-        "github": "yourGithubUsername",
-        "linkedin": "yourLinkedinProfile"
+        "github": "https://github.com/TiagoSRodrigues",
+        "linkedin": "https://www.linkedin.com/in/tiagosilvarodrigues/"
     },
     "analytics": {
         "googleAnalyticsID": "UA-XXXXXXXXX"
@@ -26,10 +25,5 @@
         "search": true,
         "offlineSupport": true,
         "rssFeed": true
-    },
-    "styles": {
-        "defaultFont": "Arial, sans-serif",
-        "headerFont": "Verdana, sans-serif",
-        "baseFontSize": "16px"
     }
 }

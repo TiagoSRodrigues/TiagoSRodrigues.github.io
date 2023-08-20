@@ -73,27 +73,6 @@ body {
     font-size: calc(var(--font-size-small) * 1.2);
 }
 
-/* DELETE COOKIES */
-#deleteCookies {
-    padding: 10px 15px;
-    background-color: var(--bg-color-tertiary);
-    /* Using the accent color you provided earlier */
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    border-left: 1px solid var(--bg-color-secondary);
-}
-
-#deleteCookies:hover {
-    background-color: var(--bg-color-secondary);
-    
-
-
-
-
-
 .container {
     display: flex;
 }
@@ -102,7 +81,7 @@ body {
     list-style-type: none;
     flex: 1;
     padding: 15px;
-    background-color: var(--bg-color-primary);
+    background-color: var(--bg-color-secondary);
     border-right: 1px solid var(--bg-color-secondary);
     min-height: calc(100vh - 60px);
     max-width: 300px;
@@ -116,6 +95,7 @@ body {
 #sidebar a:hover {
     text-decoration: underline;
     font-weight: bolder;
+    background-color: #5a5a5a;
 }
 
 #sidebar li {
@@ -128,13 +108,8 @@ body {
     background-color: var(--background-color);
 }
 
-//* -----------  FOOTER -------------*/
 /* -----------  FOOTER -------------*/
 #sticky-footer {
-    display: flex;
-    justify-content: space-between;
-    /* This will push the button and the div apart */
-    align-items: center;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -148,85 +123,18 @@ body {
     font-weight: bold;
 }
 
-#deleteCookies {
-    margin-left: 10px;
-    /* Space from the left edge */
-    padding: 10px 15px;
-    background-color: var(--bg-color-tertiary);
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
+#sticky-footer a {
+    color: var(--fg-color-tertiary);
+    text-decoration: none;
+    margin: 0 10px;
 }
 
-#deleteCookies:hover {
-    background-color: var(--bg-color-secondary);
+#sticky-footer a:hover {
+    text-decoration: underline;
+    color: var(--bg-color-primary);
+
 }
 
-#sticky-footer>div {
-    flex-grow: 1;
-    /* It allows the div to grow and effectively center its content */
-    text-align: center;
-    /* This will center the text of the div */
-}
-
-/* ----------------  Dark Mode Switch -----------------*/
-.dark-mode-switch {
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
-    margin-left: 10px;
-}
-
-.dark-mode-switch span:first-child {
-    margin-right: 10px;
-}
-
-.dark-mode-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: relative;
-    cursor: pointer;
-    background-color: #ccc;
-    border-radius: var(--slider-radius);
-    width: var(--switch-width);
-    height: var(--slider-height);
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: var(--knob-size);
-    width: var(--knob-size);
-    left: 4px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: white;
-    border-radius: 50%;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-
-input:checked+.slider {
-    background-color: #0000009d;
-}
-
-input:focus+.slider {
-    box-shadow: 0 0 1px #0000009d;
-}
-
-input:checked+.slider:before {
-    -webkit-transform: translateX(var(--knob-transition-distance)) translateY(-50%);
-    -ms-transform: translateX(var(--knob-transition-distance)) translateY(-50%);
-    transform: translateX(var(--knob-transition-distance)) translateY(-50%);
-}
 /* ----------------  Dark Mode Switch -----------------*/
 .dark-mode-switch {
     display: flex;
