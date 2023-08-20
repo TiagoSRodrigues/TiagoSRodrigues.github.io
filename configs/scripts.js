@@ -145,3 +145,8 @@ document.addEventListener('DOMContentLoaded', function () {
         toggleTheme(); // Use the toggleTheme function
     });
 });
+
+document.getElementById("deleteCookies").addEventListener("click", function () {
+    deleteAllCookies();
+    alert("All cookies have been deleted!");
+});
