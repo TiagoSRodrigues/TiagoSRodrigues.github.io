@@ -1,5 +1,5 @@
 # Tiago Silva Rodrigues | Systems Analyst & DevOps Specialist
-> 🌐 [Personal Website](http://yourwebsite.com) | 📧 [Email](mailto:Tiago_SRodrigues@outlook.com) | 📞 123-456-7890 | 🌍 Oeiras, Lisboa, Portugal
+> 🌐 [Personal Website](https://tiagosrodrigues.github.io) | 📧 [Email](mailto:Tiago_SRodrigues@outlook.com) | 🌍 Oeiras, Lisboa, Portugal
 
 ---
 
@@ -52,5 +52,4 @@ Hello! I'm a diligent Systems Analyst with a deep passion for Cloud Engineering 
 ## ✉️ Contact & Social Links
 
 - [LinkedIn](http://linkedin.com/in/tiagosilvarodrigues)
-- [GitHub](http://github.com/yourusername)
-- [Twitter](http://twitter.com/yourusername)
+- [GitHub](http://github.com/tiagosrodrigues)
