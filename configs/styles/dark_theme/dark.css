@@ -1,11 +1,12 @@
 :root {
-    --primary-dark: #d1ddee;
-    --primary-medium-dark: #7e2727;
-    --primary-medium-light: #2e3ac06b;
-    --primary-light: #cbd7c7;
-    --accent: #e82636;
+    --bg-color-primary: #2d2d2d;            /* Background */
+    --bg-color-secondary: #5a5a5a;          /* Slightly different shade from the background for variety */
+    --bg-color-tertiary: #797979;           /* Another shade for differentiation */
+    --fg-color-primary: #ffffff;            /* Main text */
+    --fg-color-secondary: #e5e5e5;          /* Strings */
+    --fg-color-tertiary: #bdbdbd;           /* Keywords */
     --font-size-small: 12px;
-    --background-color: black;
+    --background-color: var(--bg-color-primary);
 
     /* Variables for switch */
     --switch-width: 40px;
@@ -22,6 +23,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: black;
-    color: var(--primary-dark);
+    /* background-color: rgb(129, 214, 33); */
+    color: var(--fg-color-primary);
 }
+.

@@ -1,11 +1,13 @@
 :root {
-    --primary-dark: #032554;
-    --primary-medium-dark: #2c2c2c;
-    --primary-medium-light: #0310a76b;
-    --primary-light: #f1faee;
-    --accent: #e82636;
+    --bg-color-primary: white;            /*Editor Background */
+    --bg-color-secondary: rgb(237, 237, 237) ;         /* This is kept from your original value, it's close to VS Code panel color */
+    --bg-color-tertiary: #b8b8b8;          /* A slightly lighter shade from Editor Background for differentiation */
+    --fg-color-primary: rgb(44, 44, 44);           /* Editor Foreground */
+    --fg-color-secondary: #5a5a5a;         /* String color */
+    --fg-color-tertiary: #696969;          /* Keyword color */
     --font-size-small: 12px;
-    --background-color: var(--primary-light);
+    --background-color: var(--bg-color-primary);
+
 
     /* Variables for switch */
     --switch-width: 40px;
@@ -23,33 +25,36 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background-color: var(--background-color);
-    color: var(--primary-dark);
+    color: var(--fg-color-primary);
 }
 
-body[data-theme='dark'] {
-    background-color: var(--primary-medium-dark);
-    color: var(--primary-light);
-}
+/* body[data-theme='dark'] {
+    background-color: var(--bg-color-secondary);
+    color: var(--fg-color-primary); */
+/* }
 #small-header[data-theme='dark'] {
-    background-color: var(--primary-medium-dark);
-    color: var(--primary-light);
-}
+    background-color: var(--bg-color-secondary);
+    color: var(--fg-color-primary); */
+/* } */
 
-#main-content[data-theme='dark'] {
-    background-color: var(--primary-medium-dark);
-    color: var(--primary-light);
-}
+/* #main-content[data-theme='dark'] {
+    background-color: var(--bg-color-secondary);
+    color: var(--fg-color-primary);
+} */
 #big-header {
-    background-color: var(--background-color);
-    color: var(--primary-txt);
-    padding: 25px;
+    background-color: var(--bg-color-tertiary);
+    color: var(--fg-color-tertiary); 
+    /* padding: 15px; */
     text-align: center;
     transition: top 0.3s;
+    align-items: center;
+    /* height: 50px; */
+    margin-top: 30px;
 }
 
 #small-header {
-    background-color: var(--primary-dark);
-    color: var(--primary-light);
+    background-color: var(--fg-color-tertiary);
+    color: var(--fg-color-primary);
     padding: 10px;
     text-align: center;
     position: fixed;
@@ -76,8 +81,8 @@ body[data-theme='dark'] {
     list-style-type: none;
     flex: 1;
     padding: 15px;
-    background-color: var(--primary-medium-light);
-    border-right: 1px solid var(--primary-medium-dark);
+    background-color: var(--bg-color-secondary);
+    border-right: 1px solid var(--bg-color-secondary);
     min-height: calc(100vh - 60px);
     max-width: 300px;
 }
@@ -100,7 +105,6 @@ body[data-theme='dark'] {
     flex: 3;
     padding: 15px;
     background-color: var(--background-color);
-    color: var(--primary-dark);
 }
 
 /* -----------  FOOTER -------------*/
@@ -111,7 +115,7 @@ body[data-theme='dark'] {
     width: 100%;
     padding: 6px 0;
     background-color: #2c2c2cb7;
-    color: var(--primary-light);
+    color: var(--fg-color-primary);
     text-align: center;
     z-index: 1000;
     font-size: var(--font-size-small);
@@ -119,14 +123,14 @@ body[data-theme='dark'] {
 }
 
 #sticky-footer a {
-    color: var(--accent);
+    color: var(--fg-color-tertiary);
     text-decoration: none;
     margin: 0 10px;
 }
 
 #sticky-footer a:hover {
     text-decoration: underline;
-    color: var(--primary-dark);
+    color: var(--bg-color-primary);
 
 }
 

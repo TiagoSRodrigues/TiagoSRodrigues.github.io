@@ -109,7 +109,7 @@ window.addEventListener("scroll", function () {
 
     if (currentScrollTop == 0) {
         // At top of the page, show big header and hide small header
-        document.getElementById("big-header").style.top = "0";
+        document.getElementById("big-header").style.top = "100px";
         document.getElementById("small-header").style.top = "0";
     } else if (currentScrollTop <= lastScrollTop) {
         // Scrolling up
