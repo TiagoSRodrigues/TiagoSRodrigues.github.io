@@ -81,7 +81,8 @@ body {
     list-style-type: none;
     flex: 1;
     padding: 15px;
-    background-color: var(--bg-color-secondary);
+    background-color: var(--background-color);
+    /* Updated this to primary background color */
     border-right: 1px solid var(--bg-color-secondary);
     min-height: calc(100vh - 60px);
     max-width: 300px;
@@ -90,12 +91,17 @@ body {
 #sidebar a {
     text-decoration: none;
     color: inherit;
+    padding: 5px;
+    /* Add padding for better hover effect */
+    display: block;
+    /* Make the anchor element occupy the full width for better clicking and hover experience */
 }
 
 #sidebar a:hover {
     text-decoration: underline;
     font-weight: bolder;
-    background-color: #5a5a5a;
+    background-color: var(--bg-color-secondary);
+    /* Background color on hover */
 }
 
 #sidebar li {
