@@ -145,8 +145,8 @@ body {
     color: var(--fg-color-tertiary);
     text-align: center;
     z-index: 1000;
-    font-size: var(--font-size-small);
-    font-weight: bold;
+    font-size: calc(var(--font-size-small)*.75);
+    /* font-weight: bold; */
 }
 
 #sticky-footer a {

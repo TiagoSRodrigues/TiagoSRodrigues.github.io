@@ -36,4 +36,4 @@ Over the years, I've worn many hats - from a newbie coder wrestling with bugs ğŸ
 
 ---
 
-**Stay Curious! **
+**Stay Curious!**

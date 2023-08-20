@@ -298,7 +298,7 @@ async function checkVersionAndUpdate() {
 
             // Reload the page
             location.reload();
-            await sleep(60000);  // Sleeps for 2 minutes (120000 milliseconds)
+            await sleep(30000);  // Sleeps for 2 minutes (120000 milliseconds)
 
         } else {
             // If versions match, clear the localStorage flag
@@ -317,3 +317,17 @@ function sleep(ms) {
 
 // Call the function
 checkVersionAndUpdate();
+// Fetch the local config.json
+fetch('configs/config.json')
+    .then(response => response.json())
+    .then(data => {
+        // Extract the version
+        const version = data.site.version;
+
+        // Insert the version into the footer
+        const footerDiv = document.querySelector('#sticky-footer div');
+        footerDiv.innerHTML += ` | Version: ${version}`;
+    })
+    .catch(error => {
+        console.error('Error fetching the config:', error);
+    });
