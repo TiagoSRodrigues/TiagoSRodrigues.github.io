@@ -103,10 +103,28 @@ body {
     background-color: var(--bg-color-secondary);
     /* Background color on hover */
 }
-
+/* Add some spacing between sections */
+#sidebar>section {
+    margin-bottom: 30px;
+}
 #sidebar li {
     margin-bottom: 8px;
 }
+
+
+/* Profile picture styling */
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 10px auto;
+    /* centering it horizontally */
+    display: block;
+}
+
+/* --------------main ---------------- */
+
 
 #main-content {
     flex: 3;

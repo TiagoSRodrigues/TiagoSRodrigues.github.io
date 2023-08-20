@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<!-- VERSION 2.2 -->
+<!-- VERSION 2.3 -->
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,21 +53,53 @@
     </header>
 
     <div class="container">
-        <nav id="sidebar">
-            <h3 id="articles-list">
-                <p>Choose an article:</p>
-            </h3>
-        </nav>
+        <!-- <nav id="sidebar">
+  
+        </nav> -->
+
+
+
+        <aside id="sidebar">
+
+            <!-- 1. Personal Presentation Section -->
+            <section class="presentation-section">
+                <img src="https://avatars.githubusercontent.com/u/36556000?v=4" alt="Your Name" class="profile-picture">
+                <h2>Your Name</h2>
+                <p>Short bio or other information here...</p>
+                <!-- Add any other info you want here -->
+            </section>
+
+            <!-- 2. Personal Articles Section -->
+            <section class="personal-articles-section">
+                <h3>Personal Articles</h3>
+                <ul>
+                    <!-- Assuming your server or some JS parses and populates this list -->
+                    <li><a href="/personal/article-1">Personal Article 1</a></li>
+                    <li><a href="/personal/article-2">Personal Article 2</a></li>
+                    <!-- ... and so on -->
+                </ul>
+            </section>
+
+            <!-- 3. Other Articles Section -->
+            <section class="other-articles-section">
+                    <h3 id="articles-list">
+                        <p>Choose an article:</p>
+                    </h3>
+
+            </section>
+
+        </aside>
+
         <!-- Main Content Area -->
         <main id="main-content">
             <p>Select an article from the sidebar to read.</p>
         </main>
     </div>
 
-<footer id="sticky-footer">
-    <!-- <div>T<button id="deleteCookies">Delete Cookies</button> -->
-    <div>Tiago Silva Rodrigues (c) Last deploy at: [deployment time]</div>
-</footer>
+    <footer id="sticky-footer">
+        <!-- <div>T<button id="deleteCookies">Delete Cookies</button> -->
+        <div>Tiago Silva Rodrigues (c) Last deploy at: [deployment time]</div>
+    </footer>
 
 
 
