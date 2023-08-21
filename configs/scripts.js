@@ -1,6 +1,6 @@
 /* 
  * Filename: script.js
- * Version: 1.0.1
+ * Version: 1.0.2
  * Date: 2023-08-19
  * Description: This script handles the scroll behavior of headers.
  */
@@ -204,7 +204,7 @@ function manageHeadersOnScroll() {
     window.addEventListener("scroll", function () {
         let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-        console.log("DEBUG scroll", currentScrollTop, lastScrollTop);
+        // console.log("DEBUG scroll", currentScrollTop, lastScrollTop);
         if (currentScrollTop == 0) {
             // At top of the page, show small header
             document.getElementById("small-header").style.top = "0";
