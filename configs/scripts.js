@@ -331,3 +331,13 @@ fetch('configs/config.json')
     .catch(error => {
         console.error('Error fetching the config:', error);
     });
+
+
+document.getElementById('hamburger-menu').addEventListener('click', function () {
+    let menu = document.getElementById('mobile-menu');
+    if (menu.style.width === '0px' || menu.style.width === '') {
+        menu.style.width = '250px';
+    } else {
+        menu.style.width = '0px';
+    }
+});

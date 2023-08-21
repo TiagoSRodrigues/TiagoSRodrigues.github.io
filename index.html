@@ -17,6 +17,7 @@
 
     <!-- Include the base styles -->
     <link rel="stylesheet" href="configs/styles/base_style.css">
+    <link rel="stylesheet" href="configs/styles/small_screen.css" media="(max-width: 768px)">
 
     <!-- Placeholder for the theme. The JavaScript below will determine and load the appropriate theme -->
     <link id="theme-style" rel="stylesheet">
@@ -47,44 +48,54 @@
     <header id="big-header">
         <h1 id="site-title"></h1>
     </header>
-
+    
     <header id="small-header">
+        <button id="menu-toggle" aria-label="Open Navigation">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+    
         <div id="name">Tiago's notes</div>
-        <div>Dark Mode</div>
-
+    
         <!-- dark mode switch -->
         <label class="dark-mode-switch" for="theme-toggle">
             <input type="checkbox" id="theme-toggle" />
             <span class="slider round"></span>
         </label>
+    
+        <div>Dark Mode</div>
     </header>
-
+    
     <div class="container">
-        <!-- <nav id="sidebar">
-  
-        </nav> -->
-
-
-
         <aside id="sidebar">
+                <button id="close-sidebar">X</button>
 
-
-
-
-
+            <!-- Your sidebar content here -->
         </aside>
-
+    
         <!-- Main Content Area -->
         <main id="main-content">
             <p>Select an article from the sidebar to read.</p>
         </main>
     </div>
-
+    
     <footer id="sticky-footer">
-        <!-- <div>T<button id="deleteCookies">Delete Cookies</button> -->
         <div>by Tiago Silva Rodrigues</div>
     </footer>
-
+    
+    <!-- ... All your scripts ... -->
+    
+<script>
+    document.getElementById('menu-toggle').addEventListener('click', function () {
+        let sidebar = document.getElementById('sidebar');
+        if (sidebar.style.display === 'none' || sidebar.style.display === '') {
+            sidebar.style.display = 'block';
+        } else {
+            sidebar.style.display = 'none';
+        }
+    });
+</script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -121,6 +132,10 @@
 
     <!-- Include the JavaScript to handle dynamic loading of content -->
     <script src="configs/scripts.js"></script>
+    <script>document.getElementById('menu-toggle').addEventListener('click', function () {
+            let sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        });
+</script>
 </body>
-
 </html>
