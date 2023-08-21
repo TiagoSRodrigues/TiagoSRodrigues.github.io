@@ -1,6 +1,6 @@
 /* 
  * Filename: script.js
- * Version: 1.0.0
+ * Version: 1.0.1
  * Date: 2023-08-19
  * Description: This script handles the scroll behavior of headers.
  */
@@ -377,32 +377,65 @@ function getFilesFromWebsite() {
 
 // const FILES_TO_CHECK = getFilesFromWebsite();
 
-async function getReferenceVersion() {
+// async function getReferenceVersion() {
+//     const response = await fetch(REFERENCE_VERSION_URL);
+//     const data = await response.json();
+//     console.log("DEBUG reference_config", data)
+
+//     return data.site.file_versions;
+// }
+async function getReferenceConfig() {
     const response = await fetch(REFERENCE_VERSION_URL);
-    const data = await response.json();
-    return data.site.reference_config;
-}
-
-async function checkFileVersions() {
-    const referenceVersion = await getReferenceVersion();
-
-    // Use Promise.all to batch requests
-    const checkPromises = FILES_TO_CHECK.map(fileURL => checkFileVersion(fileURL, referenceVersion));
-
-    await Promise.all(checkPromises);
-}
-
-async function checkFileVersion(fileURL, referenceVersion) {
-    if (fileURL in cachedVersions && cachedVersions[fileURL] === referenceVersion) {
-        return;  // Skip checking this file
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
     }
+    const data = await response.json();
+    return data;
+}
 
+// async function checkFileVersions() {
+//     const referenceVersion = await getReferenceVersion();
+//     // Use Promise.all to batch requests
+//     const checkPromises = FILES_TO_CHECK.map(fileURL => checkFileVersion(fileURL, referenceVersion));
+    
+//     await Promise.all(checkPromises);
+//}
+async function checkFileVersions() {
+    const config = await getReferenceConfig();
+    const fileVersions = config.file_versions;
+    // Flattening file_versions for easier lookup
+    const flatFileVersions = flattenFileVersions(fileVersions);
+    for (let fileURL of FILES_TO_CHECK) {
+        checkFileVersion(fileURL, flatFileVersions[fileURL]);
+    }
+}
+
+
+function flattenFileVersions(obj, parent = "", result = {}) {
+    for (let key in obj) {
+        if (typeof obj[key] === "object") {
+            flattenFileVersions(obj[key], parent + key + "/", result);
+        } else {
+            result[parent + key] = obj[key];
+        }
+    }
+    return result;
+}
+
+
+
+async function checkFileVersion(fileURL, expectedVersion) {
+    if (!expectedVersion) return;  // if the file version is not listed in the config, skip it
+    
+    
     const response = await fetch(fileURL);
     const content = await response.text();
     const version = extractFileVersion(content, fileURL);
-
-    if (version !== referenceVersion) {
-        console.warn(`Outdated file: ${fileURL}. Expected version: ${referenceVersion}. Found: ${version}.`);
+    
+    console.log("DEBUG: cachedVersions", expectedVersion, "version", version, "fileURL", fileURL)
+    
+    if (version !== expectedVersion) {
+        console.warn(`Outdated file: ${fileURL}. Expected version: ${expectedVersion}. Found: ${version}. The cache will be refreshed!`);
         caches.keys().then(function (names) {
             for (let name of names) caches.delete(name);
         });
@@ -418,14 +451,15 @@ function extractFileVersion(content, fileURL) {
 
     switch (true) {
         case fileURL.endsWith('.md'):
+            versionPattern = /<!--\s*\*.*Version:\s*(\d+\.\d+\.\d+).*-->/s;
+            break;
         case fileURL.endsWith('.html'):
-            versionPattern = /<!--\s*version:\s*(\d+\.\d+\.\d+)\s*-->/;
+            versionPattern = /<!--\s*\*.*Version:\s*(\d+\.\d+\.\d+).*-->/s;
             break;
         case fileURL.endsWith('.js'):
-            versionPattern = /\/\/\s*version:\s*(\d+\.\d+\.\d+)/;
-            break;
+        case fileURL.endsWith('.json'):
         case fileURL.endsWith('.css'):
-            versionPattern = /\/\*\s*version:\s*(\d+\.\d+\.\d+)\s*\*\//;
+            versionPattern = /\/\*\s*\*.*Version:\s*(\d+\.\d+\.\d+).*\*\//s;
             break;
         default:
             return null; // Ignore other file types
@@ -435,5 +469,6 @@ function extractFileVersion(content, fileURL) {
     return match ? match[1] : null;
 }
 
+
 // Call checkFileVersions every minute
-setInterval(checkFileVersions, 60 * 1000);
+setInterval(checkFileVersions, 10 * 1000);
