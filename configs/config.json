@@ -1,13 +1,14 @@
 {
     "site": {
-        "title": "This is my notebook, it's still under construction, but suggestions are welcome :)",
+        "title": "",
         "description": "This is my landing page",
         "baseURL": "tiagosrodrigues.github.io",
         "language": "en-US",
         "favicon": "assets/site_assets/Pino-Peanuts-Snoopy-5.32.png",
         "theme": "light",
         "version": "2.5.1",
-        "lastDeploy": "Sun Aug 20 23:54:38 WEST 2023"
+        "lastDeploy": "Sun Aug 20 23:54:38 WEST 2023",
+        "reference_config":"https://raw.githubusercontent.com/TiagoSRodrigues/TiagoSRodrigues.github.io/main/configs/config.json"
     },
     "author": {
         "name": "Tiago Rodrigues",
@@ -34,8 +35,48 @@
         "offlineSupport": true,
         "rssFeed": true
     },
-"site_assets": {
+    "site_assets": {
         "github_icon": "assets/site_assets/github_git_icon_145985.svg",
         "linkedin_icon": "assets/site_assets/linkedin-4102586_113786.svg"
+    },
+    "file_versions": {
+        "README.md": "1.0.0",
+        "configs": {
+            "README.md": "1.0.0",
+            "config.json": "1.0.0",
+            "manifest.json": "1.0.0",
+            "scripts.js": "1.0.0",
+            "styles": {
+                "base_style.css": "1.0.0",
+                "dark_theme": {
+                    "dark.css": "1.0.0"
+                },
+                "small_screen.css": "1.0.0"
+            }
+        },
+        "content": {
+            "1-Understanding_DevOps.md": "1.0.0",
+            "2-Understanding_Cloud_Computing.md": "1.0.0",
+            "3-Devops_for_Managers.md": "1.0.0",
+            "4-Understanding-Observibilty.md": "1.0.0",
+            "README.md": "1.0.0"
+        },
+        "documentation": {
+            "README.md": "1.0.0",
+            "tasks.md": "1.0.0"
+        },
+        "generate-manifest.js": "1.0.0",
+        "index.html": "1.0.0",
+        "not.github": {
+            "workflows": {
+                "landing-page-deploy.yml": "1.0.0"
+            }
+        },
+        "personal": {
+            "README.md": "1.0.0",
+            "hello.md": "1.0.0",
+            "who-am-I.md": "1.0.0"
+        },
+        "sw.js": "1.0.0"
     }
 }

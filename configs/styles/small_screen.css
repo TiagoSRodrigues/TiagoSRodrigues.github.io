@@ -1,3 +1,11 @@
+/* 
+ * Filename: small_style.css
+ * Version: 1.0.0
+ * Date: 2023-08-19
+ * Description: This stylesheet provides styles for the headers.
+ */
+
+
 /* Variables */
 :root {
     --bg-color-primary: white;
@@ -34,6 +42,7 @@ body {
     border: none;
     display: inline-block;
     margin-right: 15px;
+
 }
 
 .bar {
@@ -59,48 +68,6 @@ body {
     /* Add padding equal to header height to avoid overlap */
 }
 
-@media (min-width: 769px) {
-    #sidebar {
-        display: block;
-        position: static;
-    }
-
-    #menu-toggle {
-        display: none;
-    }
-}
-
-#hamburger-menu .bar {
-    height: 3px;
-    width: 100%;
-    background-color: var(--fg-color-tertiary);
-    border-radius: 2px;
-}
-
-/* Mobile menu styles */
-#mobile-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100vh;
-    background-color: var(--bg-color-secondary);
-    overflow-y: auto;
-    transition: width 0.4s ease;
-    z-index: 1000;
-}
-
-/* The sidebar content inside the mobile menu */
-#mobile-menu #sidebar {
-    padding: 20px;
-}
-
-#mobile-menu #sidebar a {
-    text-decoration: none;
-    color: inherit;
-    padding: 8px 5px;
-    display: block;
-}
 
 /* Headers */
 #big-header,
@@ -147,12 +114,12 @@ body {
     display: none;
     position: fixed;
     top: 0;
-    left: -300px;
+    /* left: -300px; */
     /* Hide by default using negative left position */
     height: 100%;
     width: 250px;
     background-color: var(--bg-color-primary);
-    z-index: 1001;
+    z-index: 500;
     overflow-y: auto;
     border-right: 1px solid #ccc;
     padding-top: 50px;
@@ -184,7 +151,7 @@ body {
         position: static;
         left: 0;
         /* Reset the left positioning on bigger screens */
-    }
+   }
 
     #menu-toggle {
         display: none;

@@ -1,4 +1,10 @@
-:root {
+/* 
+ * Filename: dark.css
+ * Version: 1.0.0
+ * Date: 2023-08-19
+ * Description: This stylesheet provides styles for the headers.
+ */
+ :root {
     --bg-color-primary: #2d2d2d;            /* Background */
     --bg-color-secondary: #5a5a5a;          /* Slightly different shade from the background for variety */
     --bg-color-tertiary: #797979;           /* Another shade for differentiation */

@@ -1,3 +1,10 @@
+<!-- 
+ * Filename: index.html
+ * Version: 1.0.0
+ * Date: 2023-08-19
+ * Description: This HTML file displays the content and headers.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,25 +18,6 @@
     <meta http-equiv='expires' content='0'>
     <meta http-equiv='pragma' content='no-cache'>
     
-        
-    <script>
-        // Fetch the configuration JSON
-        fetch('config.json')
-            .then(response => response.json())
-            .then(config => {
-                const faviconPath = config.site.favicon;
-
-                // Create a new link element for the favicon
-                const linkEl = document.createElement('link');
-                linkEl.rel = 'icon';
-                linkEl.href = faviconPath;
-
-                // Append the link element to the document's head
-                document.head.appendChild(linkEl);
-            });
-    </script>
-
-
 
     <title>Tiago Rodrigues</title>
 
@@ -49,22 +37,12 @@
         gtag('config', 'G-LC0SWLRYYN');
     </script>
     <!-- Load service worker for offline functionality (if you have added it) -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function () {
-                navigator.serviceWorker.register('/sw.js').then(function (registration) {
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                }, function (err) {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            });
-        }
-    </script>
+
 </head>
 
 <body>
     <header id="big-header">
-        <h1 id="site-title"></h1>
+        <h2 id="site-title"></h2>
     </header>
     
     <header id="small-header">
@@ -87,7 +65,7 @@
     
     <div class="container">
         <aside id="sidebar">
-                <button id="close-sidebar">X</button>
+                <!-- <button id="close-sidebar">X</button> -->
 
             <!-- Your sidebar content here -->
         </aside>
@@ -104,56 +82,16 @@
     
     <!-- ... All your scripts ... -->
     
-<script>
-    document.getElementById('menu-toggle').addEventListener('click', function () {
-        let sidebar = document.getElementById('sidebar');
-        if (sidebar.style.display === 'none' || sidebar.style.display === '') {
-            sidebar.style.display = 'block';
-        } else {
-            sidebar.style.display = 'none';
-        }
-    });
-</script>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <!-- Theme Toggle Script -->
-    <script>
-        function toggleTheme() {
-            const currentTheme = document.body.getAttribute("data-theme");
-            if (currentTheme === "dark") {
-                document.body.setAttribute("data-theme", "light");
-                localStorage.setItem("theme", "light");
-            } else {
-                document.body.setAttribute("data-theme", "dark");
-                localStorage.setItem("theme", "dark");
-            }
-        }
-
-        // Add the event listener for the toggle
-        document.getElementById("theme-toggle").addEventListener("change", function () {
-            toggleTheme();
-        });
-
-        // On load, check if a theme preference exists in localStorage
-        window.onload = function () {
-            if (localStorage.getItem("theme") === "dark") {
-                document.body.setAttribute("data-theme", "dark");
-                document.getElementById("theme-toggle").checked = true;
-            } else {
-                document.body.setAttribute("data-theme", "light");
-                document.getElementById("theme-toggle").checked = false;
-            }
-        }
-    </script>
+ 
 
     <!-- Include the JavaScript to handle dynamic loading of content -->
     <script src="configs/scripts.js"></script>
-    <script>document.getElementById('menu-toggle').addEventListener('click', function () {
-            let sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('active');
-        });
-</script>
+
 </body>
 </html>

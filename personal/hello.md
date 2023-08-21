@@ -1,3 +1,11 @@
+---
+title: "Page hello"
+description: "Brief description of the document"
+date: "2023-08-20" # Date of creation or last update
+version: "1.0.0"
+author: "Tiago Rodrigues"
+tags: "hello"
+---
 # Welcome to My Personal Corner! 🚀
 
 Hello there! 👋 I'm thrilled you stopped by. This is my **personal playground** where I scribble about the things I love and the adventures I embark upon.
