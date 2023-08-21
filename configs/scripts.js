@@ -426,3 +426,30 @@ function extractFileVersion(content, fileURL) {
 
 // Call checkFileVersions every minute
 setInterval(checkFileVersions, 5 * 1000);
+
+
+// Add version to the footer
+document.addEventListener("DOMContentLoaded", function () {
+    fetch('/configs/config.json')
+        .then(response => {
+            // Check if the fetch was successful
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Get the footer element
+            const footer = document.getElementById('sticky-footer');
+
+            // Create a div to append the version to the footer
+            const versionDiv = document.createElement('div');
+            versionDiv.textContent = `by Tiago Silva Rodrigues   |   Version: ${data.site.version}`;
+
+            // Append the version div to the footer
+            footer.appendChild(versionDiv);
+        })
+        .catch(error => {
+            console.log('There was a problem with the fetch operation:', error.message);
+        });
+});
