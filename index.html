@@ -17,13 +17,13 @@
     <meta http-equiv='cache-control' content='no-cache'>
     <meta http-equiv='expires' content='0'>
     <meta http-equiv='pragma' content='no-cache'>
-    
+
 
     <title>Tiago Rodrigues</title>
 
     <!-- Include the base styles -->
     <link rel="stylesheet" href="configs/styles/base_style.css">
-    <link rel="stylesheet" href="configs/styles/small_screen.css" media="(max-width: 768px)">
+    <!-- <link rel="stylesheet" href="configs/styles/small_screen.css" media="(max-width: 768px)"> -->
 
     <!-- Placeholder for the theme. The JavaScript below will determine and load the appropriate theme -->
     <link id="theme-style" rel="stylesheet">
@@ -44,54 +44,51 @@
     <header id="big-header">
         <h2 id="site-title"></h2>
     </header>
-    
+
     <header id="small-header">
-        <button id="menu-toggle" aria-label="Open Navigation">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </button>
-    
+        
         <div id="name">Tiago's notes</div>
-    
+        
         <!-- dark mode switch -->
         <label class="dark-mode-switch" for="theme-toggle">
             <input type="checkbox" id="theme-toggle" />
             <span class="slider round"></span>
         </label>
-    
+        
         <div>Dark Mode</div>
     </header>
     
     <div class="container">
-        <aside id="sidebar">
-                <!-- <button id="close-sidebar">X</button> -->
-
+        <label class="hamburger-menu">
+          <input type="checkbox">
+        </label>
+        <aside id="sidebar" class="sidebar">
             <!-- Your sidebar content here -->
         </aside>
-    
+
         <!-- Main Content Area -->
         <main id="main-content">
             <p>Select an article from the sidebar to read.</p>
         </main>
     </div>
-    
+
     <footer id="sticky-footer">
         <div>by Tiago Silva Rodrigues</div>
     </footer>
-    
+
     <!-- ... All your scripts ... -->
-    
+
 
 
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <!-- Theme Toggle Script -->
- 
+
 
     <!-- Include the JavaScript to handle dynamic loading of content -->
     <script src="configs/scripts.js"></script>
 
 </body>
+
 </html>

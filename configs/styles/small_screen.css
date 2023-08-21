@@ -5,7 +5,10 @@
  * Description: This stylesheet provides styles for the headers.
  */
 
-
+*::after,
+*::before {
+    box-sizing: border-box;
+}
 /* Variables */
 :root {
     --bg-color-primary: white;
@@ -24,255 +27,29 @@
     --knob-transition-distance: calc(var(--switch-width) - var(--knob-size) - 8px);
 }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: var(--background-color);
-    color: var(--fg-color-primary);
-    line-height: 1.6;
-}
+@media (max-width: 768px) {
+/* This will hide the sidebar by default on smaller screens */
+.sidebar {
+            transition: translate var(--animation-timing);
+            translate: -100%;
+            padding: 0.5rem 1rem;
+            padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
+            max-width: 10rem;
+            min-height: 100vh;
+        }
 
-#menu-toggle {
-    cursor: pointer;
-    background: none;
-    border: none;
-    display: inline-block;
-    margin-right: 15px;
-
-}
-
-.bar {
-    width: 25px;
-    height: 3px;
-    background-color: #333;
-    margin: 4px 0;
-    display: block;
-}
-
-#sidebar {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 250px;
-    background-color: var(--bg-color-primary);
-    z-index: 1001;
-    overflow-y: auto;
-    border-right: 1px solid #ccc;
-    padding-top: 50px;
-    /* Add padding equal to header height to avoid overlap */
-}
-
-
-/* Headers */
-#big-header,
-#small-header {
-    padding: 10px;
-    text-align: center;
-    transition: top 0.3s;
-    font-size: var(--font-size-small);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#big-header {
-    background-color: var(--bg-color-tertiary);
-    color: var(--fg-color-tertiary);
-    height: 60px;
-    /* Increased a bit for touch-friendliness */
-}
-
-#small-header {
-    background-color: var(--fg-color-primary);
-    color: var(--fg-color-tertiary);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    /* Positioned at the top */
-}
-
-#small-header #name {
-    flex-grow: 2;
-    text-align: center;
-    font-weight: bolder;
-    font-size: calc(var(--font-size-small) * 1.2);
-}
-
-/* Container */
-.container {
-    display: flex;
-}
-
-/* Sidebar */
-#sidebar {
-    display: none;
-    position: fixed;
-    top: 0;
-    /* left: -300px; */
-    /* Hide by default using negative left position */
-    height: 100%;
-    width: 250px;
-    background-color: var(--bg-color-primary);
-    z-index: 500;
-    overflow-y: auto;
-    border-right: 1px solid #ccc;
-    padding-top: 50px;
-    /* Add padding equal to header height to avoid overlap */
-    transition: left 0.3s;
-    /* Transition effect */
-}
-#close-sidebar {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: transparent;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: var(--text-color-primary);
-}
-
-#close-sidebar:focus {
-    outline: none;
-}
-#sidebar.active {
-    transform: translateX(0);
-}
-
-@media (min-width: 769px) {
-    #sidebar {
-        display: block;
-        position: static;
-        left: 0;
-        /* Reset the left positioning on bigger screens */
-   }
-
-    #menu-toggle {
-        display: none;
+    #main-content {
+        flex: 3;
+        padding: 15px;
+        margin-left: 0px;
+        /* background-color: var(--background-color); */
+        transition: margin-left var(--animation-timing);
+        /* Added transition property */
+        translate: 100%;
     }
-}
 
-#sidebar a {
-    text-decoration: none;
-    color: inherit;
-    padding: 8px 5px;
-    /* Enhanced touch target */
-    display: block;
-}
-
-#sidebar a:hover {
-    text-decoration: underline;
-    font-weight: bolder;
-    background-color: var(--bg-color-secondary);
-}
-
-#sidebar>section {
-    margin-bottom: 30px;
-}
-
-#sidebar li {
-    margin-bottom: 8px;
-}
-
-#sidebar ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-.social-icon {
-    width: 25px;
-    /* Enhanced touch target */
-    height: auto;
-}
-
-.profile-picture {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 10px auto;
-}
-
-/* Main Content */
-#main-content {
-    flex: 3;
-    padding: 15px;
-    background-color: var(--background-color);
-}
-
-/* Footer */
-#sticky-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 8px 0;
-    /* Enhanced touch target */
-    background-color: #2c2c2cd4;
-    color: var(--fg-color-tertiary);
-    text-align: center;
-    z-index: 1000;
-    font-size: calc(var(--font-size-small) * 0.75);
-}
-
-#sticky-footer a {
-    color: var(--fg-color-tertiary);
-    text-decoration: none;
-    padding: 0 12px;
-    /* Enhanced touch target */
-}
-
-#sticky-footer a:hover {
-    text-decoration: underline;
-    color: var(--bg-color-tertiary);
-}
-
-/* Dark Mode Switch */
-.dark-mode-switch {
-    display: flex;
-    align-items: center;
-    margin: 0 20px;
-    /* Enhanced touch target */
-}
-
-.slider {
-    position: relative;
-    cursor: pointer;
-    background-color: #ccc;
-    border-radius: var(--slider-radius);
-    width: var(--switch-width);
-    height: var(--slider-height);
-    transition: .4s;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: var(--knob-size);
-    width: var(--knob-size);
-    left: 4px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: white;
-    border-radius: 50%;
-    transition: .4s;
-}
-
-input:checked+.slider {
-    background-color: #0000009d;
-}
-
-input:focus+.slider {
-    box-shadow: 0 0 1px #0000009d;
-}
-
-input:checked+.slider:before {
-    transform: translateX(var(--knob-transition-distance)) translateY(-50%);
+    .hamburger-menu:has(input:not(:checked))~#main-content {
+        margin-left: 0px;
+        /* Adjust the margin when the sidebar is visible */
+    }
 }
