@@ -1,16 +1,22 @@
 /* 
  * Filename: dark.css
- * Version: 1.0.0
+ * Version: 1.0.1
  * Date: 2023-08-19
  * Description: This stylesheet provides styles for the headers.
  */
- :root {
-    --bg-color-primary: #2d2d2d;            /* Background */
-    --bg-color-secondary: #5a5a5a;          /* Slightly different shade from the background for variety */
-    --bg-color-tertiary: #797979;           /* Another shade for differentiation */
-    --fg-color-primary: #ebebeb;            /* Main text */
-    --fg-color-secondary: #e5e5e5;          /* Strings */
-    --fg-color-tertiary: #8c8c8c;           /* Keywords */
+:root {
+    --bg-color-primary: #2d2d2d;
+    /* Background */
+    --bg-color-secondary: #5a5a5a;
+    /* Slightly different shade from the background for variety */
+    --bg-color-tertiary: #797979;
+    /* Another shade for differentiation */
+    --fg-color-primary: #ebebeb;
+    /* Main text */
+    --fg-color-secondary: #e5e5e5;
+    /* Strings */
+    --fg-color-tertiary: #8c8c8c;
+    /* Keywords */
     --font-size-small: 12px;
     --background-color: var(--bg-color-primary);
 
@@ -36,12 +42,19 @@ body {
 
 
 
- --bg-color-primary: white;            /*Editor Background */
-    --bg-color-secondary: rgb(212, 212, 212) ;         /* This is kept from your original value, it's close to VS Code panel color */
-    --bg-color-tertiary: #878787;          /* A slightly lighter shade from Editor Background for differentiation 
+--bg-color-primary: white;
+/*Editor Background */
+--bg-color-secondary: rgb(212, 212, 212);
+/* This is kept from your original value, it's close to VS Code panel color */
+--bg-color-tertiary: #878787;
+/* A slightly lighter shade from Editor Background for differentiation 
     --bg-color-transparent: #d7d6d657;          /* A slightly lighter shade from Editor Background for differentiation */
-    --fg-color-primary: rgb(44, 44, 44);           /* Editor Foreground */
-    --fg-color-secondary: #5a5a5a;         /* String color */
-    --fg-color-tertiary: #d1d1d1;          /* Keyword color */
-    --font-size-small: 12px;
-    --background-color: var(--bg-color-primary);
+--fg-color-primary: rgb(44, 44, 44);
+/* Editor Foreground */
+--fg-color-secondary: #5a5a5a;
+/* String color */
+--fg-color-tertiary: #d1d1d1;
+/* Keyword color */
+--font-size-small: 12px;
+--background-color: var(--bg-color-primary);
+

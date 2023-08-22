@@ -42,14 +42,14 @@ function getFilteredFiles(directory, callback) {
             return;
         }
 
-        console.log(`Files in ${directory}:`, files);
+        // console.log(`Files in ${directory}:`, files);
 
         const filteredFiles = files.filter(file =>
             file.toLowerCase() !== 'readme.md' &&
             path.extname(file).toLowerCase() !== '.json'
         );
 
-        console.log(`Filtered files in ${directory}:`, filteredFiles);
+        // console.log(`Filtered files in ${directory}:`, filteredFiles);
         callback(filteredFiles);
     });
 }
@@ -77,7 +77,7 @@ function generateManifest() {
 }
 
 function updateConfigVersions() {
-    console.log('started updateConfigVersions');
+    // console.log('started updateConfigVersions');
     fs.readFile(configFile, 'utf8', (err, data) => {
 
         if (err) {
