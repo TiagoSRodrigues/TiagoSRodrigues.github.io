@@ -27,13 +27,13 @@
         }
     },
     "analytics": {
-        "googleAnalyticsID": "UA-XXXXXXXXX"
+        "googleAnalyticsID": "G-LC0SWLRYYN"
     },
     "features": {
         "comments": false,
-        "search": true,
-        "offlineSupport": true,
-        "rssFeed": true
+        "search": false,
+        "offlineSupport": false,
+        "rssFeed": false
     },
     "site_assets": {
         "github_icon": "assets/site_assets/github_git_icon_145985.svg",
@@ -54,17 +54,21 @@
         },
         "content": {
             "1-Understanding_DevOps.md": "1.0.0",
-            "2-Understanding_Cloud_Computing.md": "1.0.0",
             "3-Devops_for_Managers.md": "1.0.0",
             "4-Understanding-Observibilty.md": "1.0.0",
-            "README.md": "1.0.0"
+            "README.md": "1.0.0",
+            "2-Understanding_Cloud_Computing.md": "1.0.0"
         },
         "documentation": {
             "README.md": "1.0.0",
             "tasks.md": "1.0.0"
         },
         "generate-manifest.js": "1.0.0",
-        "index.html": "1.0.0"
+        "index.html": "1.0.0",
+        "personal": {
+            "hello.md": "1.0.0",
+            "who-am-I.md": "1.0.0"
+        }
     },
     "personal": {
         "README.md": "1.0.0",

@@ -1,7 +1,7 @@
 ---
 title: "Page hello"
 description: "Brief description of the document"
-date: "2023-08-20" # Date of creation or last update
+date: "2023-08-20"
 version: "1.0.0"
 author: "Tiago Rodrigues"
 tags: "hello"

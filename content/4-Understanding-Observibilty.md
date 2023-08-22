@@ -1,3 +1,10 @@
+---
+title: "Observability: A Key Pillar for Modern Systems"
+date: "2023-08-20"
+version: "1.0.0"
+author: "Tiago Rodrigues"
+tags: "devops, management"
+---
 # Observability: A Key Pillar for Modern Systems
 
 In the era of microservices and distributed systems, understanding and managing the health and performance of applications has become a major challenge. Enter **observability** - the answer to these challenges.
