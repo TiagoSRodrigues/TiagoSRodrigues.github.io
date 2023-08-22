@@ -340,10 +340,7 @@ body {
     /* translate: -100%; */
 }
 
-.hamburger-menu:has(input:not(:checked))~#main-content {
-    margin-left: 350px;
-    /* Adjust the margin when the sidebar is visible */
-}
+
 
 /* -----------  FOOTER -------------*/
 #sticky-footer {
@@ -435,33 +432,41 @@ input:checked+.slider:before {
     -ms-transform: translateX(var(--knob-transition-distance)) translateY(-50%);
     transform: translateX(var(--knob-transition-distance)) translateY(-50%);
 }
-
+@media(min-width: 769px) {
+.hamburger-menu:has(input:not(:checked))~#main-content {
+    margin-left: 350px;
+    /* Adjust the margin when the sidebar is visible */
+}
 @media (max-width: 768px) {
 
     /* This will hide the sidebar by default on smaller screens */
     .sidebar {
-        transition: translate var(--animation-timing);
+        /* transition: translate var(--animation-timing); */
 
-        translate: 100%;
+        translate: -100%;
         padding: 0.5rem 1rem;
         padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
         max-width: 10rem;
         min-height: 100vh;
         background-color: var(--background-color);
+        background: fixed ;
+        margin-left: 0px;
+        border-right: 2px solid var(--fg-color-tertiary);
+        /* max-width: 2000rem; */
+        min-width: 350px;
+        min-height: 100vh;
     }
-
     #main-content {
         flex: 3;
         padding: 15px;
         margin-left: 0px;
         background-color: var(--background-color);
-        transition: margin-left var(--animation-timing);
+        /* transition: margin-left var(--animation-timing); */
         /* Added transition property */
         /* translate: 100%; */
     }
 
-    .hamburger-menu:has(input:not(:checked))~#main-content {
-        margin-left: 0px;
-        /* Adjust the margin when the sidebar is visible */
-    }
+    /* .hamburger-menu:has(input:checked)+.sidebar {
+        translate: 0;
+    } */
 }
