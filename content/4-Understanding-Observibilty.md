@@ -1,5 +1,5 @@
 <!---
-title: "Observability: A Key Pillar for Modern Systems"
+title: "Observability basics"
 date: "2023-08-20"
 version: "1.0.0"
 author: "Tiago Rodrigues"

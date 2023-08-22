@@ -95,14 +95,15 @@ async function generateSidebar(config) {
     const personalArticlesSection = document.createElement("section");
     personalArticlesSection.classList.add("personal-articles-section");
     const personalHeader = document.createElement("h3");
-    personalHeader.innerText = "Personal Articles";
+    personalHeader.innerText = " 🤠 Personal Articles";
     const personalList = document.createElement("ul");
     const personalFiles = await loadContentFiles("personal");
     for (const file of personalFiles) {
+        const title = await extractTitleFromMd(`personal/${file}`);
         const listItem = document.createElement("li");
         const link = document.createElement("a");
         link.href = `#/personal/${file}`;
-        link.innerText = file.replace(/\.md$/, '').replace(/^[0-9]-/, '').replace(/_/g, ' ');
+        link.innerText = title || file.replace(/\.md$/, '').replace(/^[0-9]-/, '').replace(/_/g, ' ');  // Use title if available, else fallback to filename
         link.addEventListener("click", function (event) {
             event.preventDefault();
             loadContent(`personal/${file}`);
@@ -118,14 +119,15 @@ async function generateSidebar(config) {
     const contentArticlesSection = document.createElement("section");
     contentArticlesSection.classList.add("content-articles-section");
     const contentHeader = document.createElement("h3");
-    contentHeader.innerText = "Content Articles";
+    contentHeader.innerText = "📜 Content Articles";
     const contentList = document.createElement("ul");
     const contentFiles = await loadContentFiles("content");
     for (const file of contentFiles) {
+        const title = await extractTitleFromMd(`content/${file}`);
         const listItem = document.createElement("li");
         const link = document.createElement("a");
         link.href = `#/content/${file}`;
-        link.innerText = file.replace(/\.md$/, '').replace(/^[0-9]-/, '').replace(/_/g, ' ');
+        link.innerText = title || file.replace(/\.md$/, '').replace(/^[0-9]-/, '').replace(/_/g, ' ');  // Use title if available, else fallback to filename
         link.addEventListener("click", function (event) {
             event.preventDefault();
             loadContent(`content/${file}`);
@@ -137,6 +139,14 @@ async function generateSidebar(config) {
     contentArticlesSection.appendChild(contentList);
     sidebar.appendChild(contentArticlesSection);
 }
+
+
+// New function to extract title from .md content
+async function extractTitleFromMd(filePath) {
+    const content = await fetch(filePath).then(res => res.text());
+    const titleMatch = content.match(/title: "(.*?)"/);
+    return titleMatch ? titleMatch[1].substring(0, 40) : null; // Limit title to 40 characters
+} 
 
 // Fetch the list of content files
 async function loadContentFiles(category) {

@@ -1,0 +1,55 @@
+/* 
+ * Filename: small_style.css
+ * Version: 1.0.0
+ * Date: 2023-08-19
+ * Description: This stylesheet provides styles for the headers.
+ */
+
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+/* Variables */
+:root {
+    --bg-color-primary: white;
+    --bg-color-secondary: rgb(237, 237, 237);
+    --bg-color-tertiary: #b8b8b8;
+    --fg-color-primary: rgb(44, 44, 44);
+    --fg-color-secondary: #5a5a5a;
+    --fg-color-tertiary: #d1d1d1;
+    --font-size-small: 16px;
+    /* Increased for better legibility on mobile */
+    --background-color: var(--bg-color-primary);
+    --switch-width: 40px;
+    --slider-height: calc(var(--switch-width) * .60);
+    --slider-radius: calc(var(--slider-height) / 2);
+    --knob-size: calc(var(--slider-height) * 0.8);
+    --knob-transition-distance: calc(var(--switch-width) - var(--knob-size) - 8px);
+}
+
+@media (max-width: 768px) {
+/* This will hide the sidebar by default on smaller screens */
+.sidebar {
+            transition: translate var(--animation-timing);
+            translate: -100%;
+            padding: 0.5rem 1rem;
+            padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
+            max-width: 10rem;
+            min-height: 100vh;
+        }
+
+    #main-content {
+        flex: 3;
+        padding: 15px;
+        margin-left: 0px;
+        /* background-color: var(--background-color); */
+        transition: margin-left var(--animation-timing);
+        /* Added transition property */
+        translate: 100%;
+    }
+
+    .hamburger-menu:has(input:not(:checked))~#main-content {
+        margin-left: 0px;
+        /* Adjust the margin when the sidebar is visible */
+    }
+}

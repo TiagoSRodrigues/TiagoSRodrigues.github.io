@@ -1,4 +1,4 @@
-<!-- title: "Understanding Cloud Computing: A Brief Overview"
+<!-- title: "What is the Cloud "
 date: "2023-08-20"
 version: "1.0.0"
 author: "Tiago Rodrigues"

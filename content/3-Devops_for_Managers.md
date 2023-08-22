@@ -1,5 +1,5 @@
 <!---
-title: "DevOps from a Management Lens: Streamlining Operations and Boosting Efficiency"
+title: "DevOps for Managers"
 date: "2023-08-20"
 version: "1.0.0"
 author: "Tiago Rodrigues"

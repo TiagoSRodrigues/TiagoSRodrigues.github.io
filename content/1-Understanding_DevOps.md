@@ -1,4 +1,4 @@
-<!-- title: "Understanding DevOps: A Quick Dive"
+<!-- title: " A Quick Dive into DevOps"
 date: "2023-08-20"
 version: "1.0.0"
 author: "Tiago Rodrigues"

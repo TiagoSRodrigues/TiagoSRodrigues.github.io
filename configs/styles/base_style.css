@@ -19,8 +19,6 @@ box-sizing: border-box;
     --fg-color-tertiary: #878787;          /* Keyword color */
     --font-size-small: 12px;
     --background-color: var(--bg-color-primary);
-
-
     /* Variables for switch */
     --switch-width: 40px;
     --slider-height: calc(var(--switch-width) * .60);
@@ -177,12 +175,11 @@ body {
     display: flex;
 }
 
-
-
 #sidebar a {
     text-decoration: none;
+    font-size: small;
     color: inherit;
-    padding: 5px;
+    /* padding: 5px; */
     /* Add padding for better hover effect */
     display: block;
     /* Make the anchor element occupy the full width for better clicking and hover experience */
@@ -196,8 +193,8 @@ body {
     text-decoration: underline;
     font-weight: bolder;
     background-color: var(--bg-color-secondary);
-    border-radius: 9px;
-    /* Background color on hover */
+    border-radius: 5px;
+    text-indent: 5%;    /* Background color on hover */
 }
 /* Add some spacing between sections */
 #sidebar>section {
@@ -234,10 +231,9 @@ body {
 
 /* --------------main ---------------- */
 
-
 #main-content {
     flex: 3;
-    padding: 15px;
+    padding: 30px;
     margin-left: 0px;
     /* background-color: var(--background-color); */
     transition: margin-left var(--animation-timing);
@@ -247,9 +243,6 @@ body {
     margin-left: 350px;
     /* Adjust the margin when the sidebar is visible */
 }
-
-
-
 
 /* -----------  FOOTER -------------*/
 #sticky-footer {
@@ -334,8 +327,6 @@ input:checked+.slider:before {
     -ms-transform: translateX(var(--knob-transition-distance)) translateY(-50%);
     transform: translateX(var(--knob-transition-distance)) translateY(-50%);
 }
-
-
 @media (max-width: 768px) {
 
     /* This will hide the sidebar by default on smaller screens */
