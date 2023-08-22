@@ -457,7 +457,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Create a div to append the version to the footer
             const versionDiv = document.createElement('div');
-            versionDiv.textContent = `by Tiago Silva Rodrigues   |   Version: ${data.site.version}`;
+
+            // Create the GitHub icon and set its path
+            const githubIcon = document.createElement('img');
+            githubIcon.src = 'assets/site_assets/github_git_icon_145985.svg';
+            // githubIcon.style.height = '24px'; // Adjust the size as needed
+            // githubIcon.style.marginRight = '8px'; // Some space between the icon and the text
+
+            // Create the hyperlink for the version using the project_repository from config.json
+            const versionLink = document.createElement('a');
+            versionLink.href = data.site.project_repository;
+            versionLink.textContent = `Version: ${data.site.version}`;
+            versionLink.target = "_blank";  // Opens the link in a new tab
+
+            // Add text, the GitHub icon, and the hyperlink to the versionDiv
+            versionDiv.innerHTML = `by Tiago Silva Rodrigues  `;
+            versionDiv.appendChild(githubIcon);
+            versionDiv.appendChild(versionLink);
 
             // Append the version div to the footer
             footer.appendChild(versionDiv);
@@ -465,4 +481,31 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => {
             console.log('There was a problem with the fetch operation:', error.message);
         });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const mainContent = document.getElementById('main-content'); // Assuming the id of your main content is 'main-content'
+
+    // On page load, check localStorage for a saved font size
+    const savedFontSize = localStorage.getItem('fontSize');
+    if (savedFontSize) {
+        mainContent.style.fontSize = savedFontSize;
+    }
+
+    document.getElementById("increase-font").addEventListener("click", function () {
+        adjustFontSize(0.9); // Increase by 10%
+    });
+
+    document.getElementById("decrease-font").addEventListener("click", function () {
+        adjustFontSize(-0.9); // Decrease by 10%
+    });
+
+    function adjustFontSize(factor) {
+        const currentSize = window.getComputedStyle(mainContent, null).getPropertyValue('font-size');
+        const newSize = parseFloat(currentSize) + factor; // Compute the new size
+        mainContent.style.fontSize = `${newSize}px`;
+
+        // Save the new font size to localStorage
+        localStorage.setItem('fontSize', `${newSize}px`);
+    }
 });

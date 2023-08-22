@@ -7,16 +7,30 @@
 *,
 *::after,
 *::before {
-box-sizing: border-box;
+    box-sizing: border-box;
 }
+
 :root {
-    --bg-color-primary: white;            /*Editor Background */
-    --bg-color-secondary: rgb(212, 212, 212) ;         /* This is kept from your original value, it's close to VS Code panel color */
-    --bg-color-tertiary: #878787;          /* A slightly lighter shade from Editor Background for differentiation 
-    --bg-color-transparent: #d7d6d657;          /* A slightly lighter shade from Editor Background for differentiation */
-    --fg-color-primary: rgb(44, 44, 44);           /* Editor Foreground */
-    --fg-color-secondary: #5a5a5a;         /* String color */
-    --fg-color-tertiary: #878787;          /* Keyword color */
+    --bg-color-primary: white;
+    /* Original: white */
+    --bg-color-secondary: rgb(212, 212, 212);
+    /* Original: rgb(212, 212, 212) */
+    --bg-color-tertiary: #878787;
+    /* Original: #878787 */
+    --bg-color-transparent: #d7d6d694;
+    /* Original: #d7d6d694 */
+
+    --fg-color-primary: rgb(31, 31, 31);
+    /* Complementary for white */
+    --fg-color-secondary: rgb(43, 43, 43);
+    /* A darker version for contrast with rgb(212, 212, 212) */
+    --fg-color-tertiary: #787878;
+    /* A slightly lighter version for contrast with #878787 */
+
+    --small-header-bg: rgb(0, 0, 65);
+    --small-header-fg: rgb(179, 179, 179);
+
+
     --font-size-small: 12px;
     --background-color: var(--bg-color-primary);
     /* Variables for switch */
@@ -35,10 +49,13 @@ box-sizing: border-box;
     --hamburger-margin: 8px;
     --animation-timing: 200ms ease-in-out;
     --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+
+    --font-size-adjuster-base-size: 7px;
 }
 
 body {
     font-family: Arial, sans-serif;
+    font-size: normal;
     margin: 0;
     padding: 0;
     display: flex;
@@ -48,7 +65,85 @@ body {
     color: var(--fg-color-primary);
 }
 
+
+
+
+/* font changer 
+* credits: https: //getcssscan.com/css-buttons-examples
+*/
+
+.font-size-adjuster {
+    align-items: center;
+    appearance: none;
+    background-color: #fff;
+    border-radius: calc(var(--font-size-adjuster-base-size)*2.5);
+    border-style: none;
+    box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px, rgba(0, 0, 0, .14) 0 6px 10px 0, rgba(0, 0, 0, .12) 0 1px 18px 0;
+    box-sizing: border-box;
+    color: #3c4043;
+    cursor: pointer;
+    display: inline-flex;
+    fill: currentcolor;
+    /* font-family: "Google Sans", Roboto, Arial, sans-serif; */
+    font-size: calc(var(--font-size-adjuster-base-size)*1.5);
+    font-weight: bold;
+    height: calc(var(--font-size-adjuster-base-size)*2.5);
+    justify-content: center;
+    letter-spacing: .25px;
+    line-height: normal;
+    max-width: 100%;
+    overflow: visible;
+    padding: calc(var(--font-size-adjuster-base-size)*0.1) calc(var(--font-size-adjuster-base-size)*.8);
+    position: relative;
+    text-align: center;
+    text-transform: none;
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1), opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: auto;
+    will-change: transform, opacity;
+    z-index: 0;
+}
+
+.font-size-adjuster:hover {
+    background: #F6F9FE;
+    color: #174ea6;
+}
+
+/* .font-size-adjuster:active {
+    box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+    outline: none;
+} */
+
+/* .font-size-adjuster:focus {
+    outline: none;
+    border: 2px solid #4285f4;
+} */
+
+.font-size-adjuster:not(:disabled) {
+    box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.font-size-adjuster:not(:disabled):hover {
+    box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+}
+
+.font-size-adjuster:not(:disabled):focus {
+    box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.font-size-adjuster:not(:disabled):active {
+    box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+}
+
+.font-size-adjuster:disabled {
+    box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
 /* ------------------------------------ */
+
+
 .hamburger-menu {
     --x-width: calc(var(--hamburger-height) * 1.41421356237);
 
@@ -106,7 +201,7 @@ body {
 .hamburger-menu:has(input:checked)::after {
     rotate: -45deg;
     width: var(--x-width);
-    translate: 0 calc(var(--bar-height) / 2);
+    translate: 0 0;
 }
 
 .hamburger-menu input:checked {
@@ -138,20 +233,20 @@ body {
 
 #big-header {
     background-color: var(--bg-color-secondary);
-    color: var(--fg-color-tertiary); 
+    color: var(--fg-color-tertiary);
     /* padding: 15px;  */
     text-align: center;
     transition: top 0.3s;
     height: 45px;
     /* margin-top: 20px; */
     font-size: var(--font-size-small);
-    
+
 }
 
 #small-header {
     height: 35px;
-    background-color: var(--bg-color-tertiary);
-    color: var(--bg-color-primary);
+    background-color: var(--small-header-bg);
+    color: var(--small-header-fg);
     padding: 5px;
     text-align: center;
     position: fixed;
@@ -185,24 +280,29 @@ body {
     /* Make the anchor element occupy the full width for better clicking and hover experience */
 }
 
-#sidebar h3{
+#sidebar h3 {
     background-color: var(--bg-color-transparent);
     border-radius: 5px;
 }
+
 #sidebar a:hover {
     text-decoration: underline;
     font-weight: bolder;
     background-color: var(--bg-color-secondary);
     border-radius: 5px;
-    text-indent: 5%;    /* Background color on hover */
+    text-indent: 5%;
+    /* Background color on hover */
 }
+
 /* Add some spacing between sections */
 #sidebar>section {
     margin-bottom: 30px;
 }
+
 #sidebar li {
     margin-bottom: 8px;
 }
+
 #sidebar ul {
     list-style-type: none;
     padding-left: 0;
@@ -211,8 +311,9 @@ body {
     margin: 0;
     /* Remove default margins */
 }
+
 .social-icon {
-    width: 20px;
+    width: 17px;
     /* or whatever size you prefer */
     height: auto;
     /* keeps the aspect ratio of the image intact */
@@ -237,8 +338,10 @@ body {
     margin-left: 0px;
     /* background-color: var(--background-color); */
     transition: margin-left var(--animation-timing);
-        /* Added transition property */    /* translate: -100%; */
+    /* Added transition property */
+    /* translate: -100%; */
 }
+
 .hamburger-menu:has(input:not(:checked))~#main-content {
     margin-left: 350px;
     /* Adjust the margin when the sidebar is visible */
@@ -251,24 +354,31 @@ body {
     left: 0;
     width: 100%;
     padding: 6px 0;
-    background-color: var(--fg-color-primary);
-    color: var(--bg-color-primary);
+    background-color: var(--small-header-fg);
+    color: var(--small-header-bg);
     text-align: center;
+    align-items: center;
     z-index: 800;
     font-size: calc(var(--font-size-small)*.75);
     /* font-weight: bold; */
 }
 
 #sticky-footer a {
-    color: var(--fg-color-tertiary);
     text-decoration: none;
-    margin: 0 10px;
+    /* font-size: small; */
+    color: inherit;
+    margin: 0 5px;
 }
 
 #sticky-footer a:hover {
     text-decoration: underline;
-    color: var(--bg-color-tertiary);
+    colo
+}
 
+#sticky-footer img {
+    /* position: inherit; */
+    height: 12px;
+    padding: 10 px;
 }
 
 /* ----------------  Dark Mode Switch -----------------*/
@@ -327,6 +437,7 @@ input:checked+.slider:before {
     -ms-transform: translateX(var(--knob-transition-distance)) translateY(-50%);
     transform: translateX(var(--knob-transition-distance)) translateY(-50%);
 }
+
 @media (max-width: 768px) {
 
     /* This will hide the sidebar by default on smaller screens */
