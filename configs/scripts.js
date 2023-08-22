@@ -155,6 +155,9 @@ function loadContent(fileName) {
     let contentPath;
     if (fileName.includes("personal/")) {
         contentPath = `personal/${fileName.split("personal/")[1]}`;
+    }else if (fileName.includes("content/")) {
+        contentPath = `content/${fileName.split("content/")[1]}`;
+  
     } else {
         contentPath = `/${fileName}`;
     }

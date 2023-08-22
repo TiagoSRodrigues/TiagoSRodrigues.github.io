@@ -3,6 +3,7 @@ const urlsToCache = [
     '/',
     '/index.html',
     '/configs/scripts.js',
+    '/configs/config.json',
     // ... other URLs you want to cache ...
 ];
 
