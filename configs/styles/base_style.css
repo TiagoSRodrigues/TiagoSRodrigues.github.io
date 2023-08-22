@@ -16,7 +16,7 @@ box-sizing: border-box;
     --bg-color-transparent: #d7d6d657;          /* A slightly lighter shade from Editor Background for differentiation */
     --fg-color-primary: rgb(44, 44, 44);           /* Editor Foreground */
     --fg-color-secondary: #5a5a5a;         /* String color */
-    --fg-color-tertiary: #d1d1d1;          /* Keyword color */
+    --fg-color-tertiary: #878787;          /* Keyword color */
     --font-size-small: 12px;
     --background-color: var(--bg-color-primary);
 
@@ -258,8 +258,8 @@ body {
     left: 0;
     width: 100%;
     padding: 6px 0;
-    background-color: #2c2c2cd4;
-    color: var(--fg-color-tertiary);
+    background-color: var(--fg-color-primary);
+    color: var(--bg-color-primary);
     text-align: center;
     z-index: 800;
     font-size: calc(var(--font-size-small)*.75);

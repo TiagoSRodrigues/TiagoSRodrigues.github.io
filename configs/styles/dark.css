@@ -8,7 +8,7 @@
     --bg-color-primary: #2d2d2d;            /* Background */
     --bg-color-secondary: #5a5a5a;          /* Slightly different shade from the background for variety */
     --bg-color-tertiary: #797979;           /* Another shade for differentiation */
-    --fg-color-primary: #ffffff;            /* Main text */
+    --fg-color-primary: #a3a3a3;            /* Main text */
     --fg-color-secondary: #e5e5e5;          /* Strings */
     --fg-color-tertiary: #bdbdbd;           /* Keywords */
     --font-size-small: 12px;
@@ -32,3 +32,16 @@ body {
     /* background-color: rgb(129, 214, 33); */
     color: var(--fg-color-primary);
 }
+
+
+
+
+ --bg-color-primary: white;            /*Editor Background */
+    --bg-color-secondary: rgb(212, 212, 212) ;         /* This is kept from your original value, it's close to VS Code panel color */
+    --bg-color-tertiary: #878787;          /* A slightly lighter shade from Editor Background for differentiation 
+    --bg-color-transparent: #d7d6d657;          /* A slightly lighter shade from Editor Background for differentiation */
+    --fg-color-primary: rgb(44, 44, 44);           /* Editor Foreground */
+    --fg-color-secondary: #5a5a5a;         /* String color */
+    --fg-color-tertiary: #d1d1d1;          /* Keyword color */
+    --font-size-small: 12px;
+    --background-color: var(--bg-color-primary);
