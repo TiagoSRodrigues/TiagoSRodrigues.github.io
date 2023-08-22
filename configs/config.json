@@ -6,7 +6,7 @@
         "language": "en-US",
         "favicon": "assets/site_assets/Pino-Peanuts-Snoopy-5.32.png",
         "theme": "light",
-        "version": "2.5.9",
+        "version": "2.5.10",
         "lastDeploy": "Sun Aug 20 23:54:38 WEST 2023",
         "reference_config": "https://raw.githubusercontent.com/TiagoSRodrigues/TiagoSRodrigues.github.io/main/configs/config.json"
     },
