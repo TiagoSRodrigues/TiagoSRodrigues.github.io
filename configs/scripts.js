@@ -1,10 +1,12 @@
 /* 
  * Filename: script.js
- * Version: 1.0.4
+ * Version: 1.0.5
  * Date: 2023-08-19
  * Description: This script handles the scroll behavior of headers.
  */
 
+
+let VERSION_CHECK_TIME = 5
 // The initial theme
 let currentTheme = "light";
 
@@ -146,7 +148,7 @@ async function extractTitleFromMd(filePath) {
     const content = await fetch(filePath).then(res => res.text());
     const titleMatch = content.match(/title: "(.*?)"/);
     return titleMatch ? titleMatch[1].substring(0, 40) : null; // Limit title to 40 characters
-} 
+}
 
 // Fetch the list of content files
 async function loadContentFiles(category) {
@@ -375,6 +377,19 @@ async function checkFileVersions() {
     for (let fileURL of FILES_TO_CHECK) {
         checkFileVersion(fileURL, flatFileVersions[fileURL]);
     }
+
+    const localConfig = await fetchConfig();
+    const referenceConfig = await getReferenceConfig();
+
+    console.log("DEBUG 1", localConfig.site.version);
+    console.log("DEBUG 2", referenceConfig.site.version);
+
+    if (localConfig.site.version !== referenceConfig.site.version) {
+        console.warn(`Outdated configuration. Local version: ${localConfig.site.version}. Reference version: ${referenceConfig.site.version}. The cache will be refreshed!`);
+        caches.keys().then(function (names) {
+            for (let name of names) caches.delete(name);
+        });
+    }
 }
 
 
@@ -438,7 +453,7 @@ function extractFileVersion(content, fileURL) {
 
 
 // Call checkFileVersions every minute
-setInterval(checkFileVersions, 60 * 1000);
+setInterval(checkFileVersions, VERSION_CHECK_TIME * 1000);
 
 
 // Add version to the footer
