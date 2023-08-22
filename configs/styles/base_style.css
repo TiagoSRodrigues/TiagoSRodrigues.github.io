@@ -153,7 +153,7 @@ body {
 #small-header {
     height: 35px;
     background-color: var(--bg-color-tertiary);
-    color: var(--fg-color-tertiary);
+    color: var(--fg-color-primary);
     padding: 5px;
     text-align: center;
     position: fixed;

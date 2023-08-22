@@ -1,4 +1,8 @@
-const CACHE_NAME = 'tiago-rodrigues-page-cache-v1';
+const CURRENT_CACHE_VERSION = 'v1';
+const CACHE_NAME = `tiago-rodrigues-page-cache-${CURRENT_CACHE_VERSION}`;
+const OK_STATUS = 200;
+const BASIC_TYPE = 'basic';
+
 const urlsToCache = [
     '/',
     '/index.html',
@@ -7,53 +11,62 @@ const urlsToCache = [
     // ... other URLs to cache ...
 ];
 
-self.addEventListener('install', function (event) {
+// ----- INSTALLATION -----
+self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
-            .then(function (cache) {
-                console.log('Opened cache');
-                return cache.addAll(urlsToCache);
-            })
+            .then(cache => cache.addAll(urlsToCache))
+            .catch(error => console.error("Error during cache installation:", error))
     );
 });
 
-self.addEventListener('fetch', function (event) {
+// ----- FETCHING -----
+self.addEventListener('fetch', event => {
+    // Only cache GET requests
+    if (event.request.method !== 'GET') return;
+
     event.respondWith(
         caches.match(event.request)
-            .then(function (response) {
-                if (response) {
-                    return response; // Return from cache
-                }
-                return fetch(event.request).then(
-                    function (response) {
-                        if (!response || response.status !== 200 || response.type !== 'basic') {
+            .then(cachedResponse => {
+                // Return cached response if available
+                if (cachedResponse) return cachedResponse;
+
+                // Otherwise fetch, cache, and return the request
+                return fetch(event.request)
+                    .then(response => {
+                        // Don't cache if not a good response or non-basic response type
+                        if (!response || response.status !== OK_STATUS || response.type !== BASIC_TYPE) {
                             return response;
                         }
 
                         let responseToCache = response.clone();
                         caches.open(CACHE_NAME)
-                            .then(function (cache) {
-                                cache.put(event.request, responseToCache);
-                            });
+                            .then(cache => cache.put(event.request, responseToCache));
+
                         return response;
-                    }
-                );
+                    })
+                    .catch(error => { // Handle network errors
+                        console.error("Network fetch failed:", error);
+                    });
             })
     );
 });
 
-self.addEventListener('activate', function (event) {
-    const cacheWhitelist = [CACHE_NAME]; // Later, multiple cache versions, you can manage them here.
+// ----- ACTIVATION & CLEAN UP -----
+self.addEventListener('activate', event => {
+    const allowedCaches = [CACHE_NAME];
 
     event.waitUntil(
-        caches.keys().then(function (cacheNames) {
-            return Promise.all(
-                cacheNames.map(function (cacheName) {
-                    if (cacheWhitelist.indexOf(cacheName) === -1) {
-                        return caches.delete(cacheName);
-                    }
-                })
-            );
-        })
+        caches.keys()
+            .then(cacheNames => {
+                return Promise.all(
+                    cacheNames.map(cacheName => {
+                        if (!allowedCaches.includes(cacheName)) {
+                            return caches.delete(cacheName);
+                        }
+                    })
+                );
+            })
+            .catch(error => console.error("Cache clean up failed:", error))
     );
 });
