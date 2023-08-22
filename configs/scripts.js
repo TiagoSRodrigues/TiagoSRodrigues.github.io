@@ -453,4 +453,3 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log('There was a problem with the fetch operation:', error.message);
         });
 });
-async src = "https://www.googletagmanager.com/gtag/js?id=G-LC0SWLRYYN" 
