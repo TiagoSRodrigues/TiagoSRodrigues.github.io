@@ -344,15 +344,7 @@ function getFilesFromWebsite() {
     return Array.from(files);
 }
 
-// const FILES_TO_CHECK = getFilesFromWebsite();
 
-// async function getReferenceVersion() {
-//     const response = await fetch(REFERENCE_VERSION_URL);
-//     const data = await response.json();
-//     console.log("DEBUG reference_config", data)
-
-//     return data.site.file_versions;
-// }
 async function getReferenceConfig() {
     const response = await fetch(REFERENCE_VERSION_URL);
     if (!response.ok) {
@@ -362,13 +354,7 @@ async function getReferenceConfig() {
     return data;
 }
 
-// async function checkFileVersions() {
-//     const referenceVersion = await getReferenceVersion();
-//     // Use Promise.all to batch requests
-//     const checkPromises = FILES_TO_CHECK.map(fileURL => checkFileVersion(fileURL, referenceVersion));
 
-//     await Promise.all(checkPromises);
-//}
 async function checkFileVersions() {
     const config = await getReferenceConfig();
     const fileVersions = config.file_versions;
@@ -380,9 +366,6 @@ async function checkFileVersions() {
 
     const localConfig = await fetchConfig();
     const referenceConfig = await getReferenceConfig();
-
-    console.log("DEBUG 1", localConfig.site.version);
-    console.log("DEBUG 2", referenceConfig.site.version);
 
     if (localConfig.site.version !== referenceConfig.site.version) {
         console.warn(`Outdated configuration. Local version: ${localConfig.site.version}. Reference version: ${referenceConfig.site.version}. The cache will be refreshed!`);

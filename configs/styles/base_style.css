@@ -1,6 +1,6 @@
 /* 
  * Filename: base_style.css
- * Version: 1.0.1
+ * Version: 1.0.2
  * Date: 2023-08-19
  * Description: This stylesheet provides styles for the headers.
  */
@@ -44,8 +44,8 @@
     --bar-width: 30px;
     --bar-height: 3px;
     --hamburger-gap: 3px;
-    --foreground: var(--bg-color-primary);
-    --background: var(--bg-color-primary);
+    --hamburger-foreground: var(--bg-color-primary);
+    --hamburger-background: var(--bg-color-primary);
     --hamburger-margin: 8px;
     --animation-timing: 200ms ease-in-out;
     --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
@@ -78,7 +78,7 @@ body {
     background-color: #fff;
     border-radius: calc(var(--font-size-adjuster-base-size)*2.5);
     border-style: none;
-    box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px, rgba(0, 0, 0, .14) 0 6px 10px 0, rgba(0, 0, 0, .12) 0 1px 18px 0;
+    box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px, rgba(255, 255, 255, 0.14) 0 6px 10px 0, rgba(0, 0, 0, .12) 0 1px 18px 0;
     box-sizing: border-box;
     color: #3c4043;
     cursor: pointer;
@@ -146,7 +146,6 @@ body {
 
 .hamburger-menu {
     --x-width: calc(var(--hamburger-height) * 1.41421356237);
-
     display: flex;
     flex-direction: column;
     gap: var(--hamburger-gap);
@@ -157,17 +156,16 @@ body {
     z-index: 1000;
     cursor: pointer;
 }
-
+ 
 .hamburger-menu:has(input:checked) {
-    --foreground: var(--bg-color-primary);
-    --background: var(--bg-color-tertiary);
+
 }
 
 .hamburger-menu:has(input:focus-visible)::before,
 .hamburger-menu:has(input:focus-visible)::after,
 .hamburger-menu input:focus-visible {
-    border: 1px solid var(--background);
-    box-shadow: 0 0 0 1px var(--foreground);
+    border: 1px solid var(var(--hamburger-background));
+    box-shadow: 0 0 0 1px var(var(--hamburger-foreground));
 }
 
 .hamburger-menu::before,
@@ -176,7 +174,7 @@ body {
     content: "";
     width: var(--bar-width);
     height: var(--bar-height);
-    background-color: var(--foreground);
+    background-color: var(var(--hamburger-foreground));
     border-radius: 9999px;
     transform-origin: left center;
     transition: opacity var(--animation-timing), width var(--animation-timing),
@@ -443,21 +441,23 @@ input:checked+.slider:before {
     /* This will hide the sidebar by default on smaller screens */
     .sidebar {
         transition: translate var(--animation-timing);
-        translate: -100%;
+
+        translate: 100%;
         padding: 0.5rem 1rem;
         padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
         max-width: 10rem;
         min-height: 100vh;
+        background-color: var(--background-color);
     }
 
     #main-content {
         flex: 3;
         padding: 15px;
         margin-left: 0px;
-        /* background-color: var(--background-color); */
+        background-color: var(--background-color);
         transition: margin-left var(--animation-timing);
         /* Added transition property */
-        translate: 100%;
+        /* translate: 100%; */
     }
 
     .hamburger-menu:has(input:not(:checked))~#main-content {

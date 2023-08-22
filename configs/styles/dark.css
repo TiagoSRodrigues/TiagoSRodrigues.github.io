@@ -26,6 +26,10 @@
     --slider-radius: calc(var(--slider-height) / 2);
     --knob-size: calc(var(--slider-height) * 0.8);
     --knob-transition-distance: calc(var(--switch-width) - var(--knob-size) - 8px);
+
+
+    --hamburger-foreground: var(--fg-color-secondary);
+    --hamburger-background: var(--fg-color-primary);
 }
 
 body {
@@ -39,22 +43,4 @@ body {
     color: var(--fg-color-primary);
 }
 
-
-
-
---bg-color-primary: white;
-/*Editor Background */
---bg-color-secondary: rgb(212, 212, 212);
-/* This is kept from your original value, it's close to VS Code panel color */
---bg-color-tertiary: #878787;
-/* A slightly lighter shade from Editor Background for differentiation 
-    --bg-color-transparent: #d7d6d657;          /* A slightly lighter shade from Editor Background for differentiation */
---fg-color-primary: rgb(44, 44, 44);
-/* Editor Foreground */
---fg-color-secondary: #5a5a5a;
-/* String color */
---fg-color-tertiary: #d1d1d1;
-/* Keyword color */
---font-size-small: 12px;
---background-color: var(--bg-color-primary);
 
