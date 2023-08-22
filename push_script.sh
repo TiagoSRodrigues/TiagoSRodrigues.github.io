@@ -31,8 +31,9 @@ echo "Version updated to: $NEW_VERSION"
 node ./generate-manifest.js
 
 # Add changes to git and push to GitHub
-git add .
-git commit -m "Auto-update: Version bump to $NEW_VERSION"
-git push
+# git add .
+# git commit -m "Auto-update: Version bump to $NEW_VERSION"
+# git push
 
-echo "Changes pushed to GitHub!"
+# echo "Changes pushed to GitHub!"
+
