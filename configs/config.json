@@ -45,7 +45,7 @@
             "README.md": "1.0.0",
             "config.json": "1.0.0",
             "manifest.json": "1.0.0",
-            "scripts.js": "1.0.2",
+            "scripts.js": "1.0.3",
             "styles": {
                 "base_style.css": "1.0.0",
                 "dark.css": "1.0.0",

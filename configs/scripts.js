@@ -1,6 +1,6 @@
 /* 
  * Filename: script.js
- * Version: 1.0.2
+ * Version: 1.0.3
  * Date: 2023-08-19
  * Description: This script handles the scroll behavior of headers.
  */
