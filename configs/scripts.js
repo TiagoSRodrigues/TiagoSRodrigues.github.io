@@ -507,3 +507,16 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem('fontSize', `${newSize}px`);
     }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const sidebarLinks = document.querySelectorAll("#sidebar a");
+    const sidebarCheckbox = document.querySelector(".hamburger-menu input");
+
+    sidebarLinks.forEach(link => {
+        link.addEventListener("click", function () {
+            if (window.innerWidth <= 768) {
+                sidebarCheckbox.checked = false;
+            }
+        });
+    });
+});
