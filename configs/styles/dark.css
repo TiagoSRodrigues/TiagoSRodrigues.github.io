@@ -10,7 +10,7 @@
     --bg-color-tertiary: #797979;           /* Another shade for differentiation */
     --fg-color-primary: #a3a3a3;            /* Main text */
     --fg-color-secondary: #e5e5e5;          /* Strings */
-    --fg-color-tertiary: #bdbdbd;           /* Keywords */
+    --fg-color-tertiary: #8c8c8c;           /* Keywords */
     --font-size-small: 12px;
     --background-color: var(--bg-color-primary);
 

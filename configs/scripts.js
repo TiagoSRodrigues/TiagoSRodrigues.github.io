@@ -1,6 +1,6 @@
 /* 
  * Filename: script.js
- * Version: 1.0.3
+ * Version: 1.0.4
  * Date: 2023-08-19
  * Description: This script handles the scroll behavior of headers.
  */
@@ -155,9 +155,9 @@ function loadContent(fileName) {
     let contentPath;
     if (fileName.includes("personal/")) {
         contentPath = `personal/${fileName.split("personal/")[1]}`;
-    }else if (fileName.includes("content/")) {
+    } else if (fileName.includes("content/")) {
         contentPath = `content/${fileName.split("content/")[1]}`;
-  
+
     } else {
         contentPath = `/${fileName}`;
     }
@@ -188,7 +188,7 @@ function toggleTheme() {
 // Show/Hide mobile menu
 function toggleMobileMenu() {
     let sidebar = document.getElementById('sidebar');
-    
+
     if (sidebar.style.display === 'none' || sidebar.style.display === '') {
         sidebar.style.display = 'block';  // Show the sidebar
         // console.log("DEBUG sidebar",sidebar.style.display)
@@ -212,7 +212,7 @@ function manageHeadersOnScroll() {
             // At top of the page, show small header
             document.getElementById("small-header").style.top = "0";
             document.getElementById("big-header").style.top = "0px";  // or whatever the height of the big header is
-        } else if (currentScrollTop <= lastScrollTop+5) {
+        } else if (currentScrollTop <= lastScrollTop + 5) {
             // Scrolling up, show small header
             document.getElementById("small-header").style.top = "0";
             document.getElementById("big-header").style.top = "-90px";  // or whatever the height of the big header is
@@ -354,7 +354,7 @@ async function getReferenceConfig() {
 //     const referenceVersion = await getReferenceVersion();
 //     // Use Promise.all to batch requests
 //     const checkPromises = FILES_TO_CHECK.map(fileURL => checkFileVersion(fileURL, referenceVersion));
-    
+
 //     await Promise.all(checkPromises);
 //}
 async function checkFileVersions() {
@@ -383,14 +383,14 @@ function flattenFileVersions(obj, parent = "", result = {}) {
 
 async function checkFileVersion(fileURL, expectedVersion) {
     if (!expectedVersion) return;  // if the file version is not listed in the config, skip it
-    
-    
+
+
     const response = await fetch(fileURL);
     const content = await response.text();
     const version = extractFileVersion(content, fileURL);
-    
+
     // console.log("DEBUG: cachedVersions", expectedVersion, "version", version, "fileURL", fileURL)
-    
+
     if (version !== expectedVersion) {
         console.warn(`Outdated file: ${fileURL}. Expected version: ${expectedVersion}. Found: ${version}. The cache will be refreshed!`);
         caches.keys().then(function (names) {

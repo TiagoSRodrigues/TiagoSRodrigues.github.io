@@ -4,7 +4,7 @@ const urlsToCache = [
     '/index.html',
     '/configs/scripts.js',
     '/configs/config.json',
-    // ... other URLs you want to cache ...
+    // ... other URLs to cache ...
 ];
 
 self.addEventListener('install', function (event) {
@@ -43,7 +43,7 @@ self.addEventListener('fetch', function (event) {
 });
 
 self.addEventListener('activate', function (event) {
-    const cacheWhitelist = [CACHE_NAME]; // Later, if you have multiple cache versions, you can manage them here.
+    const cacheWhitelist = [CACHE_NAME]; // Later, multiple cache versions, you can manage them here.
 
     event.waitUntil(
         caches.keys().then(function (cacheNames) {
