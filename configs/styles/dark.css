@@ -5,20 +5,15 @@
  * Description: This stylesheet provides styles for the headers.
  */
 :root {
-    --bg-color-primary: #2d2d2d;
-    /* Background */
-    --bg-color-secondary: #5a5a5a;
-    /* Slightly different shade from the background for variety */
+    --bg-color-primary: #121212;
+    --bg-color-secondary: #262626;
     --bg-color-tertiary: #797979;
-    /* Another shade for differentiation */
     --fg-color-primary: #ebebeb;
-    /* Main text */
     --fg-color-secondary: #e5e5e5;
-    /* Strings */
     --fg-color-tertiary: #8c8c8c;
-    /* Keywords */
     --font-size-small: 12px;
     --background-color: var(--bg-color-primary);
+    --small-header-bg: #121212b0;
 
     /* Variables for switch */
     --switch-width: 40px;
@@ -26,7 +21,6 @@
     --slider-radius: calc(var(--slider-height) / 2);
     --knob-size: calc(var(--slider-height) * 0.8);
     --knob-transition-distance: calc(var(--switch-width) - var(--knob-size) - 8px);
-
 
     --hamburger-foreground: var(--fg-color-secondary);
     --hamburger-background: var(--fg-color-primary);
@@ -39,8 +33,11 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    /* background-color: rgb(129, 214, 33); */
+    background-color: var(--bg-color-primary);
     color: var(--fg-color-primary);
 }
 
 
+#sidebar {
+    background-color: var(--bg-color-secondary);
+}

@@ -125,6 +125,14 @@ body {
 
 /* ------------------------------------ */
 
+.hamburger-menu-btn{
+    margin-left: 40px;
+    font-weight: bold;
+    color: white;
+}
+
+
+
 
 .hamburger-menu {
     --x-width: calc(var(--hamburger-height) * 1.41421356237);
@@ -139,14 +147,14 @@ body {
     cursor: pointer;
 }
 
-.hamburger-menu:has(input:checked) {}
+/* .hamburger-menu:has(input:checked){} */
 
-.hamburger-menu:has(input:focus-visible)::before,
+/* .hamburger-menu:has(input:focus-visible)::before,
 .hamburger-menu:has(input:focus-visible)::after,
 .hamburger-menu input:focus-visible {
     border: 1px solid var(--hamburger-background);
     box-shadow: 0 0 0 1px var(--hamburger-foreground);
-}
+} */
 
 .hamburger-menu::before,
 .hamburger-menu::after,
@@ -171,21 +179,27 @@ body {
 }
 
 .hamburger-menu:has(input:checked)::before {
-    rotate: 45deg;
+    rotate: 30deg;
+    /* Rotate to form top part of arrow */
     width: var(--x-width);
-    translate: 0 calc(var(--bar-height) / -2);
+    translate: 50% 200%;
+    transform-origin: right center;
+    /* Change pivot for the rotation */
 }
 
 .hamburger-menu:has(input:checked)::after {
-    rotate: -45deg;
+    rotate: -30deg;
+    /* Rotate to form bottom part of arrow */
     width: var(--x-width);
-    translate: 0 0;
+    translate: 50% -200%;
+    transform-origin: right center;
+    /* Change pivot for the rotation */
 }
 
-.hamburger-menu input:checked {
+/* .hamburger-menu input:checked {
     opacity: 0;
     width: 0;
-}
+} */
 
 .sidebar {
     margin-left: -350px;
@@ -394,11 +408,11 @@ body {
 }
 
 input:checked+.slider {
-    background-color: #0000009d;
+    background-color: var(--bg-color-tertiary);
 }
 
 input:focus+.slider {
-    box-shadow: 0 0 1px #0000009d;
+    box-shadow: 0 0 1px var(--bg-color-tertiary);
 }
 
 input:checked+.slider:before {
@@ -423,15 +437,12 @@ input:checked+.slider:before {
             max-width: 10rem;
             min-height: 100vh;
             margin-left: 0px;
-            border-right: 2px solid var(--fg-color-tertiary);
+            border-right: 10px solid var(--fg-color-tertiary);
             /* max-width: 2000rem; */
             min-width: 350px;
             min-height: 100vh;
         }
-        #presentation-section{
-            background-color: #174ea6;
-        }
-        #main-content {
+           #main-content {
             flex: 3;
             padding: 15px;
             margin-left: 0px;
@@ -444,4 +455,4 @@ input:checked+.slider:before {
         /* .hamburger-menu:has(input:checked)+.sidebar {
         translate: 0;
     } */
-    }
+}

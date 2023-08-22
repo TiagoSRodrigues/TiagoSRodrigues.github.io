@@ -4,26 +4,21 @@
  * Date: 2023-08-22
  * Description: This HTML file displays the content and headers.
 -->
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; 
              script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net sw.js; 
              style-src 'self' 'unsafe-inline'; 
              img-src 'self' data: https://avatars.githubusercontent.com; 
              connect-src 'self' https://raw.githubusercontent.com;">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Tiago Rodrigues</title>
-
     <!-- Include the base styles -->
     <link rel="stylesheet" href="configs/styles/base_style.css">
     <link id="theme-style" rel="stylesheet">
-
     <!-- Google tag (gtag.js) -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-LC0SWLRYYN"></script>
     <script>
@@ -34,34 +29,26 @@
     </script> -->
 </head>
 
-
-
 <body>
     <header id="big-header">
         <h2 id="site-title"></h2>
     </header>
-
     <header id="small-header">
+                <div class="hamburger-menu-btn">Menu</div>
+
         <div id="name">Tiago's notes</div>
-
-
-        
         <div id="font-size-adjuster">
             <button id="decrease-font" class="font-size-adjuster" type="button">A-</button>
             <button id="increase-font" class="font-size-adjuster" type="button">A+</button>
         </div>
-
-
         </div>
         <!-- dark mode switch -->
         <label class="dark-mode-switch" for="theme-toggle">
             <input type="checkbox" id="theme-toggle" />
             <span class="slider round"></span>
         </label>
-
         <div>Dark Mode</div>
     </header>
-
     <div class="container">
         <label class="hamburger-menu">
             <input type="checkbox">
@@ -69,22 +56,18 @@
         <aside id="sidebar" class="sidebar">
             <!-- sidebar content -->
         </aside>
-
         <!-- Main Content Area -->
         <main id="main-content">
             <p>Select an article from the sidebar to read.</p>
         </main>
     </div>
-
+    
     <footer id="sticky-footer">
     </footer>
-
     <!-- External Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
     <!-- Internal Scripts -->
     <script src="configs/scripts.js"></script>
-
     <!-- service worker -->
     <script>
         if ('serviceWorker' in navigator) {
@@ -95,10 +78,8 @@
                 .catch(function (error) {
                     console.log('ServiceWorker registration failed:', error);
                 });
-
         }
     </script>
-
 </body>
 
 </html>
