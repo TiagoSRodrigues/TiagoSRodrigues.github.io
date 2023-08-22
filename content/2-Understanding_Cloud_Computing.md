@@ -1,10 +1,8 @@
----
-title: "Understanding Cloud Computing: A Brief Overview"
+<!-- title: "Understanding Cloud Computing: A Brief Overview"
 date: "2023-08-20"
 version: "1.0.0"
 author: "Tiago Rodrigues"
-tags: "devops, cloud"
----
+tags: "devops, cloud" -->
 # Understanding Cloud Computing: A Brief Overview
 
 Cloud computing, in its simplest terms, is the delivery of computing services—including servers, storage, databases, networking, software, analytics, and intelligence—over the internet. But, what does this really mean, and why is it revolutionizing the tech world?

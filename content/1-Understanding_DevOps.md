@@ -1,10 +1,8 @@
----
-title: "Understanding DevOps: A Quick Dive"
+<!-- title: "Understanding DevOps: A Quick Dive"
 date: "2023-08-20"
 version: "1.0.0"
 author: "Tiago Rodrigues"
-tags: "devops"
----
+tags: "devops" -->
 # Understanding DevOps: A Quick Dive
 
 DevOps, a fusion of "development" and "operations", is more than just a buzzword. It represents a cultural shift that aims to bring together software development and IT operations, making the entire system development lifecycle faster and more robust.
