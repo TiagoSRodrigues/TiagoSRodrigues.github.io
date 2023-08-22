@@ -1,7 +1,7 @@
 <!-- 
  * Filename: index.html
- * Version: 1.0.1
- * Date: 2023-08-19
+ * Version: 1.0.2
+ * Date: 2023-08-22
  * Description: This HTML file displays the content and headers.
 -->
 
@@ -10,13 +10,14 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'self';">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Tiago Rodrigues</title>
 
     <!-- Include the base styles -->
     <link rel="stylesheet" href="configs/styles/base_style.css">
-    <!-- <link rel="stylesheet" href="configs/styles/small_screen.css" media="(max-width: 768px)"> -->
 
     <link id="theme-style" rel="stylesheet">
 
@@ -29,8 +30,6 @@
 
         gtag('config', 'G-LC0SWLRYYN');
     </script>
-    <!-- Load service worker for offline functionality (if you have added it) -->
-
 </head>
 
 <body>
@@ -39,24 +38,23 @@
     </header>
 
     <header id="small-header">
-        
         <div id="name">Tiago's notes</div>
-        
+
         <!-- dark mode switch -->
         <label class="dark-mode-switch" for="theme-toggle">
             <input type="checkbox" id="theme-toggle" />
             <span class="slider round"></span>
         </label>
-        
+
         <div>Dark Mode</div>
     </header>
-    
+
     <div class="container">
         <label class="hamburger-menu">
-          <input type="checkbox">
+            <input type="checkbox">
         </label>
         <aside id="sidebar" class="sidebar">
-            <!-- Your sidebar content here -->
+            <!-- sidebar content -->
         </aside>
 
         <!-- Main Content Area -->
@@ -68,18 +66,18 @@
     <footer id="sticky-footer">
     </footer>
 
-    <!-- ... All your scripts ... -->
-
-
-
-
+    <!-- External Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-    <!-- Theme Toggle Script -->
-
-
-    <!-- Include the JavaScript to handle dynamic loading of content -->
+    <!-- Internal Scripts -->
     <script src="configs/scripts.js"></script>
+
+    <!-- service worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
 
 </body>
 

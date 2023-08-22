@@ -425,7 +425,7 @@ function extractFileVersion(content, fileURL) {
 
 
 // Call checkFileVersions every minute
-setInterval(checkFileVersions, 5 * 1000);
+setInterval(checkFileVersions, 60 * 1000);
 
 
 // Add version to the footer
