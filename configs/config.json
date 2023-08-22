@@ -4,7 +4,7 @@
         "description": "This is my landing page",
         "baseURL": "tiagosrodrigues.github.io",
         "language": "en-US",
-        "favicon": "assets/site_assets/Pino-Peanuts-Snoopy-5.32.png",
+        "favicon": "assets/site_assets/snoopy.png",
         "theme": "light",
         "version": "2.6.5",
         "lastDeploy": "Sun Aug 20 23:54:38 WEST 2023",
