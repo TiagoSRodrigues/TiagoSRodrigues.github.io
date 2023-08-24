@@ -1,0 +1,184 @@
+{
+    "Dictionary": {
+        "DevOps": {
+            "Continuous Integration (CI)": {
+                "definition": "The practice of merging all developers' working copies to a shared mainline several times a day.",
+                "example": "Jenkins, Travis CI, and CircleCI are popular CI tools."
+            },
+            "Continuous Deployment (CD)": {
+                "definition": "A software release strategy that automatically deploys every change to production after passing a series of tests.",
+                "example": "Every commit that passes all stages of your production pipeline is released to your users automatically."
+            },
+            "Infrastructure as Code (IaC)": {
+                "definition": "The process of managing and provisioning computing infrastructure using machine-readable definition files.",
+                "example": "Terraform and CloudFormation scripts."
+            },
+            "Pipeline": {
+                "definition": "An automated process that moves code from development to production.",
+                "example": "A pipeline may include stages like build, test, and deploy."
+            },
+            "Microservices": {
+                "definition": "A software design architecture where an application is composed of small services that run independently.",
+                "example": "An e-commerce platform might have separate microservices for user accounts, product catalog, and order processing."
+            },
+            "Artifact": {
+                "definition": "A file or set of files produced as a result of the build process.",
+                "example": "A .jar file in Java projects or a .dll file in .NET projects."
+            },
+            "Configuration Management": {
+                "definition": "The process of maintaining and managing system configurations consistently in a predictable manner.",
+                "example": "Tools often used include Ansible, Puppet, and Chef."
+            }
+        },
+        "Cloud": {
+            "Infrastructure as a Service (IaaS)": {
+                "definition": "Online services that provide high-level APIs used to dereference various low-level details of underlying network infrastructure.",
+                "example": "Amazon EC2 and DigitalOcean Droplets."
+            },
+            "Platform as a Service (PaaS)": {
+                "definition": "Cloud computing services that provide a platform for customers to develop, run, and manage applications.",
+                "example": "Heroku, Google App Engine."
+            },
+            "Software as a Service (SaaS)": {
+                "definition": "Software that is available via a third-party over the internet.",
+                "example": "Gmail, Dropbox."
+            },
+            "Serverless": {
+                "definition": "A cloud computing model that allows developers to build and run applications without managing the underlying infrastructure.",
+                "example": "AWS Lambda and Azure Functions."
+            },
+            "Cloud-Native": {
+                "definition": "An approach to building and running applications that exploit the advantages of the cloud computing model.",
+                "example": "Applications designed with microservices and deployed in containers might be considered cloud-native."
+            },
+            "Virtual Machine (VM)": {
+                "definition": "A software-based emulation of a computer that can run programs as if they were being run on an actual machine.",
+                "example": "AWS EC2 instances or Microsoft Azure VMs."
+            }
+        },
+        "Observability": {
+            "Monitoring": {
+                "definition": "The process of checking the operations of systems to ensure their performance and availability.",
+                "example": "Tools like Nagios and Datadog provide monitoring capabilities."
+            },
+            "Tracing": {
+                "definition": "A method used to profile and monitor applications.",
+                "example": "OpenTracing and Zipkin help in tracing requests across microservices."
+            },
+            "Logging": {
+                "definition": "The act of keeping a log, especially a record of a computer's operational performance.",
+                "example": "Fluentd, Logstash."
+            },
+            "Metrics": {
+                "definition": "Numeric values that represent the health or performance of a system.",
+                "example": "CPU usage, memory consumption, or web request response times."
+            },
+            "Incident Management": {
+                "definition": "The process of handling system outages and unexpected events to ensure quick recovery.",
+                "example": "Using tools like PagerDuty or Opsgenie to alert engineers when system metrics breach critical thresholds."
+            },
+            "Anomaly Detection": {
+                "definition": "The identification of rare items, events, or observations which raise suspicions by differing significantly from the majority.",
+                "example": "Detecting a sudden spike in error rates in a usually stable application."
+            }
+        },
+        "Git": {
+            "Commit": {
+                "definition": "An individual change to the file (or set of files).",
+                "example": "After making changes to the code, a developer commits them with a message describing what was done."
+            },
+            "Branch": {
+                "definition": "A parallel version of a repository.",
+                "example": "A developer creates a new branch to work on a new feature."
+            },
+            "Clone": {
+                "definition": "A copy of a repository that resides on your computer.",
+                "example": "By running git clone [URL], you can have a full copy of the repository on your local machine."
+            },
+            "Remote": {
+                "definition": "A version of your project that is hosted on the internet or another network.",
+                "example": "Origin is often set as the default remote when you clone a repository."
+            },
+            "Stash": {
+                "definition": "A way to temporarily store changes that you're not ready to commit yet.",
+                "example": "Using git stash when you need to switch branches but aren’t ready to commit your current changes."
+            },
+            "Merge": {
+                "definition": "The act of combining two different sets of changes.",
+                "example": "After finishing work in a branch, you might merge those changes back into the main branch."
+            }
+        },
+        "GitHub": {
+            "Repository (Repo)": {
+                "definition": "A place where all the files for a particular project are stored.",
+                "example": "A software project might be stored in its own repo."
+            },
+            "Fork": {
+                "definition": "A personal copy of someone else's project. Forks act as a bridge between the original repository and your personal copy.",
+                "example": "You might fork a repository to propose changes to someone else's project."
+            },
+            "Pull Request (PR)": {
+                "definition": "Proposed changes to a project that you submit to the project owner.",
+                "example": "After making changes in a forked repo, you can open a PR to the original repository."
+            },
+            "Issue": {
+                "definition": "A way to track tasks, improvements, and bugs for your projects.",
+                "example": "Reporting a bug you found in an open-source project."
+            },
+            "Star": {
+                "definition": "A way to mark a repository for reference or to show appreciation to the repository's creator.",
+                "example": "Starring a repository that you find interesting or useful."
+            },
+            "Gist": {
+                "definition": "A simple way to share snippets and pastes with others.",
+                "example": "Sharing a piece of code you've written with a colleague."
+            }
+        },
+        "GitHub Actions": {
+            "Workflow": {
+                "definition": "An automated procedure that you set up in your repository.",
+                "example": "A workflow might be set up to run tests and build code after every commit."
+            },
+            "Runner": {
+                "definition": "Any machine with the GitHub Actions runner application installed.",
+                "example": "Self-hosted runners can run jobs directly in a machine in your own infrastructure."
+            },
+            "Job": {
+                "definition": "A set of steps that execute on the same runner.",
+                "example": "A job might be set up to first install dependencies, then run tests."
+            }
+        },
+        "Docker": {
+            "Container": {
+                "definition": "A standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably.",
+                "example": "A Node.js application with its specific environment and libraries can be packaged in a Docker container."
+            },
+            "Image": {
+                "definition": "A lightweight, stand-alone, executable package that includes everything needed to run a piece of software.",
+                "example": "The official MySQL Docker image can be used to run MySQL server in a container."
+            },
+            "Dockerfile": {
+                "definition": "A text document that contains all the commands a user could call on the command line to assemble an image.",
+                "example": "A Dockerfile might specify the base image, software installations, and code copy instructions."
+            }
+        },
+        "Kubernetes (k8s)": {
+            "Pod": {
+                "definition": "The smallest and simplest unit in the Kubernetes object model that you create or deploy.",
+                "example": "A pod might run a single instance of a single application, such as a Node.js app."
+            },
+            "Service": {
+                "definition": "An abstract way to expose an application running on a set of Pods as a network service.",
+                "example": "Exposing a set of backend Pods via a Service to handle incoming requests."
+            },
+            "Node": {
+                "definition": "A worker machine in Kubernetes, previously known as a minion.",
+                "example": "A physical or virtual machine running Kubernetes, onto which pods are scheduled."
+            },
+            "Cluster": {
+                "definition": "A set of Nodes that run containerized applications managed by Kubernetes.",
+                "example": "A multi-node Kubernetes setup, with one master and multiple worker nodes."
+            }
+        }
+    }
+}
