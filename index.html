@@ -9,11 +9,13 @@
 
 <head>
     <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; 
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; 
          script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net sw.js https://www.googletagmanager.com data:; 
          style-src 'self' 'unsafe-inline'; 
          img-src 'self' data: https://avatars.githubusercontent.com; 
          connect-src 'self' https://raw.githubusercontent.com;">
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tiago Rodrigues</title>
@@ -36,7 +38,7 @@
         <h2 id="site-title"></h2>
     </header>
     <header id="small-header">
-                <div class="hamburger-menu-btn">Menu</div>
+        <div class="hamburger-menu-btn">Menu</div>
 
         <div id="name">Tiago's notes</div>
         <div id="font-size-adjuster">
@@ -63,7 +65,7 @@
             <p>Select an article from the sidebar to read.</p>
         </main>
     </div>
-    
+
     <footer id="sticky-footer">
     </footer>
     <!-- External Scripts -->
