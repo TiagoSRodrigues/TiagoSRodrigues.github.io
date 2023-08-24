@@ -1,6 +1,6 @@
 /* 
  * Filename: script.js
- * Version: 1.0.6
+ * Version: 1.0.5
  * Date: 2023-08-19
  * Description: This script handles the scroll behavior of headers.
  */
@@ -371,8 +371,9 @@ async function checkFileVersions() {
         console.warn(`Outdated configuration. Local version: ${localConfig.site.version}. Reference version: ${referenceConfig.site.version}. The cache will be refreshed!`);
         caches.keys().then(function (names) {
             for (let name of names) caches.delete(name);
+            location.reload();
         });
-    } location.reload();
+    } 
 
 }
 
@@ -404,8 +405,9 @@ async function checkFileVersion(fileURL, expectedVersion) {
         console.warn(`Outdated file: ${fileURL}. Expected version: ${expectedVersion}. Found: ${version}. The cache will be refreshed!`);
         caches.keys().then(function (names) {
             for (let name of names) caches.delete(name);
+            location.reload();
         });
-        location.reload();
+        
 
     } else {
         // Cache the checked version
