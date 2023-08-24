@@ -372,7 +372,8 @@ async function checkFileVersions() {
         caches.keys().then(function (names) {
             for (let name of names) caches.delete(name);
         });
-    }
+    } location.reload();
+
 }
 
 
@@ -404,6 +405,7 @@ async function checkFileVersion(fileURL, expectedVersion) {
         caches.keys().then(function (names) {
             for (let name of names) caches.delete(name);
         });
+        location.reload();
 
     } else {
         // Cache the checked version
