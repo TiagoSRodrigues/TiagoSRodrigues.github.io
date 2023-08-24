@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; 
-             script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net sw.js; 
+             script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net sw.js https://www.googletagmanager.com; 
              style-src 'self' 'unsafe-inline'; 
              img-src 'self' data: https://avatars.githubusercontent.com; 
              connect-src 'self' https://raw.githubusercontent.com;">
@@ -19,15 +19,16 @@
     <!-- Include the base styles -->
     <link rel="stylesheet" href="configs/styles/base_style.css">
     <link id="theme-style" rel="stylesheet">
-    Google tag (gtag.js)
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LC0SWLRYYN"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-LC0SWLRYYN');
-    </script> -->
+    </script>
 </head>
+
 
 <body>
     <header id="big-header">
