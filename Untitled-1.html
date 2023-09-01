@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    body {
+        font-family: Helvetica, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #f0f0f0;
+    }
+
+    .container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+        color: #777;
+        display: none;
+        line-height: 100px;
+    }
+
+    a {
+        margin-bottom: 20px;
+        text-decoration: none;
+        color: #007bff;
+        font-size: 16px;
+        transition: color 0.3s;
+    }
+
+    a:hover {
+        color: #0056b3;
+    }
+
+    .button-container {
+        margin: 10px;
+    }
+
+    button {
+        margin-right: 10px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .solution-button {
+        background-color: #66cc99;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        max-height: 300px;
+        overflow: auto;
+        border: 1px solid #ccc;
+        width: 300px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: none;
+    }
+
+    li {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+    li:last-child {
+        border-bottom: none;
+    }
+</style>
+    <script>
+        var Ha = new Date(2022, 0, 13, 0, 0, 0, 0);
+        var today = new Date();
+
+        function shuffle(array, seed) {
+            // ... (shuffle function) ...
+        }
+
+        function random(seed) {
+            // ... (random function) ...
+        }
+
+        function Na(e, a) {
+            // ... (Na function) ...
+        }
+
+        function Da(e) {
+            // ... (Da function) ...
+        }
+
+        function Ga(e) {
+            // ... (Ga function) ...
+        }
+
+        function getSolutionOfTheDay(includeLists) {
+            var La = ["ábaco", "ácaro", "ácido"];
+            var LLa = [];
+            var Ta = ["putas", "picha"];
+
+            if (includeLists) {
+                return { La: La, Ta: Ta };
+            } else {
+                La = shuffle(La, 1.31337);
+                for (let i = 0; i < La.length; i++) {
+                    LLa.push(La[i].normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase());
+                }
+                for (let i = 0; i < Ta.length; i++) {
+                    Ta[i] = Ta[i].normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+                }
+                return Da(today);
+            }
+        }
+
+        function showList(list) {
+            const listContainer = document.getElementById("list-container");
+            listContainer.innerHTML = "";
+            const ul = document.createElement("ul");
+            list.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = item;
+                ul.appendChild(li);
+            });
+            listContainer.innerHTML = "";
+            listContainer.appendChild(ul);
+            listContainer.style.display = "block";
+        }
+
+        function showSolution() {
+            const solutionContainer = document.getElementById("solution-container");
+            solutionContainer.textContent = "A solução de hoje é: " + getSolutionOfTheDay(false);
+            solutionContainer.style.display = "block";
+        }
+
+        window.onload = function () {
+            const solutionButton = document.getElementById("solution-button");
+            solutionButton.addEventListener("click", function () {
+                showSolution();
+                solutionButton.style.display = "none";
+            });
+
+            const button1 = document.getElementById("button1");
+            button1.addEventListener("click", function () {
+                const lists = getSolutionOfTheDay(true);
+                showList(lists.La);
+            });
+
+            const button2 = document.getElementById("button2");
+            button2.addEventListener("click", function () {
+                const lists = getSolutionOfTheDay(true);
+                showList(lists.Ta);
+            });
+        };
+    </script>
+    <title>Solução do Dia</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Solução do Dia</h1>
+        <h2 id="solution-container">Carregando...</h2>
+        <button id="solution-button" class="solution-button">Mostrar Solução</button>
+        <div class="button-container">
+            <button id="button1">Palavras Solução</button>
+            <button id="button2">Palavras Válidas</button>
+        </div>
+        <div class="link-container">
+            <a href="https://palavra-do-dia.pt/">Palavra do dia</a>
+        </div>
+        <div id="list-container"></div>
+    </div>
+</body>
+
+</html>
