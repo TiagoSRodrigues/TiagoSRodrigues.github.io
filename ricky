@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricky Gervais Day Countdown</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.css">
+
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #333;
+            /* Dark gray background */
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            flex: 1;
+            max-height: 200px;
+            max-width: 75%;
+            margin: auto;
+            padding: 20px;
+            background-color: #919090;
+            opacity: 95%;
+            /* Slightly darker gray container */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #4b4a4a;
+        }
+
+        #countdown {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #ff6600;
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+        }
+
+        .flip-clock {
+            display: inline-block;
+            align-items: center;
+        }
+
+        .flip-clock .digit {
+            display: inline-block;
+            width: 40px;
+            height: 60px;
+            background-color: #333;
+            color: #ff6600;
+            font-size: 48px;
+            font-weight: bold;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .flip-clock .digit span {
+            display: block;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            transform-origin: center bottom;
+            transform: rotateX(0deg);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .flip-clock .digit .top {
+            transform: rotateX(0deg);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .flip-clock .digit .bottom {
+            transform: rotateX(90deg);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .footer {
+            background-color: #222;
+            /* Slightly darker gray footer */
+            padding: 10px 0;
+        }
+
+        .footer-content {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .footer a {
+            color: #a5a5a5;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Updated styles for the directions button and its container */
+        .directions-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            /* Make it 50% smaller */
+            z-index: 1;
+            /* Ensure it's above other content */
+        }
+
+        .directions-button a {
+            text-decoration: none;
+        }
+
+        .directions {
+            align-items: center;
+            appearance: none;
+            background-color: #cfcfcf;
+            border-radius: 24px;
+            border-style: none;
+            box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px, rgba(0, 0, 0, .14) 0 6px 10px 0, rgba(0, 0, 0, .12) 0 1px 18px 0;
+            box-sizing: border-box;
+            color: #3c4043;
+            cursor: pointer;
+            display: inline-flex;
+            fill: currentcolor;
+            font-family: "Google Sans", Roboto, Arial, sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            height: 24px;
+            /* Adjust the height as needed */
+            justify-content: center;
+            letter-spacing: .25px;
+            line-height: normal;
+            max-width: 80%;
+            overflow: visible;
+            padding: 10px 12px;
+            /* Adjust the padding as needed */
+            position: relative;
+            text-align: center;
+            text-transform: none;
+            opacity: 50%;
+            transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1), opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            width: auto;
+            will-change: transform, opacity;
+            z-index: 0;
+        }
+
+        .directions:hover {
+            background: #F6F9FE;
+            color: #174ea6;
+        }
+
+        .directions:active {
+            box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+            outline: none;
+        }
+
+        .directions:focus {
+            outline: none;
+            border: 2px solid #4285f4;
+        }
+
+        .directions:not(:disabled) {
+            box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+        }
+
+        .directions:not(:disabled):hover {
+            box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+        }
+
+        .directions:not(:disabled):focus {
+            box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+        }
+
+        .directions:not(:disabled):active {
+            box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+        }
+
+        .directions:disabled {
+            box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Countdown to Ricky Gervais</h1>
+        <div id="countdown">
+            <div class="flip-clock" id="days-countdown"></div>
+        </div>
+    </div>
+
+    <!-- Updated button placement and size -->
+    <div class="directions-button">
+        <a
+            href="https://www.google.pt/maps/place/Altice+Arena/@38.7685312,-9.0962184,17z/data=!3m1!4b1!4m5!3m4!1s0xd19318570a93b63:0x1c465f5bdc842e42!8m2!3d38.7685312!4d-9.0940297">
+            <button class="directions directions" role="button">Get directions</button>
+        </a>
+    </div>
+
+    <div class="footer">
+        <div class="footer-content">
+            Made with ❤️ by <a href="https://tiagosrodrigues.github.io/" target="_blank">Tiago Silva Rodrigues</a>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js"></script>
+    <script>
+        // Ricky Gervais Day date (October 28th)
+        var rickyGervaisDay = new Date('2023-10-28T00:00:00');
+
+        // Calculate the time remaining in seconds
+        var timeRemaining = Math.max(0, Math.floor((rickyGervaisDay - new Date()) / 1000));
+
+        // Initialize FlipClock
+        var clock = new FlipClock($('#days-countdown'), timeRemaining, {
+            clockFace: 'DailyCounter',
+            countdown: true,
+            language: 'en'
+        });
+    </script>
+</body>
+
+</html>
