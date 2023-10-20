@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realistic Locker Animation</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #eaeaea;
+            font-family: 'Arial', sans-serif;
+        }
+
+        p {
+            margin-bottom: 50px;
+            /* roughly 1/6th of the locker's height */
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .locker {
+            width: 150px;
+            height: 300px;
+            background-color: #4e4e4e;
+            background-image: linear-gradient(315deg, #4e4e4e 0%, #2c2c2c 74%);
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .shelf {
+            width: 100%;
+            height: 10px;
+            background-color: #555;
+            position: absolute;
+            bottom: 20%;
+        }
+
+        .ball {
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+        }
+
+        .door {
+            width: 150px;
+            height: 300px;
+            background-color: #4e4e4e;
+            background-image: linear-gradient(135deg, #4e4e4e 0%, #2c2c2c 74%);
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 0 5px 5px 0;
+            transform-origin: left center;
+            transition: transform 1s;
+        }
+
+        .hinge {
+            width: 5px;
+            height: 25px;
+            background-color: #222;
+            position: absolute;
+            left: -5px;
+            transform-origin: left center;
+            /* Ensure the door rotates based on the left side */
+
+        }
+
+        .hinge-top {
+            top: 10%;
+        }
+
+        .hinge-bottom {
+            bottom: 10%;
+        }
+
+        .handle {
+            width: 10px;
+            height: 40px;
+            background-color: #222;
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .upper-shelf {
+            width: 100%;
+            height: 10px;
+            background-color: #555;
+            position: absolute;
+            top: 10%;
+        }
+
+        .ball {
+            width: 40px;
+            height: 40px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+            top: 13%;
+        }
+
+        .ball-left {
+            left: 35%;
+            opacity: 1;
+            width: 50px;
+            height: 50px;
+        }
+
+        .ball-middle {
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            /* Initially hidden and will appear when the door is clicked */
+        }
+
+        .ball-right {
+            left: 65%;
+            opacity: 1;
+            width: 50px;
+            height: 50px;
+        }
+
+        .name {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #FFF;
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+
+</head>
+
+<body>
+    <p>Click the door to open</p>
+    <div class="locker">
+        <svg class="ball-path" width="150" height="300" xmlns="http://www.w3.org/2000/svg">
+            <path id="fallingPath" d="M75 45 C 75 45, 75 150, 75 210" fill="none" stroke="red" stroke-dasharray="0,200"
+                stroke-width="30" />
+            <circle cx="0" cy="0" r="15" fill="red">
+                <animateMotion repeatCount="1" dur="2s" fill="freeze" begin="indefinite">
+                    <mpath href="#fallingPath" />
+                </animateMotion>
+            </circle>
+        </svg>
+        <div class="shelf"></div>
+        <div class="upper-shelf"></div>
+        <div class="ball ball-left"></div>
+        <div class="ball ball-middle"></div>
+        <div class="ball ball-right"></div>
+        <div class="door" onclick="toggleLocker()">
+            <div class="hinge hinge-top"></div>
+            <div class="hinge hinge-bottom"></div>
+            <div class="handle"></div>
+            <div class="name">Johnny</div> <!-- Added name to the locker door -->
+        </div>
+    </div>
+
+    <script>let doorOpened = false;
+
+        function toggleLocker() {
+            const door = document.querySelector('.door');
+            const ballPath = document.querySelector('.ball-path path');
+            const ballCircle = document.querySelector('.ball-path circle');
+            const ballAnimation = document.querySelector('.ball-path circle animateMotion');
+            const pathLength = ballPath.getTotalLength();
+
+            if (doorOpened) {
+                doorOpened = false;
+                door.style.transform = "rotateY(0deg)";
+
+                // Hide the path and reset its state
+                ballPath.style.strokeDashoffset = pathLength;
+                ballPath.style.strokeDasharray = `${pathLength} ${pathLength}`;
+
+                // End the ball's animation
+                ballAnimation.endElement();
+
+                // Listen for the end of the door's transition to reset the ball's position
+                door.addEventListener('transitionend', function onTransitionEnd() {
+                    ballCircle.setAttribute('cx', '0');
+                    ballCircle.setAttribute('cy', '0');
+                    door.removeEventListener('transitionend', onTransitionEnd);  // Remove the event listener after it's triggered
+                });
+
+            } else {
+                doorOpened = true;
+
+                ballAnimation.onend = function () {
+                    ballPath.style.strokeDashoffset = 0;
+                };
+                ballPath.style.strokeDasharray = `${pathLength} ${pathLength}`;
+                ballPath.style.strokeDashoffset = pathLength;
+
+                let offset = pathLength;
+                const revealRate = pathLength / (2000 / 10);
+                const intervalId = setInterval(() => {
+                    offset -= revealRate;
+                    ballPath.style.strokeDashoffset = offset;
+                    if (offset <= 0) {
+                        clearInterval(intervalId);
+                    }
+                }, 10);
+
+                ballAnimation.beginElement();
+                door.style.transform = "rotateY(-80deg)";
+            }
+        }
+    </script>
+</body>
+
+</html>
