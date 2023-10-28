@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Ricky Gervais Day Countdown</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.css">
 
@@ -26,6 +27,7 @@
             flex: 1;
             max-height: 200px;
             max-width: 75%;
+            min-width: 645px;
             margin: auto;
             padding: 20px;
             background-color: #919090;
@@ -35,6 +37,39 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
             align-items: center;
         }
+
+        #screen-size-warning {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            /* Increased padding */
+            background: repeating-linear-gradient(45deg,
+                    yellow,
+                    yellow 10px,
+                    black 10px,
+                    black 20px);
+            /* Diagonal stripes */
+            color: white;
+            text-align: center;
+            font-size: 20px;
+            z-index: 1000;
+            /* Make sure it's on top */
+        }
+
+        .warning-text {
+            background-color: white;
+            /* White background for the text */
+            padding: 5px;
+            /* Padding around the text */
+            border-radius: 5px;
+            /* Optional: adds rounded corners to the text background */
+            color: red;
+            font-weight: 700;
+            }
 
         h1 {
             font-size: 28px;
@@ -197,6 +232,11 @@
 </head>
 
 <body>
+    <div id="screen-size-warning">
+        <span class="warning-text">Your screen is too small for Ricky!!! Stop being poor!</span>
+    </div>
+
+
     <div class="container">
         <h1>Countdown to Ricky Gervais</h1>
         <div id="countdown">
@@ -234,6 +274,21 @@
             countdown: true,
             language: 'en'
         });
+
+        function checkScreenWidth() {
+            var screenWidth = window.innerWidth;
+            var banner = document.getElementById('screen-size-warning');
+            if (screenWidth < 700) {
+                banner.style.display = 'block';
+            } else {
+                banner.style.display = 'none';
+            }
+        }
+
+        // Check screen width on load and on window resize
+        window.onload = checkScreenWidth;
+        window.onresize = checkScreenWidth;
+
     </script>
 </body>
 
