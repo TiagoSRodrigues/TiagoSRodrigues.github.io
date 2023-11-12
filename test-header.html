@@ -154,7 +154,7 @@
             /* Align menu items vertically */
         }
 
-        .hamburger.active+.menu-frame {
+        .hamburger.active+.menu-frame ul{
             top: 100px;
             /* Slide down */
         }
@@ -207,13 +207,18 @@
 </header>
 
 <script>
-    document.querySelector('.hamburger').addEventListener('click', function () {
-        document.querySelector('.menu-frame').style.top = '0'; // Slide down the menu
+    const hamburger = document.querySelector('.hamburger');
+    const menuFrame = document.querySelector('.menu-frame');
+
+    hamburger.addEventListener('click', function () {
+        this.classList.toggle('active');
+        menuFrame.style.top = this.classList.contains('active') ? '0' : '-100%';
+    });
+    document.querySelector('.close-menu').addEventListener('click', function () {
+        hamburger.classList.remove('active');
+        menuFrame.style.top = '-100%';
     });
 
-    document.querySelector('.close-menu').addEventListener('click', function () {
-        document.querySelector('.menu-frame').style.top = '-100%'; // Slide up the menu
-    });
 
 
 </script>
