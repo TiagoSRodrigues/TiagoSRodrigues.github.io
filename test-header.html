@@ -1,4 +1,5 @@
 <style>
+    /* Global color and font settings */
     :root {
         --color-primary: #EF813D;
         --color-secondary: #EF813D;
@@ -10,40 +11,56 @@
         --font-stack: 'Helvetica Neue', sans-serif;
     }
 
+    /* Main header styling */
     .site-header {
+        position: relative;
         background-color: rgba(255, 255, 255, 0.7);
         /* Semi-transparent white */
         backdrop-filter: blur(10px);
-        /* Creates the frosted glass effect */
+        /* Frosted glass effect */
         border-radius: 10px;
-        /* Optional: Rounds the corners */
         border: 1px solid rgba(255, 255, 255, 0.3);
-        /* Optional: Adds a subtle border */
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        /* Optional: Adds a subtle shadow for depth */
         padding: 20px;
-        /* Add padding to ensure content doesn't touch the edges */
         color: var(--color-text);
-
+        z-index: 1000;
+        /* Above the menu */
     }
 
-    .header-div {
+
+    /* General hover effect */
+    li:hover {
+        background-color: var(--color-anti-primary);
+    }
+
+    /* Desktop header layout */
+    .header-desktop {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
+    /* Mobile header layout - hidden by default */
+    .header-mobile {
+        display: none;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Logo styling */
     .logo img {
-        max-width: 550px;
+        max-width: 60%;
         height: auto;
     }
 
-    .menu-frame {
+    /* Desktop menu layout */
+    .menu-desktop {
         display: flex;
         align-items: center;
     }
 
-    .menu-frame ul {
+    /* Desktop menu list styling */
+    .menu-desktop ul {
         list-style: none;
         padding: 0;
         margin: 0;
@@ -51,136 +68,178 @@
         gap: 20px;
     }
 
-    .menu-frame ul li {
-        position: relative;
-        padding: 10px 15px;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-    }
-
-    .menu-frame a {
+    /* Desktop menu link styling */
+    .menu-desktop a {
         text-decoration: none;
         color: var(--color-text);
         display: block;
+        margin-bottom: 10px;
+        margin-top: 10px;
+
+
     }
 
-    .menu-frame ul.submenu {
+    /* Desktop submenu styling */
+    .menu-desktop ul.submenu {
         display: none;
         position: absolute;
-        top: 100%;
-        left: 0;
+        /*top: 100%;
+        left: 0;*/
         background-color: rgba(255, 255, 255, 0.9);
         backdrop-filter: blur(10px);
         border-radius: 5px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         padding: 10px;
         min-width: 150px;
+        margin-bottom: 10px;
+
+
     }
 
-    .menu-frame li:hover>.submenu {
+    /* Desktop submenu display on hover */
+    .menu-desktop li:hover>.submenu {
         display: block;
     }
 
+    /* Mobile menu layout and initial state */
+    .menu-mobile {
+        position: absolute;
+        top: 200%;
+        /* Position below the header */
+        left: 0;
+        border-radius: 5px;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: transform 0.9s ease;
+        transform: translateY(-80%);
+        /* Hidden initially */
+
+
+    }
+
+
+
+    /* Hamburger icon styling */
     .hamburger {
         display: none;
+        border: none;
+        background-color: white;
+        font-size: x-large;
+        color: var(--color-primary);
+        cursor: pointer;
     }
 
-    /* Hover effect */
-    li:hover {
-        background-color: var(--color-anti-primary);
-    }
-
-    /* Responsive Styles */
-    /*tablet*/
-    @media (max-width: 768px) {
-        .header-div {
-            flex-direction: column;
-        }
-
-        .menu-frame {
-            margin-top: 20px;
-        }
+    /* Hamburger icon hover effect */
+    .hamburger:hover {
+        border-radius: 5px;
+        background-color: var(--color-primary);
+        box-shadow: 0px 0px 7px 1px var(--color-strong);
+        transition-delay: .1s;
+        color: white;
     }
 
 
-    @media (max-width: 480px) {
-        .header-div {
-            flex-direction: row;
-            /* Align items in a row */
-            justify-content: space-between;
-            /* Spread out the items */
+
+
+    /* Responsive styles for mobile view */
+    @media (max-width: 750px) {
+        .header-desktop {
+            display: none;
+            /* Hide desktop header */
         }
 
-        .logo img {
-            max-width: 70%;
-            /* Adjust logo size */
+        .header-mobile {
+            display: flex;
+            /* Show mobile header */
+        }
+
+        .menu-desktop {
+            display: none;
+            /* Hide desktop menu */
         }
 
         .hamburger {
             display: block;
-            order: 2;
-            /* Ensure the hamburger is positioned after the logo */
-            color: #000000;
-            background-color: #044154;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
+            /* Show hamburger icon */
         }
 
-        .menu-frame {
-            color: #000;
-            position: fixed;
-            top: -200%;
-            /* Start off-screen */
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background-color: rgba(155, 70, 70, 0.9);
-            /* Semi-transparent white */
-            backdrop-filter: blur(10px);
-            transition: top 0.3s ease-in-out;
-            z-index: -50;
+        /* Mobile submenu display on hover */
+        .menu-mobile li:hover>.submenu {
+            display: block;
+        }
+
+        /* Mobile menu visible state */
+        .menu-mobile ul.open {
+            transform: translateY(0);
+            /* Show menu */
+        }
+
+
+        .menu-mobile {
+            display: block;
+            /* Show mobile menu */
+        }
+
+        .menu-mobile .submenu {
+            display: none;
+            /* Hide submenus initially */
+        }
+
+        .menu-mobile ul {
+            display: none;
+            opacity: 0;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            transition: opacity 1s ease;
+            /* Smooth transition */
+        }
+
+
+
+        .menu-mobile ul.open {
+            display: block;
+            opacity: 1;
+            /* Make menu visible */
+        }
+
+        .hamburger.active+.menu-mobile ul {
+            display: block;
+            /* Display menu items when hamburger is active */
+        }
+
+        .hamburger.active {
+            display: none;
+            /* Hide hamburger when active */
+        }
+
+        .menu-mobile .close-menu {
+            display: none;
+            /* Initially hide close-menu button */
+        }
+
+        .hamburger.active+.menu-mobile .close-menu {
+            display: block;
+            /* Show close-menu button when hamburger is active */
         }
 
         .close-menu {
-            display: block;
-            /* Show close button when menu is active */
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--color-text);
+            cursor: pointer;
         }
-
-        .menu-frame ul {
-            display: none;
-            /* Hide menu initially */
-            flex-direction: column;
-            /* Align menu items vertically */
-        }
-
-        .hamburger.active+.menu-frame ul{
-            top: 100px;
-            /* Slide down */
-        }
-    }
-
-    .close-menu {
-        display: none;
-        /* Initially hidden */
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        background: none;
-        border: none;
-        color: var(--color-text);
-        font-size: 24px;
-        cursor: pointer;
     }
 </style>
 <header class="site-header">
-    <div class="header-div">
+    <!-- Desktop header layout -->
+    <div class="header-desktop">
         <div class="logo">
             <img src="https://davidrpereira.pt/wp-content/uploads/2023/11/cropped-DRP-LOGO-2023.png" alt="Logo">
         </div>
-        <button class="hamburger">&#9776;</button>
-        <nav class="menu-frame">
-            <button class="close-menu">x</button> <!-- Close button -->
+        <nav class="menu-desktop">
             <ul>
                 <li><a href="#sobre">Sobre</a></li>
                 <li>
@@ -204,21 +263,71 @@
             </ul>
         </nav>
     </div>
+    <div class="header-mobile">
+        <div class="logo">
+            <img src="https://davidrpereira.pt/wp-content/uploads/2023/11/cropped-DRP-LOGO-2023.png" alt="Logo">
+        </div>
+        <button class="hamburger">&#9776;</button>
+        <button class="close-menu" style="display: none;">&times;</button>
+        <nav class="menu-mobile">
+
+            <ul>
+                <li><a href="#sobre">Sobre</a></li>
+                <li>
+                    <a href="#servicos">Serviços</a>
+                    <ul class="submenu">
+                        <li><a href="#programa-mente-lider">Programa Mente Lider</a></li>
+                        <li><a href="#programa-individual">Programa individual</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#empresas">Empresas</a>
+                    <ul class="submenu">
+                        <li><a href="#workshops">Workshops</a></li>
+                        <li><a href="#formacoes">Formações</a></li>
+                    </ul>
+                </li>
+                <li><a href="#palestras">Palestras</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#podcast">Podcast</a></li>
+                <li><a href="#contactos">Contactos</a></li>
+            </ul>
+        </nav>
+
+    </div>
 </header>
 
 <script>
-    const hamburger = document.querySelector('.hamburger');
-    const menuFrame = document.querySelector('.menu-frame');
+    document.addEventListener('DOMContentLoaded', function () {
+        // Selecting elements for interactivity
+        const hamburger = document.querySelector('.hamburger');
+        const closeMenu = document.querySelector('.close-menu');
+        const menuMobile = document.querySelector('.menu-mobile');
+        const menuList = menuMobile.querySelector('ul');
 
-    hamburger.addEventListener('click', function () {
-        this.classList.toggle('active');
-        menuFrame.style.top = this.classList.contains('active') ? '0' : '-100%';
+        // Event listener for opening mobile menu
+        hamburger.addEventListener('click', function () {
+            menuList.classList.add('open');
+            this.style.display = 'none';
+            closeMenu.style.display = 'block';
+        });
+
+        // Event listener for closing mobile menu
+        closeMenu.addEventListener('click', function () {
+            menuList.classList.remove('open');
+            this.style.display = 'none';
+            hamburger.style.display = 'block';
+        });
+
+        // Mobile submenu toggle logic
+        const submenuLinks = menuMobile.querySelectorAll('li > a + ul.submenu');
+        submenuLinks.forEach(submenu => {
+            const parentLink = submenu.previousElementSibling;
+            parentLink.addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent default link behavior
+                submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+            });
+        });
     });
-    document.querySelector('.close-menu').addEventListener('click', function () {
-        hamburger.classList.remove('active');
-        menuFrame.style.top = '-100%';
-    });
-
-
 
 </script>
