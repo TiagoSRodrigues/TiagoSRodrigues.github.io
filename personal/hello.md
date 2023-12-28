@@ -10,6 +10,8 @@ tags: "hello"
 
 Hello there! 👋 I'm thrilled you stopped by. This is my **personal playground** where I scribble about the things I love and the adventures I embark upon.
 
+```` Note: This is a development and a test environment. Take it with a grain of salt! ````
+
 ---
 
 ## 🎨 Personal Tidbits

@@ -116,8 +116,44 @@ async function generateSidebar(config) {
     personalArticlesSection.appendChild(personalHeader);
     personalArticlesSection.appendChild(personalList);
     sidebar.appendChild(personalArticlesSection);
+    
+    // 3. Standalone Pages Section
+    const standalonePagesSection = document.createElement("section");
+    standalonePagesSection.classList.add("standalone-pages-section");
+    const standaloneHeader = document.createElement("h3");
+    standaloneHeader.innerText = "☢️ Standalone Pages";
+    const standaloneList = document.createElement("ul");
 
-    // 3. Content Articles Section
+    // Dictionary of standalone page links
+    const links = {
+        "Ricky Gervais Contdown" : 'https://tiagosrodrigues.github.io/ricky',
+        "Don't open": "https://tiagosrodrigues.github.io/gift",
+        "Palavra do Dia Solver": "https://tiagosrodrigues.github.io/palavra",
+    };
+
+    // Loop through each entry in the links object
+    for (const [linkName, linkUrl] of Object.entries(links)) {
+        const listItem = document.createElement("li");
+        const anchor = document.createElement("a");
+        anchor.href = linkUrl;
+        anchor.target = "_blank"; // Open in a new tab
+        anchor.rel = "noopener noreferrer";
+        anchor.innerText = linkName; // Use the key as the link text
+
+        listItem.appendChild(anchor);
+        standaloneList.appendChild(listItem);
+    }
+
+    // Append the header and list to the standalone pages section
+    standalonePagesSection.appendChild(standaloneHeader);
+    standalonePagesSection.appendChild(standaloneList);
+
+    // Append the standalone pages section to the sidebar
+    sidebar.appendChild(standalonePagesSection);
+
+
+
+    // 4. Content Articles Section
     const contentArticlesSection = document.createElement("section");
     contentArticlesSection.classList.add("content-articles-section");
     const contentHeader = document.createElement("h3");

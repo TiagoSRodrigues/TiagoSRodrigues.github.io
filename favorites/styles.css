@@ -1,0 +1,181 @@
+body{
+    /*variables*/
+    --background-color: #eeebea;
+    --text-color: #080934;
+    --primary-color: rgb(8,9,52);
+    --primary-color-transparent: rgb(8,9,52,.15);
+    --secundary-color: #283845;
+    --accent-color:#B8B08D;
+    
+    
+    
+    --background-color: #eeebea;
+    --text-color: #080934;
+    --primary-color: #080934;
+    --secondary-color: #283845;
+    --accent-color: #B8B08D;
+    
+    --font-family: helvetica, sans-serif;
+    --font-size-h1: 24px;
+    --font-size-h2: 20px;
+    --font-size-h3: 18px;
+    --line-height: 1.5;
+
+    --alternativ-font-family: 'Times New Roman', Times,serif;
+
+    max-width: 1200px;
+    background-color: var(--background-color);
+    margin: auto;
+}
+
+/* Base Styles */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+}
+
+h1 {
+    font-size: var(--font-size-h1);
+    color: var(--primary-color);
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+    line-height: var(--line-height);
+    color: var(--secondary-color);
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height);
+    color: var(--accent-color);
+}
+
+/* Estilos básicos para o contêiner de vidro */
+.glass-container {
+    background: var(--primary-color-transparent) ;
+    /* Cor de fundo com transparência */
+    backdrop-filter: blur(10px);
+    /* Desfoque do fundo */
+    border-radius: 10px;
+    /* Borda arredondada */
+    padding: 20px;
+    margin-top: 10px;
+    /* Set a max-width if necessary */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Sombra leve */
+    
+}
+
+/* Adjust the glass-header to use flexbox and align items */
+.glass-header {
+    display: flex;
+    flex-direction: row;
+    /* Stack items vertically */
+    justify-content: space-around;
+    /* Align items to the start of the container (left) */
+    color: #fff;
+    width: 100%;
+}
+
+.glass-header h1{
+    text-align: center;
+}
+
+/* Estilos para um botão com efeito de vidro */
+.glass-button {
+    background: var(--secundary-color);
+    /* Cor de fundo com transparência */
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.glass-button:hover {
+    background: var(--accent-color);
+    /* Cor de fundo com transparência aumentada ao passar o mouse */
+}
+
+.searchbox {
+    width: 100%;
+    /* Full width */
+    height: 40px;
+    /* Taller input */
+    padding: 8px 16px;
+    /* Comfortable text padding */
+    font-size: 16px;
+    /* Larger font size */
+    border: 2px solid var(--secondary-color);
+    /* Solid border */
+    border-radius: 20px;
+    /* Rounded borders */
+    outline: none;
+    /* Remove focus outline */
+    box-shadow: none;
+    /* No shadow by default */
+    transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    /* Smooth transition for focus/hover */
+    background-color: #fff;
+    /* Light background */
+    padding-right: 40px;
+    /* Make padding larger on the right */
+}
+
+.searchbox:focus {
+    box-shadow: 0 0 8px 0 var(--primary-color-transparent);
+    /* Focus shadow */
+    border-color: var(--primary-color);
+    /* Border color on focus */
+}
+
+.suggestions {
+    border: 1px solid #ccc;
+    border-top: none;
+    position: absolute;
+    z-index: 1000;
+    /* Adjust width as necessary, accounting for padding */
+    background: var(--secundary-color);
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+    /* Initially hidden */
+    width: calc(100% - 20px);
+    /* Adjust width based on parent padding */
+    top: 100%;
+    /* Position below the search box */
+    left: 0;
+}
+
+.suggestion-item {
+    padding: 8px 16px;
+    cursor: pointer;
+}
+/* Additional styles for the search container */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+/* Style the search button with the magnifying glass */
+.search-button {
+    background: transparent;
+    border: none;
+    font-size: 1.5em;
+    /* Adjust size as needed */
+    cursor: pointer;
+    color: var(--text-color);
+    /* Use the text color variable */
+    position: absolute;
+    right: 10px;
+    /* Position to the right inside the searchbox */
+    top: 50%;
+    transform: translateY(-50%);
+    /* Center vertically */
+}
