@@ -9,10 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tiago Rodrigues</title>
     <!-- Include the base styles -->
+    <link rel="stylesheet" href="configs/styles/base_style.css">
     <link rel="stylesheet" href="configs/styles/movies_table.css">
     <link id="theme-style" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LC0SWLRYYN"></script>
+
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
@@ -22,7 +25,14 @@
 </head>
 
 <body>
-    <div><div></div>
+    <header class="header">
+        <div id="font-size-adjuster">
+            <button id="decrease-font" class="font-size-adjuster" type="button">A-</button>
+            <button id="increase-font" class="font-size-adjuster" type="button">A+</button>
+        </div>
+    </header>
+    <div>
+        <div></div>
         <h1>Rodrigues'List</h1>
         <div class="search-box">
             <input type="text" id="searchBox" class="searchBox" onkeyup="searchTable()"
@@ -41,11 +51,11 @@
             <thead>
                 <tr>
                     <th onclick="sortTable(0)">Title &#10572; </th>
-                    <th onclick="sortTable(1)">Year  &#10572;</th>
+                    <th onclick="sortTable(1)">Year &#10572;</th>
                     <th onclick="sortTable(2)">IMDb r &#10572;</th>
-                    <th onclick="sortTable(3)">my r  &#10572;</th>
-                    <th onclick="sortTable(4)">Genres  &#10572;</th>
-                    <th onclick="sortTable(5)">Directors  &#10572;</th>
+                    <th onclick="sortTable(3)">my r &#10572;</th>
+                    <th onclick="sortTable(4)">Genres &#10572;</th>
+                    <th onclick="sortTable(5)">Directors &#10572;</th>
                     <th onclick="sortTable(5)">Type</th>
                     <th>Watch</th>
 
@@ -57,7 +67,7 @@
         </table>
     </div>
     <footer id="sticky-footer">
-        <a href="https://tiagosrodrigues.github.io/" >by Tiago Silva Rodrigues</a>
+        <a href="https://tiagosrodrigues.github.io/">by Tiago Silva Rodrigues</a>
     </footer>
 </body>
 
@@ -69,9 +79,15 @@
                 const data = parseCSV(csvText);
                 populateTable(data);
             });
-    
-        });
 
+    });
+    document.getElementById("increase-font").addEventListener("click", function () {
+        adjustFontSize(0.9); // Increase by 10%
+    });
+
+    document.getElementById("decrease-font").addEventListener("click", function () {
+        adjustFontSize(-0.9); // Decrease by 10%
+    });
     function parseCSV(csvText) {
         const lines = csvText.split('\n');
         return lines.slice(1).map(line => {
@@ -80,7 +96,7 @@
                 myrating: columns[0],
                 title: columns[2],
                 url: columns[3],
-                type: columns[4], 
+                type: columns[4],
                 imdbrating: columns[5],
                 year: columns[7],
                 genres: columns[8],
@@ -126,7 +142,7 @@
             const typeCell = row.insertCell();
             typeCell.textContent = movie.type === 'movie' ? '🎥' : '📺';
 
-              // Add the "Play" button cell
+            // Add the "Play" button cell
             const playCell = row.insertCell();
             const encodedTitle = encodeURIComponent(movie.title);
             const playButton = document.createElement('button');
@@ -136,7 +152,7 @@
             };
             playCell.appendChild(playButton);
         });
-    sortTable(2);
+        sortTable(2);
     }
 
 
