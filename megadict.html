@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Ratings</title>
+    <script src="sqlite3.wasm.js"></script> <!-- Path to the SQLite WASM JavaScript glue code -->
+
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+input[type=text] {
+    margin-bottom: 10px;
+    padding: 8px;
+}
+
+button {
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    <input type="text" id="filter" placeholder="Filter movies...">
+    <button onclick="applyFilter()">Apply Filter</button>
+    <table id="movies">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Genres</th>
+                <th>IMDb Rating</th>
+                <!-- Other columns as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Movie data will go here -->
+        </tbody>
+    </table>
+
+    <script src="app.js"></script> <!-- Path to your custom JavaScript -->
+<script>let db;
+
+    function loadDatabase() {
+        // This is a placeholder function to initialize SQLite and load the database
+        // You will need to include the actual SQLite WASM glue code to load the database
+    }
+
+    function applyFilter() {
+        let filterValue = document.getElementById('filter').value;
+        let sql = `SELECT * FROM movies WHERE title LIKE '%${filterValue}%'`;
+
+        // Execute the SQL query using the SQLite WASM module
+        // This is a simplified example; in a production environment, you should use prepared statements to avoid SQL injection
+        db.exec(sql, function (results) {
+            // Clear current table rows
+            let tbody = document.getElementById('movies').getElementsByTagName('tbody')[0];
+            tbody.innerHTML = '';
+
+            // Add new rows to the table based on the query results
+            results.forEach(function (row) {
+                let tr = document.createElement('tr');
+                // Add cells (td) to the row (tr) based on the columns you want to display
+                tbody.appendChild(tr);
+            });
+        });
+    }
+
+    // Initialize the database when the page is loaded
+    window.onload = loadDatabase;
+</script>
+</body>
+</html>

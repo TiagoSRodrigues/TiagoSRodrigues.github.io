@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiago Rodrigues</title>
+    <!-- Include the base styles -->
+    <link rel="stylesheet" href="configs/styles/movies_table.css">
+    <link id="theme-style" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LC0SWLRYYN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-LC0SWLRYYN');
+    </script>
+</head>
+
+<body>
+    <div><div></div>
+        <h1>Rodrigues'List</h1>
+        <div class="search-box">
+            <input type="text" id="searchBox" class="searchBox" onkeyup="searchTable()"
+                placeholder="Search for titles...">
+        </div>
+        <!-- Sorting Headers -->
+        <div id="sortingHeaders" class="sorting-headers">
+            <span onclick="sortTable(0)">Title &#10572;</span>
+            <span onclick="sortTable(1)">Year &#10572;</span>
+            <span onclick="sortTable(2)">IMDb r &#10572;</span>
+            <span onclick="sortTable(3)">my r &#10572;</span>
+            <span onclick="sortTable(4)">Genres &#10572;</span>
+            <span onclick="sortTable(5)">Directors &#10572;</span>
+        </div>
+        <table id="moviesTable" class="rwd-table">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Title &#10572; </th>
+                    <th onclick="sortTable(1)">Year  &#10572;</th>
+                    <th onclick="sortTable(2)">IMDb r &#10572;</th>
+                    <th onclick="sortTable(3)">my r  &#10572;</th>
+                    <th onclick="sortTable(4)">Genres  &#10572;</th>
+                    <th onclick="sortTable(5)">Directors  &#10572;</th>
+                    <th onclick="sortTable(5)">Type</th>
+                    <th>Watch</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows will be populated here -->
+            </tbody>
+        </table>
+    </div>
+    <footer id="sticky-footer">
+        <a href="https://tiagosrodrigues.github.io/" >by Tiago Silva Rodrigues</a>
+    </footer>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('/assets/movies.csv')
+            .then(response => response.text())
+            .then(csvText => {
+                const data = parseCSV(csvText);
+                populateTable(data);
+            });
+    
+        });
+
+    function parseCSV(csvText) {
+        const lines = csvText.split('\n');
+        return lines.slice(1).map(line => {
+            const columns = line.split(';');
+            return {
+                myrating: columns[0],
+                title: columns[2],
+                url: columns[3],
+                type: columns[4], 
+                imdbrating: columns[5],
+                year: columns[7],
+                genres: columns[8],
+                directors: columns[11]
+            };
+        });
+    }
+
+
+    function populateTable(data) {
+        const tableBody = document.getElementById('moviesTable').getElementsByTagName('tbody')[0];
+        const headers = ['Title', 'Year', 'IMDb R', 'Genres', 'Directors']; // Headers as they appear in order
+
+        data.forEach(movie => {
+            const row = tableBody.insertRow();
+
+            const cell0 = row.insertCell();
+            cell0.setAttribute('data-th', headers[0]);
+            cell0.innerHTML = `<a href="${movie.url}">${movie.title}</a>`;
+
+            const cell1 = row.insertCell();
+            cell1.setAttribute('data-th', headers[1]);
+            cell1.textContent = movie.year;
+
+            const cell2 = row.insertCell();
+            cell2.setAttribute('data-th', headers[2]);
+            cell2.textContent = movie.imdbrating;
+
+            const cell3 = row.insertCell();
+            cell3.setAttribute('data-th', headers[3]);
+            cell3.textContent = movie.myrating;
+
+            const cell4 = row.insertCell();
+            cell4.setAttribute('data-th', headers[4]);
+            cell4.textContent = movie.genres;
+
+            const cell5 = row.insertCell();
+            cell5.setAttribute('data-th', headers[5]);
+            cell5.textContent = movie.directors;
+
+
+            // Add the type icon cell
+            const typeCell = row.insertCell();
+            typeCell.textContent = movie.type === 'movie' ? '🎥' : '📺';
+
+              // Add the "Play" button cell
+            const playCell = row.insertCell();
+            const encodedTitle = encodeURIComponent(movie.title);
+            const playButton = document.createElement('button');
+            playButton.textContent = '▶️';
+            playButton.onclick = function () {
+                window.open(`https://www.justwatch.com/pt/busca?q=${encodedTitle}`, '_blank');
+            };
+            playCell.appendChild(playButton);
+        });
+    sortTable(2);
+    }
+
+
+
+    function searchTable() {
+        const input = document.getElementById("searchBox");
+        const filter = input.value.toUpperCase();
+        const table = document.getElementById("moviesTable");
+        const tr = table.getElementsByTagName("tr");
+
+        for (let i = 0; i < tr.length; i++) {
+            let td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                const txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function sortTable(columnIndex, dir) {
+        var table = document.getElementById("moviesTable");
+        var rows = Array.from(table.getElementsByTagName("TR")).slice(1);
+        var dir = sortTable.directions[columnIndex] || 'desc';
+
+        rows.sort(function (a, b) {
+            var x = a.getElementsByTagName("TD")[columnIndex].textContent;
+            var y = b.getElementsByTagName("TD")[columnIndex].textContent;
+
+            // Check if the column should be sorted as numbers
+            if (!isNaN(x) && !isNaN(y)) {
+                x = parseFloat(x);
+                y = parseFloat(y);
+            } else {
+                x = x.toLowerCase();
+                y = y.toLowerCase();
+            }
+
+            if (x < y) {
+                return dir === 'asc' ? -1 : 1;
+            }
+            if (x > y) {
+                return dir === 'asc' ? 1 : -1;
+            }
+            return 0;
+        });
+
+        // Apply sorted rows to the table
+        var tbody = table.getElementsByTagName('tbody')[0];
+        rows.forEach(row => tbody.appendChild(row));
+
+        // Toggle direction for next sort
+        sortTable.directions[columnIndex] = dir === 'asc' ? 'desc' : 'asc';
+    }
+
+    // Initialize an object to store the direction of each column
+    sortTable.directions = {};
+
+
+</script>
+
+</html>

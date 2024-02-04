@@ -1,0 +1,304 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:600,700';
+
+:root {
+    --bg-color-primary: #404040;
+    --bg-color-anti-primary: #b3b3b3;
+    --bg-color-secondary: #00014c;
+    --rows-color: rgb(5, 0, 44);
+    --main-font-size: 10px;
+}
+
+a {
+    text-decoration: none;
+    /* Removes the underline from links */
+    color: inherit;
+    /* This will make the link color the same as the text around it; or you can set a specific color */
+}
+
+* {
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+.search-box {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+::placeholder {
+    color: white;
+}
+
+input:focus {
+    outline: none;
+    /* Removes the default focus outline */
+}
+
+.searchBox {
+    padding: 10px;
+    color: #ffffff;
+    background-color: var(--bg-color-primary);
+    border: 0px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+
+}
+
+.rwd-table {
+    margin: auto;
+    min-width: 100px;
+    max-width: 100%;
+    border-collapse: collapse;
+    align-self: center;
+}
+
+
+.rwd-table button {
+    border: 0px;
+    background-color: transparent;
+    color: inherit;
+    /* Optional: to make the button text inherit the color from its parent */
+    cursor: pointer;
+}
+
+.rwd-table tr:first-child {
+    border-top: none;
+    /* background: #1c3a53; */
+    /* color: #fff; */
+}
+
+.rwd-table tr {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background-color: #f5f9fc;
+}
+
+.rwd-table tr:nth-child(odd):not(:first-child) {
+    background-color: #ebf3f9;
+}
+
+.rwd-table th {
+    display: none;
+    color: white;
+    background-color: #00014c;
+        cursor: pointer;
+}
+
+.rwd-table td {
+    display: block;
+}
+
+.rwd-table td:first-child {
+    margin-top: .5em;
+}
+
+.rwd-table td:last-child {
+    margin-bottom: .5em;
+}
+
+.rwd-table td:before {
+    content: attr(data-th) ": ";
+    font-weight: bold;
+    width: 120px;
+    display: inline-block;
+    color: #000;
+}
+
+.rwd-table th {
+    text-align: center;
+}
+
+.rwd-table {
+    color: var(--rows-color);
+    border-radius: .4em;
+    overflow: hidden;
+}
+
+.rwd-table tr {
+    border-color: #bfbfbf;
+}
+
+.rwd-table th,
+.rwd-table td {
+    padding: .5em 1em;
+}
+
+.sorting-headers {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.2em;
+    border-radius: 10px 10px 5px 5px;
+    background-color: var(--bg-color-secondary);
+    /* Match this with your table header color */
+    color: white;
+    cursor: pointer;
+    /* Add any other styles to match your table headers */
+}
+
+.sorting-headers span {
+    flex: 1;
+    text-align: center;
+    /* Add any other styles for individual sorting header items */
+}
+
+
+
+
+@media screen and (max-width: 601px) {
+    .rwd-table tr:nth-child(2) {
+        border-top: none;
+    }
+}
+
+
+
+@media screen and (min-width: 600px) {
+    .sorting-headers {
+        display: none;
+    }
+
+    .rwd-table tr:hover:not(:first-child) {
+        background-color: #d8e7f3;
+    }
+
+    .rwd-table td:before {
+        display: none;
+    }
+
+    .rwd-table th,
+    .rwd-table td {
+        display: table-cell;
+        padding: .25em .5em;
+    }
+
+    .rwd-table th:first-child,
+    .rwd-table td:first-child {
+        padding-left: 0;
+    }
+
+    .rwd-table th:last-child,
+    .rwd-table td:last-child {
+        padding-right: 0;
+    }
+
+    .rwd-table th,
+    .rwd-table td {
+        padding: .4em !important;
+    }
+}
+
+
+/* THE END OF THE IMPORTANT STUFF */
+
+/* Basic Styling */
+body {
+    background: var(--bg-color-primary);
+    /* background: linear-gradient(to left, var(--bg-color-primary), var(--bg-color-secondary)); */
+    font-size: var(--main-font-size);
+    color: #00014c;
+}
+
+h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    font-size: 2.4em;
+    color: #f2f2f2;
+}
+
+.container {
+    display: block;
+    text-align: center;
+}
+
+h3 {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    font-size: 1.5em;
+    color: #cecece;
+}
+
+h3:before {
+    content: "\25C0";
+    position: absolute;
+    left: -50px;
+    -webkit-animation: leftRight 2s linear infinite;
+    animation: leftRight 2s linear infinite;
+}
+
+h3:after {
+    content: "\25b6";
+    position: absolute;
+    right: -50px;
+    -webkit-animation: leftRight 2s linear infinite reverse;
+    animation: leftRight 2s linear infinite reverse;
+}
+
+/* -----------  FOOTER -------------*/
+#sticky-footer {
+    position: static;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 3px 0;
+    margin-top: 5px;
+    border-radius: 5px;
+    background-color: var(--bg-color-anti-primary);
+    color: var(--small-header-bg);
+    text-align: center;
+    z-index: 800;
+    font-size: calc(var(--main-font-size)*.8);
+    /* font-weight: bold; */
+}
+
+#sticky-footer a {
+    text-decoration: none;
+    /* font-size: small; */
+    color: inherit;
+    margin: 0 5px;
+}
+
+#sticky-footer a:hover {
+    text-decoration: underline;
+}
+
+#sticky-footer img {
+    /* position: inherit; */
+    height: 8px;
+}
+
+@-webkit-keyframes leftRight {
+    0% {
+        -webkit-transform: translateX(0)
+    }
+
+    25% {
+        -webkit-transform: translateX(-10px)
+    }
+
+    75% {
+        -webkit-transform: translateX(10px)
+    }
+
+    100% {
+        -webkit-transform: translateX(0)
+    }
+}
+
+@keyframes leftRight {
+    0% {
+        transform: translateX(0)
+    }
+
+    25% {
+        transform: translateX(-10px)
+    }
+
+    75% {
+        transform: translateX(10px)
+    }
+
+    100% {
+        transform: translateX(0)
+    }
+}
