@@ -77,7 +77,7 @@ async function generateSidebar(config) {
     websiteLink.href = config.social.website.url;
     websiteLink.target = "_blank";
     websiteLink.rel = "noopener noreferrer";
-    const website_icon = document.createElement("img");
+    const websiteIcon = document.createElement("img");
     websiteIcon.src = config.site_assets.website_icon;
     websiteIcon.alt = "website";
     websiteIcon.classList.add("social-icon");
