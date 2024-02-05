@@ -65,7 +65,26 @@ async function generateSidebar(config) {
     presentationSection.appendChild(nameHeader);
     presentationSection.appendChild(shortBio);
 
+    
+    
+    
+    
+    
     const socialDiv = document.createElement("div");
+    
+    socialDiv.classList.add("social-icons");
+    const websiteLink = document.createElement("a");
+    websiteLink.href = config.social.website.url;
+    websiteLink.target = "_blank";
+    websiteLink.rel = "noopener noreferrer";
+    const website_icon = document.createElement("img");
+    websiteIcon.src = config.site_assets.website_icon;
+    websiteIcon.alt = "website";
+    websiteIcon.classList.add("social-icon");
+    websiteLink.appendChild(websiteIcon);
+    websiteLink.innerHTML += " " + config.social.website.label;
+    socialDiv.appendChild(websiteLink);
+    
     socialDiv.classList.add("social-icons");
     const githubLink = document.createElement("a");
     githubLink.href = config.social.github.url;
@@ -78,6 +97,9 @@ async function generateSidebar(config) {
     githubLink.appendChild(githubIcon);
     githubLink.innerHTML += " " + config.social.github.label;
     socialDiv.appendChild(githubLink);
+
+
+
     const linkedinLink = document.createElement("a");
     linkedinLink.href = config.social.linkedin.url;
     linkedinLink.target = "_blank";

@@ -12,12 +12,16 @@
         "project_repository": "https://github.com/TiagoSRodrigues/TiagoSRodrigues.github.io"
     },
     "author": {
-        "name": "Tiago Rodrigues",
+        "name": "Tiago Silva Rodrigues",
         "email": "Tiago_SRodrigues@outlook.com",
-        "bio": "Systems Analyst & DevOps Specialist",
+        "bio": "DevOps Engineer",
         "avatar": "https://avatars.githubusercontent.com/u/36556000?v=4"
     },
     "social": {
+        "website": {
+            "url": "https://tiagosr.eu",
+            "label": "Personal page - tiagosr.eu"
+        },
         "github": {
             "url": "https://github.com/TiagoSRodrigues",
             "label": "Github -TiagoSRodrigues"
@@ -37,6 +41,7 @@
         "rssFeed": false
     },
     "site_assets": {
+        "website_icon": "assets/site_assets/assets/tsr_logo.png",
         "github_icon": "assets/site_assets/github_git_icon_145985.svg",
         "linkedin_icon": "assets/site_assets/linkedin-4102586_113786.svg"
     },
