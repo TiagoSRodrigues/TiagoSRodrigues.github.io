@@ -1,5 +1,5 @@
 <!---
-title: "My presentation"
+title: "About me"
 date: "2023-08-20"
 version: "1.0.0"
 author: "Tiago Rodrigues"
