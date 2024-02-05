@@ -79,7 +79,7 @@ async function generateSidebar(config) {
     websiteLink.rel = "noopener noreferrer";
     const websiteIcon = document.createElement("img");
     websiteIcon.src = config.site_assets.website_icon;
-    websiteIcon.alt = "website";
+    websiteIcon.alt = "Personal Page";
     websiteIcon.classList.add("social-icon");
     websiteLink.appendChild(websiteIcon);
     websiteLink.innerHTML += " " + config.social.website.label;
