@@ -10,6 +10,8 @@ tags: "meta"
 
 ---
 
+# Hi! You can find a better description in my person page -> [tiagosr.eu](https://tiagosr.eu)
+
 ## 👋 About Me
 Hello! I'm a diligent Systems Analyst with a deep passion for Cloud Engineering and Apache Airflow. With a rich background in Chemical Engineering and Software Engineering, I've transitioned seamlessly across diverse roles, turning challenges into growth opportunities. Here's a snapshot:
 
