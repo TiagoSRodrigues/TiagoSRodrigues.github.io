@@ -127,7 +127,7 @@ async function generateSidebar(config) {
     // Dictionary of standalone page links
     const links = {
         "Ricky Gervais Contdown" : 'https://tiagosrodrigues.github.io/ricky',
-        "Don't open": "https://tiagosrodrigues.github.io/gift",
+        // "Don't open": "https://tiagosrodrigues.github.io/gift",
         "Palavra do Dia Solver": "https://tiagosrodrigues.github.io/palavra",
         "I've watched this!": "https://tiagosrodrigues.github.io/watched",
     };

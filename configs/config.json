@@ -4,7 +4,7 @@
         "description": "This is my landing page",
         "baseURL": "tiagosrodrigues.github.io",
         "language": "en-US",
-        "favicon": "assets/site_assets/snoopy.png",
+        "favicon": "assets/site_assets/tsr_logo.png",
         "theme": "light",
         "version": "2.8.0",
         "lastDeploy": "Sun Aug 20 23:54:38 WEST 2023",
