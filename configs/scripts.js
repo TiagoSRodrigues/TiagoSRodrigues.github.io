@@ -152,6 +152,8 @@ async function generateSidebar(config) {
         // "Don't open": "https://tiagosrodrigues.github.io/gift",
         "Palavra do Dia Solver": "https://tiagosrodrigues.github.io/palavra",
         "I've watched this!": "https://tiagosrodrigues.github.io/watched",
+        "Users Management api": "https://tiagosrodrigues.github.io/users"
+
     };
 
     // Loop through each entry in the links object
