@@ -6,18 +6,35 @@
     <title>Swagger UI</title>
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.10.3/swagger-ui.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.10.3/swagger-ui-bundle.js"> </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.10.3/swagger-ui-standalone-preset.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.10.3/swagger-ui-bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.10.3/swagger-ui-standalone-preset.js"></script>
+
+    <!-- Custom CSS for GitHub badge -->
+    <style>
+        .github-corner {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            z-index: 1000;
+        }
+    </style>
 </head>
 
 <body>
     <div id="swagger-ui"></div>
 
+    <!-- GitHub badge -->
+    <a href="https://github.com/TiagoSRodrigues/users-management-api" class="github-corner"
+        aria-label="View source on GitHub">
+        <img src="https://raw.githubusercontent.com/TiagoSRodrigues/TiagoSRodrigues.github.io/main/assets/site_assets/github_git_icon_145985.svg" alt="Check the code GitHub"
+            style="border: 0;">
+    </a>
+
     <script>
         window.onload = function () {
             // Begin Swagger UI call region
             const ui = SwaggerUIBundle({
-                url: "https://raw.githubusercontent.com/TiagoSRodrigues/users-management-api/main/openapi_schema.json", // Replace with the path to your openapi.json
+                url: "https://raw.githubusercontent.com/TiagoSRodrigues/users-management-api/main/openapi_schema.json",
                 dom_id: '#swagger-ui',
                 deepLinking: true,
                 presets: [
@@ -28,10 +45,10 @@
                     SwaggerUIBundle.plugins.DownloadUrl
                 ],
                 layout: "StandaloneLayout"
-            })
+            });
             // End Swagger UI call region
 
-            window.ui = ui
+            window.ui = ui;
         }
     </script>
 </body>
