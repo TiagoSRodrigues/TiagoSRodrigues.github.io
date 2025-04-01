@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCI Alentejo (AJ), Algarve (AG), Lisboa e Vale do tejo (LVT)</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            padding: 10px;
+            background-color: #f5f5f5;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        
+        .source-info {
+            text-align: center;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+        
+        .filter-container input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            flex-grow: 1;
+            min-width: 200px;
+        }
+        
+        .filter-container select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            flex-grow: 1;
+            min-width: 200px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-size: 18px;
+            color: #666;
+        }
+        
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 10px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f8f8f8;
+            position: sticky;
+            top: 0;
+            cursor: pointer;
+        }
+        
+        th:hover {
+            background-color: #eaeaea;
+        }
+        
+        th.sorted-asc::after {
+            content: " ▲";
+            font-size: 0.8em;
+        }
+        
+        th.sorted-desc::after {
+            content: " ▼";
+            font-size: 0.8em;
+        }
+        
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .pagination button {
+            padding: 5px 10px;
+            margin: 0 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        .pagination button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .page-info {
+            padding: 5px 10px;
+        }
+        
+        .error-message {
+            color: #ff0000;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            th, td {
+                padding: 8px;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CCI Alentejo (AJ), Algarve (AG), Lisboa e Vale do tejo (LVT)</h1>
+        
+        <div class="source-info" id="sourceInfo">
+            Loading data...
+        </div>
+        
+        <div class="filter-container" id="filterContainer" style="display: none;">
+            <input type="text" id="globalFilter" placeholder="Search anything...">
+            <select id="columnFilter">
+                <option value="all">All Columns</option>
+            </select>
+        </div>
+        
+        <div id="loading" class="loading">
+            Loading data, please wait...
+        </div>
+        
+        <div class="table-container">
+            <table id="dataTable" style="display: none;">
+                <thead id="tableHead"></thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let csvData = [];
+        let headers = [];
+        let filteredData = [];
+        let sortColumn = null;
+        let sortDirection = 'asc';
+
+        const CSV_URL = 'ecci.csv';
+
+        const sourceInfo = document.getElementById('sourceInfo');
+        const loading = document.getElementById('loading');
+        const filterContainer = document.getElementById('filterContainer');
+        const globalFilter = document.getElementById('globalFilter');
+        const columnFilter = document.getElementById('columnFilter');
+        const dataTable = document.getElementById('dataTable');
+        const tableHead = document.getElementById('tableHead');
+        const tableBody = document.getElementById('tableBody');
+        const errorMessage = document.getElementById('errorMessage');
+
+        globalFilter.addEventListener('input', applyFilters);
+        columnFilter.addEventListener('change', applyFilters);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchCSV();
+        });
+
+        async function fetchCSV() {
+            try {
+                const response = await fetch(CSV_URL);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
+                }
+                
+                const csvText = await response.text();
+                parseCSV(csvText);
+                
+                sourceInfo.textContent = `Data source: ${CSV_URL}`;
+            } catch (error) {
+                console.error('Error fetching CSV:', error);
+                loading.style.display = 'none';
+                errorMessage.textContent = `Error loading data: ${error.message}`;
+                errorMessage.style.display = 'block';
+            }
+        }
+
+        function parseCSV(text) {
+            try {
+                const lines = text.split(/\r\n|\n/);
+                const result = [];
+                
+                if (lines.length === 0) {
+                    throw new Error('CSV file is empty');
+                }
+                
+                const headerLine = lines[0];
+                headers = headerLine.split(',').map(header => header.trim());
+                
+                for (let i = 1; i < lines.length; i++) {
+                    if (lines[i].trim() === '') continue;
+                    const obj = {};
+                    const currentline = lines[i].split(',');
+                    
+                    for (let j = 0; j < headers.length; j++) {
+                        obj[headers[j]] = j < currentline.length ? currentline[j].trim() : '';
+                    }
+                    result.push(obj);
+                }
+                
+                csvData = result;
+                filteredData = [...csvData];
+                
+                setupColumnFilter();
+                setupTable();
+                
+                loading.style.display = 'none';
+                filterContainer.style.display = 'flex';
+                dataTable.style.display = 'table';
+                
+                renderTable();
+            } catch (error) {
+                console.error('Error parsing CSV:', error);
+                loading.style.display = 'none';
+                errorMessage.textContent = `Error parsing data: ${error.message}`;
+                errorMessage.style.display = 'block';
+            }
+        }
+
+        function setupColumnFilter() {
+            columnFilter.innerHTML = '<option value="all">All Columns</option>';
+            
+            headers.forEach(header => {
+                const option = document.createElement('option');
+                option.value = header;
+                option.textContent = header;
+                columnFilter.appendChild(option);
+            });
+        }
+
+        function setupTable() {
+            const headerRow = document.createElement('tr');
+            headers.forEach(header => {
+                if (header.toLowerCase() === 'código postal') {
+                    // Skip adding "Código Postal" to the table headers
+                    return;
+                }
+
+                const th = document.createElement('th');
+                th.textContent = header.toLowerCase() === 'rua da prestação' ? 'Morada' : header;
+                th.addEventListener('click', () => sortTableByColumn(header));
+                headerRow.appendChild(th);
+            });
+            tableHead.innerHTML = '';
+            tableHead.appendChild(headerRow);
+        }
+
+        function applyFilters() {
+            const searchTerm = globalFilter.value.toLowerCase();
+            const selectedColumn = columnFilter.value;
+            
+            filteredData = csvData.filter(row => {
+                if (selectedColumn === 'all') {
+                    return Object.values(row).some(value => 
+                        String(value).toLowerCase().includes(searchTerm)
+                    );
+                } else {
+                    return String(row[selectedColumn]).toLowerCase().includes(searchTerm);
+                }
+            });
+            
+            renderTable();
+        }
+
+        function sortTableByColumn(column) {
+            if (sortColumn === column) {
+                sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+            } else {
+                sortColumn = column;
+                sortDirection = 'asc';
+            }
+            
+            filteredData.sort((a, b) => {
+                const valueA = a[column];
+                const valueB = b[column];
+                
+                const numA = parseFloat(valueA);
+                const numB = parseFloat(valueB);
+                
+                if (!isNaN(numA) && !isNaN(numB)) {
+                    return sortDirection === 'asc' ? numA - numB : numB - numA;
+                }
+                
+                return sortDirection === 'asc' ? 
+                    valueA.localeCompare(valueB) : 
+                    valueB.localeCompare(valueA);
+            });
+            
+            const headerCells = tableHead.querySelectorAll('th');
+            headerCells.forEach(cell => {
+                cell.classList.remove('sorted-asc', 'sorted-desc');
+                if (cell.textContent === column) {
+                    cell.classList.add(sortDirection === 'asc' ? 'sorted-asc' : 'sorted-desc');
+                }
+            });
+            
+            renderTable();
+        }
+
+        function renderTable() {
+            tableBody.innerHTML = '';
+            
+            if (filteredData.length === 0) {
+                const emptyRow = document.createElement('tr');
+                const emptyCell = document.createElement('td');
+                emptyCell.colSpan = headers.length - 1; // Adjust for hidden column
+                emptyCell.textContent = 'No matching data found';
+                emptyCell.style.textAlign = 'center';
+                emptyCell.style.padding = '20px';
+                emptyRow.appendChild(emptyCell);
+                tableBody.appendChild(emptyRow);
+                return;
+            }
+            
+            filteredData.forEach(row => {
+                const tableRow = document.createElement('tr');
+                
+                headers.forEach(header => {
+                    if (header.toLowerCase() === 'código postal') {
+                        // Skip rendering "Código Postal" as a separate column
+                        return;
+                    }
+
+                    const cell = document.createElement('td');
+                    let cellValue = row[header] || '';
+                    
+                    // Capitalize only the first letter if the column is "Distrito"
+                    if (header.toLowerCase() === 'distrito') {
+                        cellValue = cellValue.charAt(0).toUpperCase() + cellValue.slice(1).toLowerCase();
+                    }
+                    
+                    // Merge "Rua da Prestação" and "Código Postal" into "Morada"
+                    if (header.toLowerCase() === 'rua da prestação') {
+                        const codigoPostal = row['Código Postal'] || '';
+                        cellValue = `${cellValue}, ${codigoPostal}`.trim();
+                    }
+                    
+                    // Replace "Union of Parishes of" in the "Parish" column
+                    if (header.toLowerCase() === 'Freguesia') {
+                        cellValue = cellValue.replace('União das Freguesias de', '').trim();
+                    }
+                    
+                    cell.textContent = cellValue;
+                    tableRow.appendChild(cell);
+                });
+                
+                tableBody.appendChild(tableRow);
+            });
+        }
+    </script>
+</body>
+</html>
