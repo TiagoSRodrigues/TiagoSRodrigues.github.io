@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>365 Writing Exercises</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family:  Courier New  ,serif;
+            background: linear-gradient(135deg, #E4405F 0%, #FCAF45   100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 2.5em;
+        }
+
+        .day-indicator {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .accordion-container {
+            display: flex;
+            height: 400px;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            background: white;
+        }
+
+        .card {
+            flex: 1;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            cursor: pointer;
+            transition: flex 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 60px;
+        }
+
+        .card:nth-child(even) {
+            background: linear-gradient(45deg, #4834d4, #686de0);
+        }
+
+        .card:nth-child(3n) {
+            background: linear-gradient(45deg, #00d2d3, #54a0ff);
+        }
+
+        .card:nth-child(4n) {
+            background: linear-gradient(45deg, #ff9ff3, #f368e0);
+        }
+
+        .card:nth-child(5n) {
+            background: linear-gradient(45deg, #feca57, #ff9f43);
+        }
+
+        .card.active {
+            flex: 4;
+        }
+
+        .card-number {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-weight: bold;
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+
+        .card-content {
+            padding: 20px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .card.active .card-content {
+            opacity: 1;
+        }
+
+        .card-title {
+            writing-mode: vertical-lr;
+            text-orientation: mixed;
+            font-size: 0.9em;
+            font-weight: bold;
+            transition: writing-mode 0.3s ease;
+        }
+
+        .card.active .card-title {
+            writing-mode: horizontal-tb;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .card-exercise {
+            display: none;
+            font-size: 1.1em;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .card.active .card-exercise {
+            display: block;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+
+        .nav-btn:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .tips {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .tips h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .tips-content {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.95em;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .tips-content.show {
+            display: block;
+        }
+
+        .tips-toggle {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.5);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .tips-toggle:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .tips ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .tips li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .tips li:before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .accordion-container {
+                flex-direction: column;
+                height: auto;
+                max-height: 500px;
+            }
+            
+            .card {
+                min-height: 60px;
+                flex: none;
+            }
+            
+            .card.active {
+                flex: none;
+                min-height: 300px;
+            }
+            
+            .card-title {
+                writing-mode: horizontal-tb;
+                font-size: 1em;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>365 Writing Exercises</h1>
+        <div class="day-indicator" id="dayIndicator"></div>
+
+
+
+        <div class="accordion-container" id="accordion">
+            <!-- Cards will be generated by JavaScript -->
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn" onclick="showTodaysExercise()">Today's Exercise</button>
+            <button class="nav-btn" onclick="showPrevious()">← Previous</button>
+            <button class="nav-btn" onclick="showNext()">Next →</button>
+            <button class="nav-btn" onclick="showRandom()">Random</button>
+        </div>
+
+        <div class="tips">
+            <h3>Tips for Using These Exercises</h3>
+            <button class="tips-toggle" onclick="toggleTips()">Show Tips</button>
+            <div class="tips-content" id="tipsContent">
+                <ul>
+                    <li><strong>Don't overthink it:</strong> Set a timer for 15-30 minutes and just write</li>
+                    <li><strong>Adapt freely:</strong> Modify any prompt to fit your interests or current project</li>
+                    <li><strong>Mix and match:</strong> Combine elements from different prompts</li>
+                    <li><strong>Return to favorites:</strong> If a prompt sparks something, explore it further</li>
+                    <li><strong>No pressure:</strong> Not every exercise needs to become a finished piece</li>
+                    <li><strong>Experiment with forms:</strong> Try poems, flash fiction, scenes, letters, etc.</li>
+                    <li><strong>Build on characters:</strong> Use the same character across multiple exercises</li>
+                    <li><strong>Share if you want:</strong> Join writing communities to share your work</li>
+                    <li><strong>Keep writing:</strong> Consistency matters more than perfection</li>
+                </ul>
+                <p style="margin-top: 15px; font-style: italic;">
+                    Remember: The goal is to keep your creative muscles active and discover new directions for your
+                    writing. Some exercises will resonate more than others, and that's perfectly fine. Let your
+                    imagination lead the way!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const exercises = ["Write about a character who discovers something unexpected in their attic on New Year's Day",
+            "Create a dialogue between two people meeting for the first time in an elevator stuck between floors",
+            "Describe a morning routine, but the character is not human",
+            "Write a letter your protagonist never sent",
+            "Create a character based solely on the contents of their refrigerator",
+            "Write about someone who collects something unusual",
+            "Describe a character through the eyes of their pet",
+            "Write a scene where your character has to lie to protect someone",
+            "Create a backstory for a minor character from your favorite book",
+            "Write about a character who wakes up with a superpower they don't want",
+            "Describe someone's first day at a job they're completely unqualified for",
+            "Write a conversation between a character and their reflection",
+            "Create a character who speaks only in questions",
+            "Write about someone finding an old diary that isn't theirs",
+            "Describe a character's relationship with an inanimate object",
+            "Write a scene where your character must choose between two difficult options",
+            "Create a character profile using only what's in their search history",
+            "Write about someone who remembers everything but wishes they could forget",
+            "Describe a character who can only tell the truth for one day",
+            "Write about twins who are complete opposites",
+            "Create a character who lives the same day repeatedly",
+            "Write a scene where your character meets their childhood imaginary friend as an adult",
+            "Describe someone who collects last words",
+            "Write about a character who can hear others' thoughts but only negative ones",
+            "Create a protagonist who is afraid of their own shadow",
+            "Write about someone who finds messages in fortune cookies that are too accurate",
+            "Describe a character who ages backwards",
+            "Write a scene where your character must explain modern technology to someone from the past",
+            "Create a character who can only communicate through song lyrics",
+            "Write about someone whose dreams become reality",
+            "Describe a character who inherits something that changes their life completely",
+            "Write a love story that takes place entirely through text messages",
+            "Create a scene where two enemies are forced to work together",
+            "Write about a breakup from the perspective of a shared pet",
+            "Describe a first date that goes horribly wrong but leads to love",
+            "Write a letter from a parent to their unborn child",
+            "Create a story about unrequited love between unlikely characters",
+            "Write about someone falling in love with their best friend's voice",
+            "Describe a couple who can only meet in their dreams",
+            "Write a scene where someone proposes in an unconventional way",
+            "Create a story about love after the end of the world",
+            "Write about a relationship told entirely through grocery lists",
+            "Describe a couple who communicates only through sticky notes",
+            "Write about someone who falls in love with a different person each time they blink",
+            "Create a scene where two people realize they're perfect for each other at the wrong time",
+            "Write a story about a couple who ages at different rates",
+            "Describe a love triangle involving a human, an AI, and a ghost",
+            "Write about someone who can only say \"I love you\" in a language their partner doesn't understand",
+            "Create a story about two rivals who discover they're better as partners",
+            "Write about a relationship that exists only during power outages",
+            "Describe a couple who meets every year at the same place but never outside of it",
+            "Write about someone who falls in love with a person in a photograph",
+            "Create a scene where two people express love without saying the words",
+            "Write about a relationship that spans multiple lifetimes",
+            "Describe a couple who can feel each other's emotions",
+            "Write about someone who inherits their grandmother's love letters to the wrong person",
+            "Create a story about love letters delivered by time travel",
+            "Write about two people who can only meet during leap years",
+            "Describe a relationship told through Amazon purchase history",
+            "Write about someone who finds a key but doesn't know what it opens",
+            "Create a mystery solved by examining someone's internet browser history",
+            "Write about a detective who solves crimes using social media",
+            "Describe a locked room mystery from the perspective of the room",
+            "Write about someone who receives mysterious packages every week",
+            "Create a story about a missing person who doesn't want to be found",
+            "Write about a secret society that meets in a library",
+            "Describe a mystery where the victim and perpetrator are the same person",
+            "Write about someone who discovers their neighbor has been replaced",
+            "Create a story about a town where everyone shares the same secret",
+            "Write about a mystery that can only be solved by children",
+            "Describe someone who investigates their own disappearance",
+            "Write about a detective who can only solve cases in their sleep",
+            "Create a mystery involving messages hidden in crossword puzzles",
+            "Write about someone who finds evidence of a crime that hasn't happened yet",
+            "Describe a case where the evidence keeps changing",
+            "Write about a mystery solved through analyzing playlist choices",
+            "Create a story about a secret room discovered during home renovation",
+            "Write about someone who receives clues through fortune cookies",
+            "Describe a mystery where the detective is the last to realize they're the culprit",
+            "Write about a secret that three generations of a family have kept",
+            "Create a story about a mystery novelist whose plots start coming true",
+            "Write about someone who discovers their family history is entirely fabricated",
+            "Describe a mystery involving identical events happening in different time periods",
+            "Write about a detective who can only communicate through riddles",
+            "Create a story about a secret code hidden in everyday objects",
+            "Write about someone who solves mysteries by reading coffee grounds",
+            "Describe a case that can only be solved by understanding a dead language",
+            "Write about a mystery where the solution changes depending on who's investigating",
+            "Create a story about secrets hidden in children's drawings",
+            "Write about someone who discovers they've been living in a mystery novel",
+            "Write about a character who plants a garden and discovers something unexpected growing",
+            "Describe someone learning a skill they thought they'd never need",
+            "Write about a person who decides to completely change their life in one day",
+            "Create a story about someone who literally blooms like a flower",
+            "Write about a character who can predict the weather with their emotions",
+            "Describe a town where seasons change based on the collective mood",
+            "Write about someone who ages only when they learn something new",
+            "Create a story about a tree that grows a different fruit each season",
+            "Write about a character who sheds their skin like a snake when they change",
+            "Describe someone who collects moments of personal growth in jars",
+            "Write about a person who can only move forward in life, never backward",
+            "Create a story about a school where they teach how to transform into anything",
+            "Write about someone whose house changes to reflect their personal growth",
+            "Describe a character who grows younger when they help others",
+            "Write about a person who plants their fears and harvests courage",
+            "Create a story about a metamorphosis that happens gradually over decades",
+            "Write about someone who can see the potential in broken things",
+            "Describe a character who transforms every time they tell the truth",
+            "Write about a person whose growth is literally visible to others",
+            "Create a story about someone who teaches themselves to fly",
+            "Write about a character who becomes more transparent as they become more honest",
+            "Describe someone who grows stronger with every act of kindness",
+            "Write about a person who changes color with their emotions",
+            "Create a story about a place where personal growth creates physical changes in the landscape",
+            "Write about someone who harvests wisdom from their mistakes",
+            "Describe a character who blooms only in the presence of genuine friendship",
+            "Write about a person who grows taller with confidence",
+            "Create a story about someone who transforms their fears into flowers",
+            "Write about a character who can photosynthesize personal growth",
+            "Describe someone who grows roots when they find where they belong",
+            "Write about someone who finds a map to a place that doesn't exist",
+            "Create a story about explorers who discover a new color",
+            "Write about a character who can open doors to anywhere",
+            "Describe an adventure that takes place entirely in someone's backyard",
+            "Write about explorers who find a library containing every book never written",
+            "Create a story about someone who adventures through people's dreams",
+            "Write about a character who explores abandoned theme parks",
+            "Describe an expedition to find the world's last undiscovered sound",
+            "Write about someone who collects adventures in bottles",
+            "Create a story about explorers who find a place where time moves differently",
+            "Write about a character who adventures through their own memories",
+            "Describe someone who explores the space between seconds",
+            "Write about an expedition to map human emotions",
+            "Create a story about someone who discovers new worlds in puddles",
+            "Write about a character who adventures through different book genres",
+            "Describe explorers who find a place where thoughts become real",
+            "Write about someone who explores the dreams of sleeping cities",
+            "Create a story about a character who adventures through their fears",
+            "Write about explorers who discover a museum of lost things",
+            "Describe someone who finds adventure in everyday objects",
+            "Write about a character who explores alternate versions of their life",
+            "Create a story about someone who adventures through colors",
+            "Write about explorers who find a place where music becomes landscape",
+            "Describe a character who discovers new dimensions in their house",
+            "Write about someone who adventures through different time periods in one day",
+            "Create a story about explorers who find a world made entirely of words",
+            "Write about a character who can explore people's forgotten memories",
+            "Describe someone who adventures through the gaps in conversations",
+            "Write about explorers who find a place where silence has texture",
+            "Create a story about a character who explores the inside of a dewdrop",
+            "Write about someone who discovers a world that exists only during storms",
+            "Write about a character who can control the weather with their laughter",
+            "Create a story about a perfect summer day that lasts forever",
+            "Write about someone who collects the sound of children playing",
+            "Describe a beach where every grain of sand holds a memory",
+            "Write about a character who grows flowers from their footsteps in summer",
+            "Create a story about a ice cream truck that travels through time",
+            "Write about someone who can taste colors in summer fruit",
+            "Describe a character whose hair grows faster in sunshine",
+            "Write about a town where it's always exactly 75 degrees",
+            "Create a story about someone who communicates with fireflies",
+            "Write about a character who can swim through air on hot days",
+            "Describe a summer camp for retired imaginary friends",
+            "Write about someone who harvests happiness from their garden",
+            "Create a story about a character who melts like ice cream in heat",
+            "Write about a town where summer lasts as long as people are happy",
+            "Describe someone who can turn into different forms of water",
+            "Write about a character who grows wings only in summer",
+            "Create a story about a library that's only open during thunderstorms",
+            "Write about someone who can slide down rainbows",
+            "Describe a character who speaks in summer breezes",
+            "Write about a town where flowers bloom instantly when people smile",
+            "Create a story about someone who paints with sunlight",
+            "Write about a character who can bottle the essence of perfect summer days",
+            "Describe someone who grows younger during summer months",
+            "Write about a beach where the waves carry messages from the future",
+            "Create a story about a character who dances with shadows at sunset",
+            "Write about someone who can make it rain lemonade",
+            "Describe a town where the temperature matches everyone's mood",
+            "Write about a character who hibernates in winter and comes alive in summer",
+            "Create a story about someone who can walk on water, but only in summer",
+            "Write about a character whose freckles are actually tiny constellations",
+            "Write about someone who finds their birth certificate with a different name",
+            "Create a story about a character who can only see their reflection in water",
+            "Write about someone who discovers they're a character in someone else's story",
+            "Describe a character who changes personality with each outfit they wear",
+            "Write about someone who finds their doppelganger living their dream life",
+            "Create a story about a character who can only remember who they are when they're asleep",
+            "Write about someone who discovers they're made of stardust literally",
+            "Describe a character who exists only when other people think about them",
+            "Write about someone who finds a diary they wrote but don't remember writing",
+            "Create a story about a character who can shapeshift but forgets their original form",
+            "Write about someone who discovers they're the main character of their life",
+            "Describe a character who can only see themselves through others' eyes",
+            "Write about someone who finds their childhood imaginary friend was real",
+            "Create a story about a character who swaps identities every time they look in a mirror",
+            "Write about someone who discovers they're a backup copy of another person",
+            "Describe a character who can only exist in photographs",
+            "Write about someone who finds out they're everyone's second choice",
+            "Create a story about a character who discovers their shadow has its own personality",
+            "Write about someone who realizes they've been living someone else's life",
+            "Describe a character who can only remember their identity during eclipses",
+            "Write about someone who finds their name written in places they've never been",
+            "Create a story about a character who discovers they're a collection of other people's memories",
+            "Write about someone who can only see their true self during storms",
+            "Describe a character who exists in multiple dimensions simultaneously",
+            "Write about someone who discovers their reflection has been living independently",
+            "Create a story about a character who forgets who they are every morning",
+            "Write about someone who finds evidence that they don't exist",
+            "Describe a character who can only be themselves when no one is watching",
+            "Write about someone who discovers they're the ghost of their own future",
+            "Create a story about a character who realizes they're everyone's imaginary friend",
+            "Write about someone who can only maintain their identity by telling stories",
+            "Write about someone who ages a year every hour",
+            "Create a story about a character who can pause time but can't unpause it",
+            "Write about someone who remembers the future but forgets the past",
+            "Describe a character who lives every day twice",
+            "Write about someone who can travel back in time but only to their mistakes",
+            "Create a story about a character who experiences time backwards",
+            "Write about someone whose memories change every time they remember them",
+            "Describe a character who can bottle moments and drink them later",
+            "Write about someone who ages only when they're not paying attention to time",
+            "Create a story about a character who can see the timestamp on everything",
+            "Write about someone who experiences all of time simultaneously",
+            "Describe a character who can edit their past like a document",
+            "Write about someone who forgets everything except the lies they've been told",
+            "Create a story about a character who can trade memories with others",
+            "Write about someone who lives in slow motion while the world speeds up",
+            "Describe a character who can only access their memories through smells",
+            "Write about someone who experiences time as a color",
+            "Create a story about a character who can remember things that never happened",
+            "Write about someone who ages backwards when they learn something new",
+            "Describe a character who can save and load their life like a video game",
+            "Write about someone who experiences everyone else's timeline but their own",
+            "Create a story about a character who can only remember happy memories",
+            "Write about someone who lives the same hour over and over",
+            "Describe a character who can see the exact moment someone falls in love",
+            "Write about someone who remembers every dream but forgets every day",
+            "Create a story about a character who can gift their time to others",
+            "Write about someone who exists outside of time completely",
+            "Describe a character who can see everyone's expiration date",
+            "Write about someone who can only make new memories during leap seconds",
+            "Create a story about a character who lives in the spaces between moments",
+            "Write about someone who can rewind conversations but not change them",
+            "Write about someone who can absorb knowledge by touching books",
+            "Create a story about a school where they teach impossible subjects",
+            "Write about a character who learns a new language every time they sneeze",
+            "Describe someone who can only learn from their enemies",
+            "Write about a character whose brain is a library that others can visit",
+            "Create a story about someone who teaches wisdom through dance",
+            "Write about a character who can download skills like computer programs",
+            "Describe someone who learns best when they're upside down",
+            "Write about a character who can only retain knowledge gained in dreams",
+            "Create a story about a teacher who learns from their students' mistakes",
+            "Write about someone who can see the questions behind every answer",
+            "Describe a character who grows smarter with every book they burn",
+            "Write about someone who can only learn in complete darkness",
+            "Create a story about a character whose knowledge disappears at sunset",
+            "Write about someone who learns the most from what they forget",
+            "Describe a character who can taste the age of information",
+            "Write about someone who can only understand concepts through metaphors",
+            "Create a story about a character who learns by becoming what they study",
+            "Write about someone whose wisdom comes from admitting ignorance",
+            "Describe a character who can see the educational value in everything",
+            "Write about someone who learns faster when they teach others",
+            "Create a story about a character who can only learn three new things per day",
+            "Write about someone whose knowledge rearranges itself while they sleep",
+            "Describe a character who learns by temporarily becoming other people",
+            "Write about someone who can only process information in riddle form",
+            "Create a story about a character who discovers that unlearning is more valuable than learning",
+            "Write about someone who can see the connections between all knowledge",
+            "Describe a character who learns through their sense of taste",
+            "Write about someone who can only gain wisdom by losing something else",
+            "Create a story about a character who realizes that questions are more valuable than answers",
+            "Write about someone who collects fears and displays them in a museum",
+            "Create a story about a character who can see everyone's worst nightmare",
+            "Write about someone whose shadow is braver than they are",
+            "Describe a character who can only be courageous when no one is watching",
+            "Write about someone who discovers their fear is actually protecting something precious",
+            "Create a story about a character who can transform fear into physical objects",
+            "Write about someone who is afraid of their own potential",
+            "Describe a character who can only be scared by beautiful things",
+            "Write about someone who harvests courage from other people's bravery",
+            "Create a story about a character who faces their fears by befriending them",
+            "Write about someone who can see the courage in everyone except themselves",
+            "Describe a character who grows stronger with every fear they overcome",
+            "Write about someone whose fears take physical form at night",
+            "Create a story about a character who can loan their courage to others",
+            "Write about someone who discovers that their biggest fear is actually their superpower",
+            "Describe a character who can only be brave in groups",
+            "Write about someone who collects other people's discarded fears",
+            "Create a story about a character who teaches courage through cooking",
+            "Write about someone whose fear of the dark illuminates hidden truths",
+            "Describe a character who can taste fear in the air",
+            "Write about someone who discovers that courage isn't the absence of fear",
+            "Create a story about a character who can only access their memories through fear",
+            "Write about someone whose greatest fear is not being afraid enough",
+            "Describe a character who can see the beauty in scary things",
+            "Write about someone who realizes their fear was protecting others, not themselves",
+            "Create a story about a character who can turn invisible when they're brave",
+            "Write about someone who discovers that their nightmares are actually prophecies",
+            "Describe a character who can only tell the truth when they're terrified",
+            "Write about someone whose courage grows like a plant with proper care",
+            "Create a story about a character who faces fears by rewriting them as comedy",
+            "Write about someone who discovers that everyone shares the same core fear",
+            "Write about someone who can see the gratitude radiating from people",
+            "Create a story about a family dinner where everyone tells the truth",
+            "Write about a character who collects thank you notes never sent",
+            "Describe someone who can only feel gratitude for things they've lost",
+            "Write about a character whose family communicates only through recipes",
+            "Create a story about a community that shares one collective memory",
+            "Write about someone who discovers their neighbors are all related to them",
+            "Describe a character who can see the connections between all people",
+            "Write about someone who gives thanks by growing plants for others",
+            "Create a story about a family that ages at different speeds",
+            "Write about a character who can only express love through acts of service",
+            "Describe someone who hosts dinner parties for people who need family",
+            "Write about a character whose gratitude creates physical warmth",
+            "Create a story about a community where everyone has a unique superpower",
+            "Write about someone who discovers their family history through cooking",
+            "Describe a character who can see the kindness in everyone's heart",
+            "Write about someone who collects moments of human connection",
+            "Create a story about a family that communicates through music",
+            "Write about a character who can feel everyone's gratitude at once",
+            "Describe someone who builds community by sharing stories",
+            "Write about a character whose thankfulness makes flowers grow",
+            "Create a story about a family reunited by a shared dream",
+            "Write about someone who can see the good in every difficult situation",
+            "Describe a character who expresses gratitude through dance",
+            "Write about someone who discovers that giving creates abundance",
+            "Create a story about a community that celebrates failures as learning opportunities",
+            "Write about a character who can see the love that built every object",
+            "Describe someone who hosts celebrations for strangers' achievements",
+            "Write about a character whose family exists across multiple dimensions",
+            "Create a story about someone who realizes home is wherever they practice gratitude",
+            "Write about a character who can see the helper in every difficult situation",
+            "Write about someone who can see the magic in ordinary moments",
+            "Create a story about a character who grants wishes but only small ones",
+            "Write about someone who collects the last words of dying years",
+            "Describe a character who can see the wonder in everything for one day",
+            "Write about someone whose breath creates snowflakes with memories",
+            "Create a story about a character who can make impossible things probable",
+            "Write about someone who can see the magic that children believe in",
+            "Describe a character who collects moments of pure joy",
+            "Write about someone who can make dead batteries work with kindness",
+            "Create a story about a character who can see the stories inside objects",
+            "Write about someone whose wishes come true but only for other people",
+            "Describe a character who can see the magic hour in any time of day",
+            "Write about someone who discovers that believing in magic makes it real",
+            "Create a story about a character who can hear the music of the spheres",
+            "Write about someone who can see the light in everyone's darkest moments",
+            "Describe a character who can make lost things find their way home",
+            "Write about someone who can see the wonder that exists in silence",
+            "Create a story about a character who can turn tears into starlight",
+            "Write about someone who discovers that endings are just beginnings in disguise",
+            "Describe a character who can see the possibility in every dead end",
+            "Write about someone who can make miracles happen through paying attention",
+            "Create a story about a character who can see the magic in letting go",
+            "Write about someone who discovers that wonder is a choice they can make",
+            "Describe a character who can see the beauty in broken things",
+            "Write about someone who can turn ordinary moments into celebrations",
+            "Create a story about a character who realizes they are the magic they've been seeking",
+            "Write about someone who can see the perfect ending in every story",
+            "Describe a character who discovers that wonder multiplies when shared",
+            "Write about someone who ends the year by beginning a completely new story"
+        ];
+
+        let currentIndex = 0;
+        let visibleCards = [];
+
+        function getDayOfYear() {
+            const now = new Date();
+            const start = new Date(now.getFullYear(), 0, 1); // Jan 1, local time
+            const diff = now - start;
+            const oneDay = 1000 * 60 * 60 * 24;
+            return Math.floor(diff / oneDay) + 1; // Jan 1 = Day 1
+        }
+
+        function updateDayIndicator() {
+            const dayOfYear = getDayOfYear();
+            const date = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
+            // Handle leap years dynamically
+            const isLeap = (date.getFullYear() % 4 === 0 && date.getFullYear() % 100 !== 0) || (date.getFullYear() % 400 === 0);
+            const totalDays = isLeap ? 366 : 365;
+
+            document.getElementById('dayIndicator').textContent =
+                `Day ${dayOfYear} of ${totalDays} - ${date.toLocaleDateString('en-US', options)}`;
+        }
+
+        function createCard(index, exercise) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.onclick = () => setActiveCard(index);
+
+            // Use real dates instead of "index/31"
+            const year = new Date().getFullYear();
+            const date = new Date(year, 0); // start at Jan 1
+            date.setDate(index + 1); // index 0 → Jan 1, index 31 → Feb 1, etc.
+
+            const monthNames = [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+
+            const month = monthNames[date.getMonth()];
+            const day = date.getDate();
+
+            card.innerHTML = `
+            <div class="card-number">${index + 1}</div>
+            <div class="card-content">
+                <div class="card-title">${month} ${day}</div>
+                <div class="card-exercise">${exercise}</div>
+            </div>
+        `;
+
+            return card;
+        }
+        
+
+        function showCards(centerIndex) {
+            const accordion = document.getElementById('accordion');
+            accordion.innerHTML = '';
+
+            const startIndex = Math.max(0, centerIndex - 2);
+            const endIndex = Math.min(exercises.length - 1, centerIndex + 2);
+
+            visibleCards = [];
+
+            for (let i = startIndex; i <= endIndex; i++) {
+                const card = createCard(i, exercises[i]);
+                accordion.appendChild(card);
+                visibleCards.push(card);
+            }
+
+            // Set the center card as active
+            const activeCardIndex = centerIndex - startIndex;
+            if (visibleCards[activeCardIndex]) {
+                visibleCards[activeCardIndex].classList.add('active');
+            }
+
+            currentIndex = centerIndex;
+        }
+
+        function setActiveCard(index) {
+            visibleCards.forEach(card => card.classList.remove('active'));
+            const cardIndex = visibleCards.findIndex(card =>
+                parseInt(card.querySelector('.card-number').textContent) === index + 1
+            );
+            if (cardIndex !== -1) {
+                visibleCards[cardIndex].classList.add('active');
+            }
+        }
+
+        function showTodaysExercise() {
+            const dayOfYear = getDayOfYear();
+            const exerciseIndex = Math.min(dayOfYear - 1, exercises.length - 1);
+            showCards(exerciseIndex);
+        }
+
+        function showPrevious() {
+            const newIndex = Math.max(0, currentIndex - 1);
+            showCards(newIndex);
+        }
+
+        function showNext() {
+            const newIndex = Math.min(exercises.length - 1, currentIndex + 1);
+            showCards(newIndex);
+        }
+
+        function showRandom() {
+            const randomIndex = Math.floor(Math.random() * exercises.length);
+            showCards(randomIndex);
+        }
+
+        function toggleTips() {
+            const tipsContent = document.getElementById('tipsContent');
+            const button = document.querySelector('.tips-toggle');
+
+            if (tipsContent.classList.contains('show')) {
+                tipsContent.classList.remove('show');
+                button.textContent = 'Show Tips';
+            } else {
+                tipsContent.classList.add('show');
+                button.textContent = 'Hide Tips';
+            }
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function () {
+            updateDayIndicator();
+            showTodaysExercise();
+        });
+    </script>
+</body>
+
+</html>
