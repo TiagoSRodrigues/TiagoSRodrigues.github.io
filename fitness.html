@@ -97,14 +97,23 @@
     .layout {
       display: grid;
       gap: 1rem;
+      grid-template-areas:
+        "details"
+        "calendar";
     }
+    .calendar-card { grid-area: calendar; }
+    .detail-card { grid-area: details; }
     @media (min-width: 900px){
-      .layout { grid-template-columns: 1.1fr 0.9fr; }
+      .layout {
+        grid-template-columns: 1.1fr 0.9fr;
+        grid-template-areas: "calendar details";
+      }
     }
 
     table.calendar {
       width: 100%;
       border-collapse: collapse;
+      min-width: 720px; /* mantém legível em telas estreitas, usa scroll horizontal */
     }
     table.calendar th, table.calendar td {
       border-bottom: 1px solid #e5e7eb;
@@ -148,6 +157,20 @@
       header.site-header h1 { font-size: 1.4rem; }
       .day-info { min-width: 180px; }
     }
+
+    /* Ajustes extras para smartphones ~5" */
+    @media (max-width: 420px){
+      body { font-size: 15px; }
+      .container { padding: 0 0.75rem 1.5rem; gap: 0.75rem; }
+      .card { padding: 0.75rem; }
+      header.site-header { padding: 1rem 0.75rem 0.5rem; }
+      header.site-header h1 { font-size: 1.25rem; }
+      header.site-header p { font-size: 0.9rem; }
+      .section-title { font-size: 1rem; margin-bottom: 0.6rem; }
+      .chip { padding: 0.45rem 0.85rem; font-size: 0.95rem; }
+      table.calendar th, table.calendar td { padding: 0.5rem; font-size: 0.9rem; }
+      .exercises li { margin: 0.2rem 0; }
+    }
   </style>
 </head>
 <body>
@@ -163,27 +186,29 @@
 
   <main class="container layout" aria-label="Conteúdo principal">
     <!-- Calendário -->
-    <section class="card" aria-label="Calendário das sessões">
+    <section class="card calendar-card" aria-label="Calendário das sessões">
       <h2 class="section-title">Calendário (13 jan 2026 em diante)</h2>
-      <table class="calendar" id="calendarTable" role="grid" aria-label="Calendário de treinos">
-        <thead>
-          <tr>
-            <th>Semana</th>
-            <th>Dia 1 (Terça)</th>
-            <th>Dia 2 (Quinta)</th>
-            <th>Dia 3 (Sexta)</th>
-            <th>Dia 4 (Sábado)</th>
-            <th>Dia 5 (Domingo)</th>
-          </tr>
-        </thead>
-        <tbody id="calendarBody">
-          <!-- Linhas geradas por script -->
-        </tbody>
-      </table>
+      <div class="table-scroll" aria-label="Rolagem horizontal do calendário">
+        <table class="calendar" id="calendarTable" role="grid" aria-label="Calendário de treinos">
+          <thead>
+            <tr>
+              <th>Semana</th>
+              <th>Dia 1 (Terça)</th>
+              <th>Dia 2 (Quinta)</th>
+              <th>Dia 3 (Sexta)</th>
+              <th>Dia 4 (Sábado)</th>
+              <th>Dia 5 (Domingo)</th>
+            </tr>
+          </thead>
+          <tbody id="calendarBody">
+            <!-- Linhas geradas por script -->
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <!-- Detalhes do treino do dia atual -->
-    <section class="card" aria-label="Detalhes do treino atual">
+    <section class="card detail-card" aria-label="Detalhes do treino atual">
       <h2 class="section-title" id="sectionTitle">Detalhes do treino</h2>
       <div id="dayExercises" class="exercises" aria-label="Exercícios deste dia">
         <!-- Gerado por script -->
