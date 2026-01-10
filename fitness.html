@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plano de treino 12 semanas — Tiago Antonio</title>
+  <style>
+    :root{
+      --bg: #f7f7f7;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #2f6bff;
+      --shadow: 0 6px 18px rgba(0,0,0,.05);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Inter", Arial;
+      line-height: 1.5;
+    }
+
+    header.site-header {
+      padding: 1.25rem;
+      text-align: center;
+    }
+    header.site-header h1 {
+      margin: 0.25rem 0;
+      font-size: 1.6rem;
+    }
+    header.site-header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .container {
+      padding: 0 1rem 2rem;
+      display: grid;
+      gap: 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .section-title {
+      margin: 0 0 0.75rem;
+      font-size: 1.06rem;
+      font-weight: 700;
+    }
+
+    /* Navegação de dias */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+    .nav button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 0.6rem 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 2px 6px rgba(0,0,0,.08);
+    }
+    .nav button:focus { outline: 2px solid #000; outline-offset: 2px; }
+    .day-label {
+      font-weight: 600;
+      color: #374151;
+      min-width: 210px;
+      text-align: center;
+    }
+
+    /* Layout principal responsivo: calendário + detalhes */
+    .layout {
+      display: grid;
+      gap: 1rem;
+    }
+    @media (min-width: 900px){
+      .layout { grid-template-columns: 1.1fr 0.9fr; }
+    }
+
+    table.calendar {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table.calendar th, table.calendar td {
+      border-bottom: 1px solid #e5e7eb;
+      padding: 0.65rem;
+      text-align: left;
+      vertical-align: top;
+      font-size: 0.92rem;
+    }
+    table.calendar thead th {
+      font-weight: 700;
+      color: #374151;
+      background: #f8fafc;
+    }
+    table.calendar tbody tr:hover td {
+      background: #fbfbfb;
+    }
+    .mini-note { color: var(--muted); font-size: 0.85rem; }
+
+    .exercises ul { margin: 0; padding-left: 1.1rem; }
+    .exercises li { margin: .25rem 0; cursor: pointer; }
+
+    /* Detalhes do exercício (descrição) */
+    #exerciseDetail {
+      display: none;
+    }
+    .ex-detail {
+      padding: 0.75rem 0 0.25rem;
+    }
+    .ex-detail h4 { margin: 0 0 0.25rem; }
+    .ex-detail p { margin: 0.25rem 0; }
+
+    /* Rodapé */
+    footer.footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 1rem;
+    }
+
+    /* Ajustes para mobile (visual limpo e legível) */
+    @media (max-width: 600px){
+      header.site-header h1 { font-size: 1.4rem; }
+      .day-label { min-width: 180px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" aria-label="Cabeçalho do site">
+    <h1>Plano de treino 12 semanas</h1>
+    <p>Treino em casa com 2 halteres, banco, tapete e roda de abdominais. 3 dias/semana, foco em massa e força</p>
+  </header>
+
+  <nav class="nav" aria-label="Navegação de dias">
+    <button id="prevBtn" aria-label="Dia anterior">Anterior</button>
+    <div class="day-label" id="dayInfo" aria-live="polite">Semana 1 - Dia A</div>
+    <button id="nextBtn" aria-label="Dia seguinte">Seguinte</button>
+  </nav>
+
+  <main class="container layout" aria-label="Conteúdo principal">
+    <!-- Calendário -->
+    <section class="card" aria-label="Calendário das sessões">
+      <h2 class="section-title">Calendário (11 jan 2026 em diante)</h2>
+      <table class="calendar" id="calendarTable" role="grid" aria-label="Calendário de treinos">
+        <thead>
+          <tr>
+            <th>Semana</th>
+            <th>Dia A</th>
+            <th>Dia B</th>
+            <th>Dia C</th>
+          </tr>
+        </thead>
+        <tbody id="calendarBody">
+          <!-- Gerado por script -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Detalhes do treino do dia atual -->
+    <section class="card" aria-label="Detalhes do treino atual">
+      <h2 class="section-title" id="sectionTitle">Detalhes do treino</h2>
+      <div id="dayExercises" class="exercises" aria-label="Exercícios deste dia">
+        <!-- Gerado por script -->
+      </div>
+      <hr>
+      <div id="exerciseDetail" class="ex-detail" aria-label="Descrição detalhada de um exercício">
+        <!-- Descrição expandida de exercício selecionado -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" aria-label="Rodapé">
+    Este plano é orientativo. Ajuste conforme necessidade e consulte um profissional de saúde em caso de dor.
+  </footer>
+
+  <script>
+    (function(){
+      // Configurações básicas
+      const startDate = new Date("2026-01-11T00:00:00Z"); // 11 jan 2026
+      const totalWeeks = 12;
+
+      // Plano: 3 dias (A, B, C) com exercícios e progressões simples
+      const plan = {
+        A: {
+          name: "Treino A",
+          exercises: [
+            { id: "GobletSquat", name: "Goblet squat", base: 20, inc: 2, sets: 3, reps: "8-12" },
+            { id: "DumbbellFlatBench", name: "Supino com halteres no banco (flat)", base: 24, inc: 4, sets: 3, reps: "8-12" },
+            { id: "OneArmRow", name: "Remada unilateral com haltere no banco", base: 14, inc: 2, sets: 3, reps: "8-12" },
+            { id: "ShoulderPress", name: "Desenvolvimento com halteres sentado (neutral)", base: 10, inc: 2, sets: 3, reps: "8-12" },
+            { id: "TricepOverhead", name: "Extensão de tríceps com haltere acima da cabeça", base: 10, inc: 2, sets: 3, reps: "10-12" },
+            { id: "Core", name: "Ab wheel roll-out / prancha", base: 0, inc: 0, sets: 3, reps: "8-12" }
+          ]
+        },
+        B: {
+          name: "Treino B",
+          exercises: [
+            { id: "Lunges", name: "Avanços com halteres", base: 14, inc: 2, sets: 3, reps: "8-12 por perna" },
+            { id: "Stiff", name: "Stiff deadlift com halteres", base: 14, inc: 2, sets: 3, reps: "8-12" },
+            { id: "RowBothHands", name: "Remada baixa com halteres (ambas as mãos)", base: 14, inc: 2, sets: 3, reps: "8-12" },
+            { id: "FloorPress", name: "Floor press (ou supino no chão com pegada neutra)", base: 12, inc: 2, sets: 3, reps: "8-12" },
+            { id: "BicepsCurl", name: "Curl de bíceps com halteres", base: 10, inc: 2, sets: 3, reps: "10-12" },
+            { id: "ExternalRotation", name: "External rotation com haltere", base: 2, inc: 1, sets: 2, reps: "12-15" },
+            { id: "Core", name: "Ab wheel roll-out / abdominais no solo", base: 0, inc: 0, sets: 3, reps: "8-12" }
+          ]
+        },
+        C: {
+          name: "Treino C",
+          exercises: [
+            { id: "HipThrust", name: "Hip thrust com halteres", base: 20, inc: 0, sets: 3, reps: "8-12" },
+            { id: "RDL", name: "Romanian deadlift com halteres", base: 16, inc: 2, sets: 3, reps: "8-12" },
+            { id: "SplitSquat", name: "Split squat com halteres", base: 12, inc: 2, sets: 3, reps: "8-12 por perna" },
+            { id: "InclinePress", name: "Supino inclinado com halteres", base: 12, inc: 2, sets: 3, reps: "8-12" },
+            { id: "LateralRaise", name: "Lateral raises com halteres", base: 4, inc: 1, sets: 3, reps: "12-15" },
+            { id: "ExternalRotation2", name: "Rotação externa", base: 2, inc: 1, sets: 2, reps: "12-15" },
+            { id: "CoreSide", name: "Prancha lateral", base: 0, inc: 0, sets: 3, reps: "30-40s" }
+          ]
+        }
+      };
+
+      // Utilidades de data
+      function addDays(date, days) {
+        const d = new Date(date);
+        d.setDate(d.getDate() + days);
+        return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
+      }
+      function formatDateISO(d) {
+        const day = d.getUTCDate().toString().padStart(2, "0");
+        const mon = (d.getUTCMonth() + 1).toString().padStart(2, "0");
+        return `${day}/${mon}/2026`;
+      }
+
+      function dateOfDayA(week) {
+        return addDays(startDate, (week - 1) * 7);
+      }
+      function dateOfDayB(week) {
+        return addDays(dateOfDayA(week), 3);
+      }
+      function dateOfDayC(week) {
+        return addDays(dateOfDayA(week), 6);
+      }
+
+      // Peso atual para um exercício na semana
+      function weightFor(ex, week) {
+        const base = ex.base || 0;
+        const inc  = ex.inc || 0;
+        const weeksPassed = week - 1;
+        const multiplier = Math.floor(weeksPassed / 2);
+        return base + multiplier * inc;
+      }
+
+      // Renderizar calendário (linhas da semana)
+      function renderWeekRow(weekIndex) {
+        const dA = dateOfDayA(weekIndex);
+        const dB = dateOfDayB(weekIndex);
+        const dC = dateOfDayC(weekIndex);
+
+        function resumo(dayKey) {
+          const dayPlan = plan[dayKey];
+          const exs = dayPlan.exercises.map(e => {
+            const w = weightFor(e, weekIndex);
+            const wtxt = e.base ? ` ${w} kg` : "";
+            return `${e.name.split(" ")[0]}${wtxt ? " -" + wtxt : ""}`;
+          });
+          return exs.slice(0, 2).join("; ");
+        }
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${weekIndex}</td>
+          <td>
+            <strong>Dia A</strong>
+            <div>${formatDateISO(dA)}</div>
+            <div class="mini-note">${resumo("A")}</div>
+          </td>
+          <td>
+            <strong>Dia B</strong>
+            <div>${formatDateISO(dB)}</div>
+            <div class="mini-note">${resumo("B")}</div>
+          </td>
+          <td>
+            <strong>Dia C</strong>
+            <div>${formatDateISO(dC)}</div>
+            <div class="mini-note">${resumo("C")}</div>
+          </td>
+        `;
+        return row;
+      }
+
+      // Mostrar exercícios do dia atual
+      function renderDayExercises(weekIndex, dayKey) {
+        const dayPlan = plan[dayKey];
+        const container = document.getElementById("dayExercises");
+        container.innerHTML = "";
+
+        const title = document.createElement("h3");
+        title.textContent = `Semana ${weekIndex} - Dia ${dayKey}`;
+        container.appendChild(title);
+
+        const ul = document.createElement("ul");
+        dayPlan.exercises.forEach(ex => {
+          const li = document.createElement("li");
+          const w = weightFor(ex, weekIndex);
+          const pesoTexto = ex.base ? ` ${w} kg` : "";
+          const setsReps = ex.sets ? ` • ${ex.sets}x${ex.reps}` : ` • ${ex.reps}`;
+          li.innerHTML = `<strong>${ex.name}</strong>${pesoTexto}<span class="mini-note">${setsReps}</span>`;
+          li.addEventListener("click", () => showExerciseDetail(ex, weekIndex, dayKey));
+          ul.appendChild(li);
+        });
+        container.appendChild(ul);
+
+        const note = document.createElement("p");
+        note.className = "mini-note";
+        note.textContent = "Clique em qualquer exercício para ver a descrição detalhada.";
+        container.appendChild(note);
+      }
+
+      // Detalhes de exercício
+      function showExerciseDetail(ex, week, dayKey) {
+        const detail = document.getElementById("exerciseDetail");
+        const w = weightFor(ex, week);
+        detail.style.display = "block";
+        detail.innerHTML = `
+          <h4>${ex.name}</h4>
+          <p><strong>Dia</strong>: Semana ${week} - Dia ${dayKey}</p>
+          ${ex.sets ? `<p><strong>Séries</strong>: ${ex.sets}x${ex.reps}</p>` : ""}
+          ${ex.base ? `<p><strong>Peso estimado</strong>: ${w} kg</p>` : ""}
+          <p><strong>Como fazer</strong>:
+            <ol>
+              <li>Prepare-se com postura estável e tronco alinhado.</li>
+              <li>Execute com ROM controlada, sem dor.</li>
+              ${ex.id === "GobletSquat" ? "<li>Mantenha cotovelos próximos ao tronco durante a subida.</li>" : ""}
+            </ol>
+          </p>
+          <p><strong>Cuidados</strong>: mantenha ombros estáveis, escolha carga adequada para não prejudicar o ombro.</p>
+        `;
+      }
+
+      // Construção inicial
+      function buildCalendar() {
+        const tbody = document.getElementById("calendarBody");
+        tbody.innerHTML = "";
+        for (let w = 1; w <= totalWeeks; w++) {
+          tbody.appendChild(renderWeekRow(w));
+        }
+      }
+
+      // Navegação entre dias
+      let activeWeek = 1;
+      let activeDay = "A"; // A, B, C
+
+      function setActive(week, day) {
+        activeWeek = week;
+        activeDay = day;
+        document.getElementById("dayInfo").textContent = `Semana ${week} - Dia ${day}`;
+        renderDayExercises(week, day);
+        updateHash();
+      }
+
+      function step(delta) {
+        const order = ["A","B","C"];
+        let idx = order.indexOf(activeDay);
+        let nextIdx = idx + delta;
+        let nextWeek = activeWeek;
+        if (nextIdx < 0) { nextIdx = order.length - 1; nextWeek--; }
+        if (nextIdx >= order.length) { nextIdx = 0; nextWeek++; }
+        if (nextWeek < 1) nextWeek = 1;
+        if (nextWeek > totalWeeks) nextWeek = totalWeeks;
+        setActive(nextWeek, order[nextIdx]);
+      }
+
+      // Hash para compartilhar/retomar estado
+      function updateHash() {
+        window.location.hash = `week=${activeWeek}&day=${activeDay}`;
+      }
+
+      // Init
+      function init() {
+        buildCalendar();
+        // Se há hash, usa
+        const h = window.location.hash;
+        if (h) {
+          const p = new URLSearchParams(h.replace("#",""));
+          const w = parseInt(p.get("week"), 10);
+          const d = (p.get("day") || "A").toUpperCase();
+          if (Number.isFinite(w) && w >= 1 && w <= totalWeeks && ["A","B","C"].includes(d)) {
+            activeWeek = w;
+            activeDay = d;
+          }
+        }
+        setActive(activeWeek, activeDay);
+        // Eventos dos botões
+        document.getElementById("prevBtn").addEventListener("click", () => step(-1));
+        document.getElementById("nextBtn").addEventListener("click", () => step(+1));
+
+        // Teclado (esquerda/direita)
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowLeft") step(-1);
+          if (e.key === "ArrowRight") step(+1);
+        });
+        // hashchange
+        window.addEventListener("hashchange", () => {
+          const p = new URLSearchParams(window.location.hash.replace("#",""));
+          const w = parseInt(p.get("week"), 10);
+          const d = (p.get("day") || "A").toUpperCase();
+          if (Number.isFinite(w) && w >= 1 && w <= totalWeeks && ["A","B","C"].includes(d)) {
+            setActive(w, d);
+          }
+        });
+      }
+
+      init();
+    })();
+  </script>
+</body>
+</html>
